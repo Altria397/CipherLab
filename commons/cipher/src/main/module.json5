@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "cipher",
+    "type": "har",
+    "deviceTypes": [
+      "phone"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/CaesarPage",
+    "pages/VigenerePage",
+    "pages/EnigmaPage",
+    "pages/XorPage",
+    "pages/Base64Page",
+    "pages/RsaPage",
+    "pages/CustomCipherPage"
+  ]
+}

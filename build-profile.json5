@@ -1,0 +1,68 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\Fan\\.ohos\\config\\default_CipherLab_F4Tswvu8wTLWHgt6t88PG-onv1Vj3aVi81uB64GkCtM=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A2B33C94A3F6E21E186CA6203ED1E9E17508C4F99D0935EF14B5B5FAC9DCEC5FFD2D3AB5A0424",
+          "profile": "C:\\Users\\Fan\\.ohos\\config\\default_CipherLab_F4Tswvu8wTLWHgt6t88PG-onv1Vj3aVi81uB64GkCtM=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Fan\\.ohos\\config\\default_CipherLab_F4Tswvu8wTLWHgt6t88PG-onv1Vj3aVi81uB64GkCtM=.p12",
+          "storePassword": "0000001A8485A6A67ED31B311F85CB807D1296BB5328E5B11D7A416FDB8C169FA688B65910F75DC10A94"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "targetSdkVersion": "6.0.0(20)",
+        "compatibleSdkVersion": "6.0.0(20)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "cipher",
+      "srcPath": "./commons/cipher",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

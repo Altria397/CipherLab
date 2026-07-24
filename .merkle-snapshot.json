@@ -1,0 +1,832 @@
+{
+  "rootHash": "1177b8087b3d608b205c75e2aae550bd9d3d37190960e6ddaf71c322222eb12c",
+  "timestamp": 1783068255890,
+  "fileCount": 46,
+  "files": [
+    {
+      "path": "hvigorfile.ts",
+      "hash": "8e19ea6d9c9bfbf4fe2e1d94809352d3f4b21e2a8c1f9fff2b381151d244710d",
+      "size": 227,
+      "modified": 1761551975143.876
+    },
+    {
+      "path": "features\\lab\\hvigorfile.ts",
+      "hash": "68861686b8ec5a86558740daef3a89b1e868e4d81f01cf1cfb91705fb69b339d",
+      "size": 227,
+      "modified": 1761552323267.1624
+    },
+    {
+      "path": "features\\lab\\src\\test\\List.test.ets",
+      "hash": "91800c41cb8600e9977a7f70debcfec95a4e850e933d61df8454708da5c5e5f0",
+      "size": 105,
+      "modified": 1761552323285.6409
+    },
+    {
+      "path": "features\\lab\\src\\test\\LocalUnit.test.ets",
+      "hash": "c66ad30b06140151b7e5dbf63cc05f8a72f094176b91e3a100f03126bdb84e3c",
+      "size": 1624,
+      "modified": 1761552323300.7976
+    },
+    {
+      "path": "features\\lab\\src\\ohosTest\\ets\\test\\Ability.test.ets",
+      "hash": "087a64ea36a3bab888ba5c1b185712abfccd2e020b18e109ac510b2fb542766b",
+      "size": 1734,
+      "modified": 1761552323327.7632
+    },
+    {
+      "path": "features\\lab\\src\\ohosTest\\ets\\test\\List.test.ets",
+      "hash": "f0fe59a90e5137961d7eb70655e268a52f9ad9e0110c210620658548ed2460fb",
+      "size": 99,
+      "modified": 1761552323356.1492
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\utils\\CipherUtils.ets",
+      "hash": "655e493dba9c8e94d4d44a209ba324a271ed1808f0a57e4bff942e5da45e0653",
+      "size": 5710,
+      "modified": 1775032362491.4326
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\Base64Page.ets",
+      "hash": "7fe2435c4c42f9c1e43066d094f2d0b218787391be0be1fdade134e036f2002d",
+      "size": 13629,
+      "modified": 1775037008685.0337
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\CaesarPage.ets",
+      "hash": "9778fffa0f5d33321c644e2e92f1901c3ae74a894d2ffa1d6f9699bba96cad67",
+      "size": 11984,
+      "modified": 1775036967766.74
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\CustomCipherPage.ets",
+      "hash": "26da1d7e212d870c38a5092a1ac78462bde5aeccfe15248da893cd0cf1b554f4",
+      "size": 19928,
+      "modified": 1775031447313.9624
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\EnigmaPage.ets",
+      "hash": "24023f891e1cbf7e7bb597342762b95b359dec24f77070ce3d88cb0fefe5ab69",
+      "size": 20798,
+      "modified": 1775209105895.591
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\Index.ets",
+      "hash": "6a42c9de98eab04d8e0e6867b1c612dd878775832a5810683e92e60cf0193c3f",
+      "size": 5807,
+      "modified": 1775209077625.671
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\RsaPage.ets",
+      "hash": "993ec2acdf6ee7c0a78bbc80c703ea80fae9ed9eecbc046e412e5e2e549b0b14",
+      "size": 14323,
+      "modified": 1775209659683.26
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\VigenerePage.ets",
+      "hash": "cb5ee9db94158fa2985437c5b30c4730fc4d68399c4b9ca1c4294f5a0fedfe55",
+      "size": 11313,
+      "modified": 1775036914827.6228
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\pages\\XorPage.ets",
+      "hash": "ccd24bc4a7cae637e7895f93665c44538ebb9c87b6ffebcf312993d4cb9879fb",
+      "size": 10113,
+      "modified": 1775036999117.8386
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\model\\CipherModels.ets",
+      "hash": "f767ef466933021c81d32f943e7dcd8eba262b5f5575f00daaed562799ffe0d8",
+      "size": 503,
+      "modified": 1775031447320.541
+    },
+    {
+      "path": "features\\lab\\src\\main\\ets\\labability\\LabAbility.ets",
+      "hash": "012bf4d05dc30133b2443b266d5887a08ccc39d9c8c82be4aaf637a42903247f",
+      "size": 1492,
+      "modified": 1761552323777.5093
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\generated\\r\\default\\ResourceTable.h",
+      "hash": "b69aab544f1ec5e1aa8db240f2058f1c3c6d09a87025d92a06a24a65ff0182ad",
+      "size": 1240,
+      "modified": 1775032115257.3076
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\generated\\profile\\default\\BuildProfile.ets",
+      "hash": "24e23734f0de76403264c65c4b3e68fece4f8a0a3ef45403f0603ef8d67bbe42",
+      "size": 864,
+      "modified": 1775032114553.584
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\preview.ets",
+      "hash": "0e5751c026e543b2e8ab2eb06099daa1d1e5df47778f7787faab45cdf12fe3a8",
+      "size": 0,
+      "modified": 1775032121824.1792
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\utils\\CipherUtils.ts",
+      "hash": "674498f3fce882443938223eacadad82d8c74ac120c32f804473737c6c279288",
+      "size": 6721,
+      "modified": 1775032121637.6042
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\Base64Page.ts",
+      "hash": "b5d77f797fa4131d054f0dc3d1e718de4837a47b2d2eece6ae05d8e1d3ad8e25",
+      "size": 40388,
+      "modified": 1775032121562.5613
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\CaesarPage.ts",
+      "hash": "acd5b36ed5404b6e1c5a1be56c881d096ed931c8d466e2991d2162852e71c3c4",
+      "size": 30632,
+      "modified": 1775032121574.0789
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\CustomCipherPage.ts",
+      "hash": "d1524cdb65dae3adaad537cfcaff9f7ff8bd1877f34d5a25beb63817ad38291f",
+      "size": 59330,
+      "modified": 1775032121588.2673
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\Index.ts",
+      "hash": "78507a5054543aa3367ed718b806a6fde2d5e59a06493e469a505ff3b2f21327",
+      "size": 15396,
+      "modified": 1775032121594.875
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\RsaPage.ts",
+      "hash": "f016b9d5f8896a6bb8bfa37c6faf34a959e9b104feb7ba4586f94b8496409a56",
+      "size": 33569,
+      "modified": 1775032121608.405
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\VigenerePage.ts",
+      "hash": "d12d4ac43bbbb075147dadcd5057627965f91e19a1fcc9d03513869f3f5f5650",
+      "size": 28170,
+      "modified": 1775032121621.9314
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\XorPage.ts",
+      "hash": "96eb4fbb28e961187fcbcc7cf74764edb97154c25466daf955010d984be754a6",
+      "size": 27704,
+      "modified": 1775032121631.0977
+    },
+    {
+      "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\labability\\LabAbility.ts",
+      "hash": "295db1975365a7c1f5e48a6116fefbf57df5de2387c243de254257f322cfc429",
+      "size": 1633,
+      "modified": 1775032121544.9622
+    },
+    {
+      "path": "entry\\hvigorfile.ts",
+      "hash": "68861686b8ec5a86558740daef3a89b1e868e4d81f01cf1cfb91705fb69b339d",
+      "size": 227,
+      "modified": 1761551975564.8818
+    },
+    {
+      "path": "entry\\src\\test\\List.test.ets",
+      "hash": "91800c41cb8600e9977a7f70debcfec95a4e850e933d61df8454708da5c5e5f0",
+      "size": 105,
+      "modified": 1761551975604.4976
+    },
+    {
+      "path": "entry\\src\\test\\LocalUnit.test.ets",
+      "hash": "c66ad30b06140151b7e5dbf63cc05f8a72f094176b91e3a100f03126bdb84e3c",
+      "size": 1624,
+      "modified": 1761551975634.0374
+    },
+    {
+      "path": "entry\\src\\ohosTest\\ets\\test\\Ability.test.ets",
+      "hash": "087a64ea36a3bab888ba5c1b185712abfccd2e020b18e109ac510b2fb542766b",
+      "size": 1734,
+      "modified": 1761551975697.6646
+    },
+    {
+      "path": "entry\\src\\ohosTest\\ets\\test\\List.test.ets",
+      "hash": "f0fe59a90e5137961d7eb70655e268a52f9ad9e0110c210620658548ed2460fb",
+      "size": 99,
+      "modified": 1761551975732.5757
+    },
+    {
+      "path": "entry\\src\\main\\ets\\utils\\CipherUtils.ets",
+      "hash": "655e493dba9c8e94d4d44a209ba324a271ed1808f0a57e4bff942e5da45e0653",
+      "size": 5710,
+      "modified": 1775032403151.6887
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\Base64Page.ets",
+      "hash": "7fe2435c4c42f9c1e43066d094f2d0b218787391be0be1fdade134e036f2002d",
+      "size": 13629,
+      "modified": 1775037008685.0337
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\CaesarPage.ets",
+      "hash": "9778fffa0f5d33321c644e2e92f1901c3ae74a894d2ffa1d6f9699bba96cad67",
+      "size": 11984,
+      "modified": 1775036967766.74
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\CustomCipherPage.ets",
+      "hash": "26da1d7e212d870c38a5092a1ac78462bde5aeccfe15248da893cd0cf1b554f4",
+      "size": 19928,
+      "modified": 1775031311781.3335
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\EnigmaPage.ets",
+      "hash": "792e14dc9a01e8547e04fc0254ca8678ea0a91a2c9f543864f42c8665a0f4e03",
+      "size": 21415,
+      "modified": 1775714744325.2476
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\Index.ets",
+      "hash": "6a42c9de98eab04d8e0e6867b1c612dd878775832a5810683e92e60cf0193c3f",
+      "size": 5807,
+      "modified": 1775714744325.2476
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\RsaPage.ets",
+      "hash": "993ec2acdf6ee7c0a78bbc80c703ea80fae9ed9eecbc046e412e5e2e549b0b14",
+      "size": 14323,
+      "modified": 1775714744338.234
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\VigenerePage.ets",
+      "hash": "cb5ee9db94158fa2985437c5b30c4730fc4d68399c4b9ca1c4294f5a0fedfe55",
+      "size": 11313,
+      "modified": 1775036914827.6228
+    },
+    {
+      "path": "entry\\src\\main\\ets\\pages\\XorPage.ets",
+      "hash": "ccd24bc4a7cae637e7895f93665c44538ebb9c87b6ffebcf312993d4cb9879fb",
+      "size": 10113,
+      "modified": 1775036999117.8386
+    },
+    {
+      "path": "entry\\src\\main\\ets\\model\\CipherModels.ets",
+      "hash": "f767ef466933021c81d32f943e7dcd8eba262b5f5575f00daaed562799ffe0d8",
+      "size": 503,
+      "modified": 1775031292533.32
+    },
+    {
+      "path": "entry\\src\\main\\ets\\entrybackupability\\EntryBackupAbility.ets",
+      "hash": "35ba346ffae3752597fee512844767eaae6c96ec2163eb801203550319a8ac01",
+      "size": 522,
+      "modified": 1761551980429.539
+    },
+    {
+      "path": "entry\\src\\main\\ets\\entryability\\EntryAbility.ets",
+      "hash": "f1ce44be60eb6e00d31a90c70207fb67468e22684b2d922d3ccf42e4c9e46839",
+      "size": 1770,
+      "modified": 1761551976440.8232
+    }
+  ],
+  "tree": {
+    "hash": "1177b8087b3d608b205c75e2aae550bd9d3d37190960e6ddaf71c322222eb12c",
+    "left": {
+      "hash": "a5b8ad81e895d7d22ca354f301fb1f7a9d86fb74965037839f3029bec5c28b74",
+      "left": {
+        "hash": "09c0ede4afa9af2f9b252d1df8140f218e118978b0975d2d87643f8936ef6081",
+        "left": {
+          "hash": "26743e5d968e6c13521ad8ba800de16f86c56b53bc1a7d942909d50e6a414d31",
+          "left": {
+            "hash": "34d5db940daad9cf87f785288f87b9d743e8957a394fd8b80a788df185d3db87",
+            "left": {
+              "hash": "d69da217ca1cd8b0075aab416c40d7272af9667c17e1ef989f8930488a831532",
+              "left": {
+                "hash": "68861686b8ec5a86558740daef3a89b1e868e4d81f01cf1cfb91705fb69b339d",
+                "file": {
+                  "path": "entry\\hvigorfile.ts",
+                  "hash": "68861686b8ec5a86558740daef3a89b1e868e4d81f01cf1cfb91705fb69b339d",
+                  "size": 227,
+                  "modified": 1761551975564.8818
+                }
+              },
+              "right": {
+                "hash": "f1ce44be60eb6e00d31a90c70207fb67468e22684b2d922d3ccf42e4c9e46839",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\entryability\\EntryAbility.ets",
+                  "hash": "f1ce44be60eb6e00d31a90c70207fb67468e22684b2d922d3ccf42e4c9e46839",
+                  "size": 1770,
+                  "modified": 1761551976440.8232
+                }
+              }
+            },
+            "right": {
+              "hash": "a469db9c2a828ef615d0361a7a9106097e0a7ff8834e93189f08552f7ce347b7",
+              "left": {
+                "hash": "35ba346ffae3752597fee512844767eaae6c96ec2163eb801203550319a8ac01",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\entrybackupability\\EntryBackupAbility.ets",
+                  "hash": "35ba346ffae3752597fee512844767eaae6c96ec2163eb801203550319a8ac01",
+                  "size": 522,
+                  "modified": 1761551980429.539
+                }
+              },
+              "right": {
+                "hash": "f767ef466933021c81d32f943e7dcd8eba262b5f5575f00daaed562799ffe0d8",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\model\\CipherModels.ets",
+                  "hash": "f767ef466933021c81d32f943e7dcd8eba262b5f5575f00daaed562799ffe0d8",
+                  "size": 503,
+                  "modified": 1775031292533.32
+                }
+              }
+            }
+          },
+          "right": {
+            "hash": "c594f7abf35d7c3581436bcddda64de5e334e7ce37ab98e581c35fbe7e90f8c1",
+            "left": {
+              "hash": "039910ba0f2985ab7b5137516aeb25ef9e5d45df4cf307d856aaee6f9de32f00",
+              "left": {
+                "hash": "7fe2435c4c42f9c1e43066d094f2d0b218787391be0be1fdade134e036f2002d",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\Base64Page.ets",
+                  "hash": "7fe2435c4c42f9c1e43066d094f2d0b218787391be0be1fdade134e036f2002d",
+                  "size": 13629,
+                  "modified": 1775037008685.0337
+                }
+              },
+              "right": {
+                "hash": "9778fffa0f5d33321c644e2e92f1901c3ae74a894d2ffa1d6f9699bba96cad67",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\CaesarPage.ets",
+                  "hash": "9778fffa0f5d33321c644e2e92f1901c3ae74a894d2ffa1d6f9699bba96cad67",
+                  "size": 11984,
+                  "modified": 1775036967766.74
+                }
+              }
+            },
+            "right": {
+              "hash": "cb952dd2f8d48ada37a99c24a9af2d87d7d650ada2673eea5d31fc925000bf3b",
+              "left": {
+                "hash": "26da1d7e212d870c38a5092a1ac78462bde5aeccfe15248da893cd0cf1b554f4",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\CustomCipherPage.ets",
+                  "hash": "26da1d7e212d870c38a5092a1ac78462bde5aeccfe15248da893cd0cf1b554f4",
+                  "size": 19928,
+                  "modified": 1775031311781.3335
+                }
+              },
+              "right": {
+                "hash": "792e14dc9a01e8547e04fc0254ca8678ea0a91a2c9f543864f42c8665a0f4e03",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\EnigmaPage.ets",
+                  "hash": "792e14dc9a01e8547e04fc0254ca8678ea0a91a2c9f543864f42c8665a0f4e03",
+                  "size": 21415,
+                  "modified": 1775714744325.2476
+                }
+              }
+            }
+          }
+        },
+        "right": {
+          "hash": "1a9e79fd25f2ad6f588b8c3b01f217f888c249b90f077255251aa45184668930",
+          "left": {
+            "hash": "b4131a13c2fd1fc5b8033c2dd9e0bb756ad1f3e8541fe3d163858fe1c5b2596f",
+            "left": {
+              "hash": "b33bbae437bb84237da0bc86797ffa90f4cc9f24e374f5d4db72e3e8f06a608d",
+              "left": {
+                "hash": "6a42c9de98eab04d8e0e6867b1c612dd878775832a5810683e92e60cf0193c3f",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\Index.ets",
+                  "hash": "6a42c9de98eab04d8e0e6867b1c612dd878775832a5810683e92e60cf0193c3f",
+                  "size": 5807,
+                  "modified": 1775714744325.2476
+                }
+              },
+              "right": {
+                "hash": "993ec2acdf6ee7c0a78bbc80c703ea80fae9ed9eecbc046e412e5e2e549b0b14",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\RsaPage.ets",
+                  "hash": "993ec2acdf6ee7c0a78bbc80c703ea80fae9ed9eecbc046e412e5e2e549b0b14",
+                  "size": 14323,
+                  "modified": 1775714744338.234
+                }
+              }
+            },
+            "right": {
+              "hash": "06abfd9648a025320a26230362b7746aaab99440931dbcdb92e05f91535d2de8",
+              "left": {
+                "hash": "cb5ee9db94158fa2985437c5b30c4730fc4d68399c4b9ca1c4294f5a0fedfe55",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\VigenerePage.ets",
+                  "hash": "cb5ee9db94158fa2985437c5b30c4730fc4d68399c4b9ca1c4294f5a0fedfe55",
+                  "size": 11313,
+                  "modified": 1775036914827.6228
+                }
+              },
+              "right": {
+                "hash": "ccd24bc4a7cae637e7895f93665c44538ebb9c87b6ffebcf312993d4cb9879fb",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\pages\\XorPage.ets",
+                  "hash": "ccd24bc4a7cae637e7895f93665c44538ebb9c87b6ffebcf312993d4cb9879fb",
+                  "size": 10113,
+                  "modified": 1775036999117.8386
+                }
+              }
+            }
+          },
+          "right": {
+            "hash": "48591031db24de20887f5dc2a823fd8abb95ef0f559be3758eac39b26d9af88c",
+            "left": {
+              "hash": "97238ad52182385d6b9f08010546fab0b330b17f8430732a93bb388144d515e7",
+              "left": {
+                "hash": "655e493dba9c8e94d4d44a209ba324a271ed1808f0a57e4bff942e5da45e0653",
+                "file": {
+                  "path": "entry\\src\\main\\ets\\utils\\CipherUtils.ets",
+                  "hash": "655e493dba9c8e94d4d44a209ba324a271ed1808f0a57e4bff942e5da45e0653",
+                  "size": 5710,
+                  "modified": 1775032403151.6887
+                }
+              },
+              "right": {
+                "hash": "087a64ea36a3bab888ba5c1b185712abfccd2e020b18e109ac510b2fb542766b",
+                "file": {
+                  "path": "entry\\src\\ohosTest\\ets\\test\\Ability.test.ets",
+                  "hash": "087a64ea36a3bab888ba5c1b185712abfccd2e020b18e109ac510b2fb542766b",
+                  "size": 1734,
+                  "modified": 1761551975697.6646
+                }
+              }
+            },
+            "right": {
+              "hash": "7324779a695d25f96e607891092c66684f5bf4c2dd20e5a0e999581f3aa02b10",
+              "left": {
+                "hash": "f0fe59a90e5137961d7eb70655e268a52f9ad9e0110c210620658548ed2460fb",
+                "file": {
+                  "path": "entry\\src\\ohosTest\\ets\\test\\List.test.ets",
+                  "hash": "f0fe59a90e5137961d7eb70655e268a52f9ad9e0110c210620658548ed2460fb",
+                  "size": 99,
+                  "modified": 1761551975732.5757
+                }
+              },
+              "right": {
+                "hash": "91800c41cb8600e9977a7f70debcfec95a4e850e933d61df8454708da5c5e5f0",
+                "file": {
+                  "path": "entry\\src\\test\\List.test.ets",
+                  "hash": "91800c41cb8600e9977a7f70debcfec95a4e850e933d61df8454708da5c5e5f0",
+                  "size": 105,
+                  "modified": 1761551975604.4976
+                }
+              }
+            }
+          }
+        }
+      },
+      "right": {
+        "hash": "9e0925439ec20f9c63325066d6c1b4086703732ce15650bdbfdb9042276599db",
+        "left": {
+          "hash": "273ad4e457d96d8d15ecbf7bbe9e38ffd9185f35b89acfd40a4f05c4f1639c75",
+          "left": {
+            "hash": "d4ad064fcf4416e0974c8a3aa914d3759ffab8398c0d8a7680325f439cbded96",
+            "left": {
+              "hash": "30bc96a3091c1bcc929564757ee29b1f70774bd2a1a44630909a12fe021eb50b",
+              "left": {
+                "hash": "c66ad30b06140151b7e5dbf63cc05f8a72f094176b91e3a100f03126bdb84e3c",
+                "file": {
+                  "path": "entry\\src\\test\\LocalUnit.test.ets",
+                  "hash": "c66ad30b06140151b7e5dbf63cc05f8a72f094176b91e3a100f03126bdb84e3c",
+                  "size": 1624,
+                  "modified": 1761551975634.0374
+                }
+              },
+              "right": {
+                "hash": "295db1975365a7c1f5e48a6116fefbf57df5de2387c243de254257f322cfc429",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\labability\\LabAbility.ts",
+                  "hash": "295db1975365a7c1f5e48a6116fefbf57df5de2387c243de254257f322cfc429",
+                  "size": 1633,
+                  "modified": 1775032121544.9622
+                }
+              }
+            },
+            "right": {
+              "hash": "c009d5442673cb5aef48cf9e21b06243011dc3deb491cfc2e7164729a06e75f3",
+              "left": {
+                "hash": "b5d77f797fa4131d054f0dc3d1e718de4837a47b2d2eece6ae05d8e1d3ad8e25",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\Base64Page.ts",
+                  "hash": "b5d77f797fa4131d054f0dc3d1e718de4837a47b2d2eece6ae05d8e1d3ad8e25",
+                  "size": 40388,
+                  "modified": 1775032121562.5613
+                }
+              },
+              "right": {
+                "hash": "acd5b36ed5404b6e1c5a1be56c881d096ed931c8d466e2991d2162852e71c3c4",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\CaesarPage.ts",
+                  "hash": "acd5b36ed5404b6e1c5a1be56c881d096ed931c8d466e2991d2162852e71c3c4",
+                  "size": 30632,
+                  "modified": 1775032121574.0789
+                }
+              }
+            }
+          },
+          "right": {
+            "hash": "f5e2cf93368eab77960b7e4330c3ffeaf2090bce9b15064cdba4a6f2870de182",
+            "left": {
+              "hash": "dcc4051314bca35eca85115c8f14f9d6feea9d27523bbe1b4f0f2079102acb32",
+              "left": {
+                "hash": "d1524cdb65dae3adaad537cfcaff9f7ff8bd1877f34d5a25beb63817ad38291f",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\CustomCipherPage.ts",
+                  "hash": "d1524cdb65dae3adaad537cfcaff9f7ff8bd1877f34d5a25beb63817ad38291f",
+                  "size": 59330,
+                  "modified": 1775032121588.2673
+                }
+              },
+              "right": {
+                "hash": "78507a5054543aa3367ed718b806a6fde2d5e59a06493e469a505ff3b2f21327",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\Index.ts",
+                  "hash": "78507a5054543aa3367ed718b806a6fde2d5e59a06493e469a505ff3b2f21327",
+                  "size": 15396,
+                  "modified": 1775032121594.875
+                }
+              }
+            },
+            "right": {
+              "hash": "f4bcb91fde828dcdd07ca530d8f75d8dcfee3c2c7042d0333891e2dfb1bc42de",
+              "left": {
+                "hash": "f016b9d5f8896a6bb8bfa37c6faf34a959e9b104feb7ba4586f94b8496409a56",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\RsaPage.ts",
+                  "hash": "f016b9d5f8896a6bb8bfa37c6faf34a959e9b104feb7ba4586f94b8496409a56",
+                  "size": 33569,
+                  "modified": 1775032121608.405
+                }
+              },
+              "right": {
+                "hash": "d12d4ac43bbbb075147dadcd5057627965f91e19a1fcc9d03513869f3f5f5650",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\VigenerePage.ts",
+                  "hash": "d12d4ac43bbbb075147dadcd5057627965f91e19a1fcc9d03513869f3f5f5650",
+                  "size": 28170,
+                  "modified": 1775032121621.9314
+                }
+              }
+            }
+          }
+        },
+        "right": {
+          "hash": "d596c0d67c74500837c38451e302b8b3a260635560d670b1c5da0700712e4ff9",
+          "left": {
+            "hash": "0a6ba08b56ce614cd00cf79cd13256e7bf95a2a439e6c8edac621e2ec72b2edb",
+            "left": {
+              "hash": "a4a91c51b995605495526e4e0a707931c288cdfd19ee658c3ab8cc1b62b532cb",
+              "left": {
+                "hash": "96eb4fbb28e961187fcbcc7cf74764edb97154c25466daf955010d984be754a6",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\pages\\XorPage.ts",
+                  "hash": "96eb4fbb28e961187fcbcc7cf74764edb97154c25466daf955010d984be754a6",
+                  "size": 27704,
+                  "modified": 1775032121631.0977
+                }
+              },
+              "right": {
+                "hash": "674498f3fce882443938223eacadad82d8c74ac120c32f804473737c6c279288",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\lab\\src\\main\\ets\\utils\\CipherUtils.ts",
+                  "hash": "674498f3fce882443938223eacadad82d8c74ac120c32f804473737c6c279288",
+                  "size": 6721,
+                  "modified": 1775032121637.6042
+                }
+              }
+            },
+            "right": {
+              "hash": "dc97a6dcd7a0e4a4f5cadcff9abb5d88a075f21653415d6914b4e92ca6b40b85",
+              "left": {
+                "hash": "0e5751c026e543b2e8ab2eb06099daa1d1e5df47778f7787faab45cdf12fe3a8",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\cache\\default\\default@PreviewArkTS\\esmodule\\debug\\preview.ets",
+                  "hash": "0e5751c026e543b2e8ab2eb06099daa1d1e5df47778f7787faab45cdf12fe3a8",
+                  "size": 0,
+                  "modified": 1775032121824.1792
+                }
+              },
+              "right": {
+                "hash": "24e23734f0de76403264c65c4b3e68fece4f8a0a3ef45403f0603ef8d67bbe42",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\generated\\profile\\default\\BuildProfile.ets",
+                  "hash": "24e23734f0de76403264c65c4b3e68fece4f8a0a3ef45403f0603ef8d67bbe42",
+                  "size": 864,
+                  "modified": 1775032114553.584
+                }
+              }
+            }
+          },
+          "right": {
+            "hash": "14ba825d600825b15d2b74f34284bff63eab4bd87ec767ba2365ad70cf119328",
+            "left": {
+              "hash": "e0298db8a0954494754c943899a5ba7e90bd6ffdc93d62cee78dad4873484834",
+              "left": {
+                "hash": "b69aab544f1ec5e1aa8db240f2058f1c3c6d09a87025d92a06a24a65ff0182ad",
+                "file": {
+                  "path": "features\\lab\\.preview\\default\\generated\\r\\default\\ResourceTable.h",
+                  "hash": "b69aab544f1ec5e1aa8db240f2058f1c3c6d09a87025d92a06a24a65ff0182ad",
+                  "size": 1240,
+                  "modified": 1775032115257.3076
+                }
+              },
+              "right": {
+                "hash": "68861686b8ec5a86558740daef3a89b1e868e4d81f01cf1cfb91705fb69b339d",
+                "file": {
+                  "path": "features\\lab\\hvigorfile.ts",
+                  "hash": "68861686b8ec5a86558740daef3a89b1e868e4d81f01cf1cfb91705fb69b339d",
+                  "size": 227,
+                  "modified": 1761552323267.1624
+                }
+              }
+            },
+            "right": {
+              "hash": "9bf3199a7b43964ceaabe7a7621381de1d83b5decba8751f78423c2ec6ef3450",
+              "left": {
+                "hash": "012bf4d05dc30133b2443b266d5887a08ccc39d9c8c82be4aaf637a42903247f",
+                "file": {
+                  "path": "features\\lab\\src\\main\\ets\\labability\\LabAbility.ets",
+                  "hash": "012bf4d05dc30133b2443b266d5887a08ccc39d9c8c82be4aaf637a42903247f",
+                  "size": 1492,
+                  "modified": 1761552323777.5093
+                }
+              },
+              "right": {
+                "hash": "f767ef466933021c81d32f943e7dcd8eba262b5f5575f00daaed562799ffe0d8",
+                "file": {
+                  "path": "features\\lab\\src\\main\\ets\\model\\CipherModels.ets",
+                  "hash": "f767ef466933021c81d32f943e7dcd8eba262b5f5575f00daaed562799ffe0d8",
+                  "size": 503,
+                  "modified": 1775031447320.541
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "right": {
+      "hash": "ea0ec091c0f33d6d14fda4f1bc63a1371014c0aa5472ff54f468c27499d4c2eb",
+      "left": {
+        "hash": "ca9f0894fffe74477bb43572570d6a99e8c4be2ec0a8dbc05b8621b7947c9002",
+        "left": {
+          "hash": "62bfcafb6bd9295c05049a1480b8e2e068d64a576d50f30b1190c77f8bf1c58f",
+          "left": {
+            "hash": "039910ba0f2985ab7b5137516aeb25ef9e5d45df4cf307d856aaee6f9de32f00",
+            "left": {
+              "hash": "7fe2435c4c42f9c1e43066d094f2d0b218787391be0be1fdade134e036f2002d",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\Base64Page.ets",
+                "hash": "7fe2435c4c42f9c1e43066d094f2d0b218787391be0be1fdade134e036f2002d",
+                "size": 13629,
+                "modified": 1775037008685.0337
+              }
+            },
+            "right": {
+              "hash": "9778fffa0f5d33321c644e2e92f1901c3ae74a894d2ffa1d6f9699bba96cad67",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\CaesarPage.ets",
+                "hash": "9778fffa0f5d33321c644e2e92f1901c3ae74a894d2ffa1d6f9699bba96cad67",
+                "size": 11984,
+                "modified": 1775036967766.74
+              }
+            }
+          },
+          "right": {
+            "hash": "e0c26d280744b967dcf851fe6b629dda367f851bd0a037d271d74e6a5dca8965",
+            "left": {
+              "hash": "26da1d7e212d870c38a5092a1ac78462bde5aeccfe15248da893cd0cf1b554f4",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\CustomCipherPage.ets",
+                "hash": "26da1d7e212d870c38a5092a1ac78462bde5aeccfe15248da893cd0cf1b554f4",
+                "size": 19928,
+                "modified": 1775031447313.9624
+              }
+            },
+            "right": {
+              "hash": "24023f891e1cbf7e7bb597342762b95b359dec24f77070ce3d88cb0fefe5ab69",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\EnigmaPage.ets",
+                "hash": "24023f891e1cbf7e7bb597342762b95b359dec24f77070ce3d88cb0fefe5ab69",
+                "size": 20798,
+                "modified": 1775209105895.591
+              }
+            }
+          }
+        },
+        "right": {
+          "hash": "b4131a13c2fd1fc5b8033c2dd9e0bb756ad1f3e8541fe3d163858fe1c5b2596f",
+          "left": {
+            "hash": "b33bbae437bb84237da0bc86797ffa90f4cc9f24e374f5d4db72e3e8f06a608d",
+            "left": {
+              "hash": "6a42c9de98eab04d8e0e6867b1c612dd878775832a5810683e92e60cf0193c3f",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\Index.ets",
+                "hash": "6a42c9de98eab04d8e0e6867b1c612dd878775832a5810683e92e60cf0193c3f",
+                "size": 5807,
+                "modified": 1775209077625.671
+              }
+            },
+            "right": {
+              "hash": "993ec2acdf6ee7c0a78bbc80c703ea80fae9ed9eecbc046e412e5e2e549b0b14",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\RsaPage.ets",
+                "hash": "993ec2acdf6ee7c0a78bbc80c703ea80fae9ed9eecbc046e412e5e2e549b0b14",
+                "size": 14323,
+                "modified": 1775209659683.26
+              }
+            }
+          },
+          "right": {
+            "hash": "06abfd9648a025320a26230362b7746aaab99440931dbcdb92e05f91535d2de8",
+            "left": {
+              "hash": "cb5ee9db94158fa2985437c5b30c4730fc4d68399c4b9ca1c4294f5a0fedfe55",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\VigenerePage.ets",
+                "hash": "cb5ee9db94158fa2985437c5b30c4730fc4d68399c4b9ca1c4294f5a0fedfe55",
+                "size": 11313,
+                "modified": 1775036914827.6228
+              }
+            },
+            "right": {
+              "hash": "ccd24bc4a7cae637e7895f93665c44538ebb9c87b6ffebcf312993d4cb9879fb",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\pages\\XorPage.ets",
+                "hash": "ccd24bc4a7cae637e7895f93665c44538ebb9c87b6ffebcf312993d4cb9879fb",
+                "size": 10113,
+                "modified": 1775036999117.8386
+              }
+            }
+          }
+        }
+      },
+      "right": {
+        "hash": "585af7f3e4c3787a6fdcfacfcb3921c630dd3159f1b7960de8b5f2a9cd23e26a",
+        "left": {
+          "hash": "48591031db24de20887f5dc2a823fd8abb95ef0f559be3758eac39b26d9af88c",
+          "left": {
+            "hash": "97238ad52182385d6b9f08010546fab0b330b17f8430732a93bb388144d515e7",
+            "left": {
+              "hash": "655e493dba9c8e94d4d44a209ba324a271ed1808f0a57e4bff942e5da45e0653",
+              "file": {
+                "path": "features\\lab\\src\\main\\ets\\utils\\CipherUtils.ets",
+                "hash": "655e493dba9c8e94d4d44a209ba324a271ed1808f0a57e4bff942e5da45e0653",
+                "size": 5710,
+                "modified": 1775032362491.4326
+              }
+            },
+            "right": {
+              "hash": "087a64ea36a3bab888ba5c1b185712abfccd2e020b18e109ac510b2fb542766b",
+              "file": {
+                "path": "features\\lab\\src\\ohosTest\\ets\\test\\Ability.test.ets",
+                "hash": "087a64ea36a3bab888ba5c1b185712abfccd2e020b18e109ac510b2fb542766b",
+                "size": 1734,
+                "modified": 1761552323327.7632
+              }
+            }
+          },
+          "right": {
+            "hash": "7324779a695d25f96e607891092c66684f5bf4c2dd20e5a0e999581f3aa02b10",
+            "left": {
+              "hash": "f0fe59a90e5137961d7eb70655e268a52f9ad9e0110c210620658548ed2460fb",
+              "file": {
+                "path": "features\\lab\\src\\ohosTest\\ets\\test\\List.test.ets",
+                "hash": "f0fe59a90e5137961d7eb70655e268a52f9ad9e0110c210620658548ed2460fb",
+                "size": 99,
+                "modified": 1761552323356.1492
+              }
+            },
+            "right": {
+              "hash": "91800c41cb8600e9977a7f70debcfec95a4e850e933d61df8454708da5c5e5f0",
+              "file": {
+                "path": "features\\lab\\src\\test\\List.test.ets",
+                "hash": "91800c41cb8600e9977a7f70debcfec95a4e850e933d61df8454708da5c5e5f0",
+                "size": 105,
+                "modified": 1761552323285.6409
+              }
+            }
+          }
+        },
+        "right": {
+          "hash": "ff755705ff8ec9b3e3206ad56cf600b2f9222e077a8696a24d37fbb93efe114d",
+          "left": {
+            "hash": "c66ad30b06140151b7e5dbf63cc05f8a72f094176b91e3a100f03126bdb84e3c",
+            "file": {
+              "path": "features\\lab\\src\\test\\LocalUnit.test.ets",
+              "hash": "c66ad30b06140151b7e5dbf63cc05f8a72f094176b91e3a100f03126bdb84e3c",
+              "size": 1624,
+              "modified": 1761552323300.7976
+            }
+          },
+          "right": {
+            "hash": "8e19ea6d9c9bfbf4fe2e1d94809352d3f4b21e2a8c1f9fff2b381151d244710d",
+            "file": {
+              "path": "hvigorfile.ts",
+              "hash": "8e19ea6d9c9bfbf4fe2e1d94809352d3f4b21e2a8c1f9fff2b381151d244710d",
+              "size": 227,
+              "modified": 1761551975143.876
+            }
+          }
+        }
+      }
+    }
+  }
+}

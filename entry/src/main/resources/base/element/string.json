@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "加密算法实验室"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "加密算法实验室 - 交互式动画演示加密原理"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "加密实验室"
+    }
+  ]
+}

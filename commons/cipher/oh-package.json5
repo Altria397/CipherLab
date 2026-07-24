@@ -1,0 +1,9 @@
+{
+  "name": "cipher",
+  "version": "1.0.0",
+  "description": "CipherLab shared cipher utilities and models",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}
