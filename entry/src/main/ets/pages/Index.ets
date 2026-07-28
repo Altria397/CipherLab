@@ -99,30 +99,39 @@ struct Index {
 
   @Builder
   labContent() {
-    Scroll() {
-      Column() {
+    Column() {
+      Row() {
+        Blank().width(48)
+        Text('CipherLab')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .fontColor(AppColors.textPrimary)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+        Blank().width(48)
+      }
+      .width('100%')
+      .padding({ top: 12, bottom: 8 })
+      .backgroundColor(AppColors.bgCard)
+
+      Scroll() {
         Column() {
-          Text('CipherLab')
-            .fontSize(26)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('#FFFFFF')
-            .letterSpacing(1)
-          Text('加密算法实验室')
-            .fontSize(15)
-            .fontColor('#FFFFFFCC')
-            .margin({ top: 4 })
-          Text('交互式动画演示 · 逐步理解加密原理 · 纯本地运行')
-            .fontSize(12)
-            .fontColor('#FFFFFF88')
-            .margin({ top: 8 })
-        }
-        .width('100%')
-        .padding({ top: 48, bottom: 28, left: 24, right: 24 })
-        .linearGradient({
-          angle: 135,
-          colors: [[AppColors.primary, 0], [AppColors.primaryDark, 1]]
-        })
-        .borderRadius({ bottomLeft: 24, bottomRight: 24 })
+          Column() {
+            Text('加密算法实验室')
+              .fontSize(15)
+              .fontColor('#FFFFFFCC')
+            Text('交互式动画演示 · 逐步理解加密原理 · 纯本地运行')
+              .fontSize(12)
+              .fontColor('#FFFFFF88')
+              .margin({ top: 8 })
+          }
+          .width('100%')
+          .padding({ top: 20, bottom: 20, left: 24, right: 24 })
+          .linearGradient({
+            angle: 135,
+            colors: [[AppColors.primary, 0], [AppColors.primaryDark, 1]]
+          })
+          .borderRadius({ bottomLeft: 24, bottomRight: 24 })
 
         Column({ space: 12 }) {
           ForEach(this.algorithms, (algo: AlgoCard, index: number) => {
@@ -167,144 +176,168 @@ struct Index {
           })
         }
         .padding({ left: 16, right: 16, top: 18, bottom: 30 })
+        }
       }
+      .layoutWeight(1)
+      .scrollBar(BarState.Off)
+      .edgeEffect(EdgeEffect.Spring)
     }
-    .scrollBar(BarState.Off)
-    .edgeEffect(EdgeEffect.Spring)
   }
 
   @Builder
   analysisContent() {
-    Scroll() {
-      Column() {
-        Column() {
-          Text('密码分析')
-            .fontSize(26)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('#FFFFFF')
-            .letterSpacing(1)
-          Text('破解加密的工具箱')
-            .fontSize(15)
-            .fontColor('#FFFFFFCC')
-            .margin({ top: 4 })
-          Text('频率分析 · 暴力破解 · Kasiski测试')
-            .fontSize(12)
-            .fontColor('#FFFFFF88')
-            .margin({ top: 8 })
-        }
-        .width('100%')
-        .padding({ top: 48, bottom: 28, left: 24, right: 24 })
-        .linearGradient({
-          angle: 135,
-          colors: [[AppColors.analysis, 0], ['#0E6655', 1]]
-        })
-        .borderRadius({ bottomLeft: 24, bottomRight: 24 })
-
-        Column({ space: 12 }) {
-          ForEach(this.analysisTools, (tool: AlgoCard) => {
-            Row() {
-              AlgoIcon({ algorithm: tool.algoKey, iconSize: 48 })
-
-              Column() {
-                Text(tool.name)
-                  .fontSize(16)
-                  .fontWeight(FontWeight.Bold)
-                  .fontColor(AppColors.textPrimary)
-                Text(tool.desc)
-                  .fontSize(13)
-                  .fontColor(AppColors.textSecondary)
-                  .margin({ top: 3 })
-              }
-              .alignItems(HorizontalAlign.Start)
-              .margin({ left: 14 })
-              .layoutWeight(1)
-
-              Text('\u2192')
-                .fontSize(18)
-                .fontColor(AppColors.textHint)
-            }
-            .width('100%')
-            .padding({ left: 16, right: 16, top: 14, bottom: 14 })
-            .backgroundColor(AppColors.bgCard)
-            .borderRadius(14)
-            .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
-            .onClick(() => {
-              router.pushUrl({ url: tool.route })
-            })
-          })
-        }
-        .padding({ left: 16, right: 16, top: 18, bottom: 30 })
+    Column() {
+      Row() {
+        Blank().width(48)
+        Text('密码分析')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .fontColor(AppColors.textPrimary)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+        Blank().width(48)
       }
+      .width('100%')
+      .padding({ top: 12, bottom: 8 })
+      .backgroundColor(AppColors.bgCard)
+
+      Scroll() {
+        Column() {
+          Column() {
+            Text('破解加密的工具箱')
+              .fontSize(15)
+              .fontColor('#FFFFFFCC')
+            Text('频率分析 · 暴力破解 · Kasiski测试')
+              .fontSize(12)
+              .fontColor('#FFFFFF88')
+              .margin({ top: 8 })
+          }
+          .width('100%')
+          .padding({ top: 20, bottom: 20, left: 24, right: 24 })
+          .linearGradient({
+            angle: 135,
+            colors: [[AppColors.analysis, 0], ['#0E6655', 1]]
+          })
+          .borderRadius({ bottomLeft: 24, bottomRight: 24 })
+
+          Column({ space: 12 }) {
+            ForEach(this.analysisTools, (tool: AlgoCard) => {
+              Row() {
+                AlgoIcon({ algorithm: tool.algoKey, iconSize: 48 })
+
+                Column() {
+                  Text(tool.name)
+                    .fontSize(16)
+                    .fontWeight(FontWeight.Bold)
+                    .fontColor(AppColors.textPrimary)
+                  Text(tool.desc)
+                    .fontSize(13)
+                    .fontColor(AppColors.textSecondary)
+                    .margin({ top: 3 })
+                }
+                .alignItems(HorizontalAlign.Start)
+                .margin({ left: 14 })
+                .layoutWeight(1)
+
+                Text('\u2192')
+                  .fontSize(18)
+                  .fontColor(AppColors.textHint)
+              }
+              .width('100%')
+              .padding({ left: 16, right: 16, top: 14, bottom: 14 })
+              .backgroundColor(AppColors.bgCard)
+              .borderRadius(14)
+              .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+              .onClick(() => {
+                router.pushUrl({ url: tool.route })
+              })
+            })
+          }
+          .padding({ left: 16, right: 16, top: 18, bottom: 30 })
+        }
+      }
+      .layoutWeight(1)
+      .scrollBar(BarState.Off)
+      .edgeEffect(EdgeEffect.Spring)
     }
-    .scrollBar(BarState.Off)
-    .edgeEffect(EdgeEffect.Spring)
   }
 
   @Builder
   eduContent() {
-    Scroll() {
-      Column() {
-        Column() {
-          Text('学习中心')
-            .fontSize(26)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('#FFFFFF')
-            .letterSpacing(1)
-          Text('挑战 · 对比 · 历史')
-            .fontSize(15)
-            .fontColor('#FFFFFFCC')
-            .margin({ top: 4 })
-          Text('在实践中掌握密码学 · 了解密码学如何改变世界')
-            .fontSize(12)
-            .fontColor('#FFFFFF88')
-            .margin({ top: 8 })
-        }
-        .width('100%')
-        .padding({ top: 48, bottom: 28, left: 24, right: 24 })
-        .linearGradient({
-          angle: 135,
-          colors: [[AppColors.challenge, 0], ['#C0392B', 1]]
-        })
-        .borderRadius({ bottomLeft: 24, bottomRight: 24 })
-
-        Column({ space: 12 }) {
-          ForEach(this.eduTools, (tool: AlgoCard) => {
-            Row() {
-              AlgoIcon({ algorithm: tool.algoKey, iconSize: 48 })
-
-              Column() {
-                Text(tool.name)
-                  .fontSize(16)
-                  .fontWeight(FontWeight.Bold)
-                  .fontColor(AppColors.textPrimary)
-                Text(tool.desc)
-                  .fontSize(13)
-                  .fontColor(AppColors.textSecondary)
-                  .margin({ top: 3 })
-              }
-              .alignItems(HorizontalAlign.Start)
-              .margin({ left: 14 })
-              .layoutWeight(1)
-
-              Text('\u2192')
-                .fontSize(18)
-                .fontColor(AppColors.textHint)
-            }
-            .width('100%')
-            .padding({ left: 16, right: 16, top: 14, bottom: 14 })
-            .backgroundColor(AppColors.bgCard)
-            .borderRadius(14)
-            .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
-            .onClick(() => {
-              router.pushUrl({ url: tool.route })
-            })
-          })
-        }
-        .padding({ left: 16, right: 16, top: 18, bottom: 30 })
+    Column() {
+      Row() {
+        Blank().width(48)
+        Text('学习中心')
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .fontColor(AppColors.textPrimary)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+        Blank().width(48)
       }
+      .width('100%')
+      .padding({ top: 12, bottom: 8 })
+      .backgroundColor(AppColors.bgCard)
+
+      Scroll() {
+        Column() {
+          Column() {
+            Text('挑战 · 对比 · 历史')
+              .fontSize(15)
+              .fontColor('#FFFFFFCC')
+            Text('在实践中掌握密码学 · 了解密码学如何改变世界')
+              .fontSize(12)
+              .fontColor('#FFFFFF88')
+              .margin({ top: 8 })
+          }
+          .width('100%')
+          .padding({ top: 20, bottom: 20, left: 24, right: 24 })
+          .linearGradient({
+            angle: 135,
+            colors: [[AppColors.challenge, 0], ['#C0392B', 1]]
+          })
+          .borderRadius({ bottomLeft: 24, bottomRight: 24 })
+
+          Column({ space: 12 }) {
+            ForEach(this.eduTools, (tool: AlgoCard) => {
+              Row() {
+                AlgoIcon({ algorithm: tool.algoKey, iconSize: 48 })
+
+                Column() {
+                  Text(tool.name)
+                    .fontSize(16)
+                    .fontWeight(FontWeight.Bold)
+                    .fontColor(AppColors.textPrimary)
+                  Text(tool.desc)
+                    .fontSize(13)
+                    .fontColor(AppColors.textSecondary)
+                    .margin({ top: 3 })
+                }
+                .alignItems(HorizontalAlign.Start)
+                .margin({ left: 14 })
+                .layoutWeight(1)
+
+                Text('\u2192')
+                  .fontSize(18)
+                  .fontColor(AppColors.textHint)
+              }
+              .width('100%')
+              .padding({ left: 16, right: 16, top: 14, bottom: 14 })
+              .backgroundColor(AppColors.bgCard)
+              .borderRadius(14)
+              .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+              .onClick(() => {
+                router.pushUrl({ url: tool.route })
+              })
+            })
+          }
+          .padding({ left: 16, right: 16, top: 18, bottom: 30 })
+        }
+      }
+      .layoutWeight(1)
+      .scrollBar(BarState.Off)
+      .edgeEffect(EdgeEffect.Spring)
     }
-    .scrollBar(BarState.Off)
-    .edgeEffect(EdgeEffect.Spring)
   }
 
   @Builder
