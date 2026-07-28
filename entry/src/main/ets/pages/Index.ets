@@ -119,10 +119,10 @@ struct Index {
           Column() {
             Text('加密算法实验室')
               .fontSize(15)
-              .fontColor('#FFFFFFCC')
+              .fontColor(AppColors.textSecondary)
             Text('交互式动画演示 · 逐步理解加密原理 · 纯本地运行')
               .fontSize(12)
-              .fontColor('#FFFFFF88')
+              .fontColor(AppColors.textTertiary)
               .margin({ top: 8 })
           }
           .width('100%')
@@ -160,7 +160,7 @@ struct Index {
             .padding({ left: 16, right: 16, top: 14, bottom: 14 })
             .backgroundColor(AppColors.bgCard)
             .borderRadius(14)
-            .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 6, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
             .scale({ x: this.cardScales[index], y: this.cardScales[index] })
             .onClick(() => {
               animateTo({ duration: 100 }, () => {
@@ -206,17 +206,17 @@ struct Index {
           Column() {
             Text('破解加密的工具箱')
               .fontSize(15)
-              .fontColor('#FFFFFFCC')
+              .fontColor(AppColors.textSecondary)
             Text('频率分析 · 暴力破解 · Kasiski测试')
               .fontSize(12)
-              .fontColor('#FFFFFF88')
+              .fontColor(AppColors.textTertiary)
               .margin({ top: 8 })
           }
           .width('100%')
           .padding({ top: 20, bottom: 20, left: 24, right: 24 })
           .linearGradient({
             angle: 135,
-            colors: [[AppColors.analysis, 0], ['#0E6655', 1]]
+            colors: [[AppColors.analysis, 0], [AppColors.dh, 1]]
           })
           .borderRadius({ bottomLeft: 24, bottomRight: 24 })
 
@@ -247,7 +247,7 @@ struct Index {
               .padding({ left: 16, right: 16, top: 14, bottom: 14 })
               .backgroundColor(AppColors.bgCard)
               .borderRadius(14)
-              .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+              .shadow({ radius: 6, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
               .onClick(() => {
                 router.pushUrl({ url: tool.route })
               })
@@ -284,17 +284,17 @@ struct Index {
           Column() {
             Text('挑战 · 对比 · 历史')
               .fontSize(15)
-              .fontColor('#FFFFFFCC')
+              .fontColor(AppColors.textSecondary)
             Text('在实践中掌握密码学 · 了解密码学如何改变世界')
               .fontSize(12)
-              .fontColor('#FFFFFF88')
+              .fontColor(AppColors.textTertiary)
               .margin({ top: 8 })
           }
           .width('100%')
           .padding({ top: 20, bottom: 20, left: 24, right: 24 })
           .linearGradient({
             angle: 135,
-            colors: [[AppColors.challenge, 0], ['#C0392B', 1]]
+            colors: [[AppColors.challenge, 0], [AppColors.accentDanger, 1]]
           })
           .borderRadius({ bottomLeft: 24, bottomRight: 24 })
 
@@ -325,7 +325,7 @@ struct Index {
               .padding({ left: 16, right: 16, top: 14, bottom: 14 })
               .backgroundColor(AppColors.bgCard)
               .borderRadius(14)
-              .shadow({ radius: 6, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+              .shadow({ radius: 6, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
               .onClick(() => {
                 router.pushUrl({ url: tool.route })
               })
@@ -362,17 +362,17 @@ struct Index {
           Column() {
             Text('创建和管理你的加密方法')
               .fontSize(15)
-              .fontColor('#FFFFFFCC')
+              .fontColor(AppColors.textSecondary)
             Text('支持加密链组合 · 数据仅本地存储')
               .fontSize(12)
-              .fontColor('#FFFFFF88')
+              .fontColor(AppColors.textTertiary)
               .margin({ top: 8 })
           }
           .width('100%')
           .padding({ top: 20, bottom: 20, left: 24, right: 24 })
           .linearGradient({
             angle: 135,
-            colors: [['#9B59B6', 0], ['#8E44AD', 1]]
+            colors: [[AppColors.vigenere, 0], [AppColors.kasiski, 1]]
           })
           .borderRadius({ bottomLeft: 24, bottomRight: 24 })
 
@@ -395,7 +395,7 @@ struct Index {
               .height(48)
               .fontSize(15)
               .fontWeight(FontWeight.Medium)
-              .backgroundColor('#9B59B6')
+              .backgroundColor(AppColors.vigenere)
               .margin({ top: 8 })
               .onClick(() => {
                 router.pushUrl({ url: 'pages/SharePage' })

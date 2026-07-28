@@ -79,11 +79,11 @@ struct OtpPage {
             }
             TextInput({ text: this.plaintext, placeholder: '输入文本' })
               .width('100%').height(44).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.plaintext = v; this.resetAnimation() })
             TextInput({ text: this.secretKey, placeholder: '输入密钥（须与文本等长）' })
               .width('100%').height(44).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.secretKey = v; this.resetAnimation() })
             if (!this.isKeyValid() && this.secretKey.length > 0) {
               Text(`密钥长度须 \u2265 文本长度（当前密钥${this.secretKey.length}，文本${this.plaintext.length}）`)
@@ -91,7 +91,7 @@ struct OtpPage {
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Row() {
@@ -107,7 +107,7 @@ struct OtpPage {
                     Text(ch).fontSize(18).fontWeight(FontWeight.Bold)
                       .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? AppColors.otp : AppColors.textPrimary)
                   }.width(36).height(36).justifyContent(FlexAlign.Center)
-                  .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#F3EEFF' : '#F0F1F5')
+                  .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? AppColors.bgSurface : AppColors.bgSurfaceRaised)
                   .borderRadius(8)
                   .border({ width: this.currentStep >= 1 && this.currentStep - 1 === idx ? 2 : 0, color: AppColors.otp })
                 })
@@ -122,9 +122,9 @@ struct OtpPage {
                     Column() {
                       Text(idx < this.secretKey.length ? this.secretKey.charAt(idx) : '-')
                         .fontSize(18).fontWeight(FontWeight.Bold)
-                        .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#FFFFFF' : AppColors.otp)
+                        .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? AppColors.textPrimary : AppColors.otp)
                     }.width(36).height(36).justifyContent(FlexAlign.Center)
-                    .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? AppColors.otp : '#F3EEFF')
+                    .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? AppColors.otp : AppColors.bgSurface)
                     .borderRadius(8).animation({ duration: 300 })
                   })
                 }
@@ -139,7 +139,7 @@ struct OtpPage {
                     Column() {
                       Text(ch !== '' ? (ch.charCodeAt(0) >= 32 && ch.charCodeAt(0) < 127 ? ch : `\\x${ch.charCodeAt(0).toString(16).padStart(2, '0')}`) : '?')
                         .fontSize(16).fontWeight(FontWeight.Bold)
-                        .fontColor(ch !== '' ? '#FFFFFF' : AppColors.textHint)
+                        .fontColor(ch !== '' ? AppColors.textPrimary : AppColors.textHint)
                     }.width(36).height(36).justifyContent(FlexAlign.Center)
                     .backgroundColor(ch !== '' ? AppColors.otp : '#F0F0F0')
                     .borderRadius(8).animation({ duration: 300 })
@@ -149,7 +149,7 @@ struct OtpPage {
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
@@ -157,18 +157,18 @@ struct OtpPage {
                 .fontSize(16).fontWeight(FontWeight.Bold).fontColor(AppColors.success)
               Text('OTP特性：只要密钥真正随机且只用一次，即使攻击者有无限算力也无法破解')
                 .fontSize(12).fontColor(AppColors.textSecondary).lineHeight(18)
-            }.width('100%').padding(20).backgroundColor('#E8FFF5').borderRadius(12).animation({ duration: 400 })
+            }.width('100%').padding(20).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
           }
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)
 
       Row({ space: 12 }) {
         Button('重置').type(ButtonType.Capsule).height(44)
-          .backgroundColor('#F0F1F5').fontColor(AppColors.textSecondary).layoutWeight(1)
+          .backgroundColor(AppColors.bgSurfaceRaised).fontColor(AppColors.textSecondary).layoutWeight(1)
           .onClick((): void => this.resetAnimation())
         Button(this.getStepButtonText()).type(ButtonType.Capsule).height(44)
           .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.success : AppColors.otp)
-          .fontColor('#FFFFFF').layoutWeight(2)
+          .fontColor(AppColors.bgBase).layoutWeight(2)
           .enabled(this.currentStep < this.getMaxSteps() && this.isKeyValid())
           .onClick((): void => this.nextStep())
       }.width('100%').padding({ left: 16, right: 16, top: 8, bottom: 16 }).backgroundColor(AppColors.bgPage)

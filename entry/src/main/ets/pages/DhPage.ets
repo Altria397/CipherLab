@@ -11,14 +11,14 @@ struct DhStepCard {
 
   build() {
     Row({ space: 8 }) {
-      Text(`${this.step}`).fontSize(12).fontWeight(FontWeight.Bold).fontColor('#FFFFFF')
+      Text(`${this.step}`).fontSize(12).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
         .width(24).height(24).textAlign(TextAlign.Center)
         .backgroundColor(this.currentStep > this.step ? AppColors.success : this.accentColor).borderRadius(12)
       Column({ space: 2 }) {
         Text(this.title).fontSize(14).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
         Text(this.stepContent).fontSize(13).fontColor(AppColors.textSecondary)
       }.alignItems(HorizontalAlign.Start).layoutWeight(1)
-    }.width('100%').padding(12).backgroundColor('#F8F9FA').borderRadius(10)
+    }.width('100%').padding(12).backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
     .border({ width: this.currentStep === this.step ? 1.5 : 0, color: this.accentColor }).animation({ duration: 400 })
   }
 }
@@ -93,9 +93,9 @@ struct DhPage {
                   ForEach(this.primes, (p: number) => {
                     Text(`${p}`).fontSize(14)
                       .fontWeight(this.primeP === p ? FontWeight.Bold : FontWeight.Normal)
-                      .fontColor(this.primeP === p ? '#FFFFFF' : AppColors.dh)
+                      .fontColor(this.primeP === p ? AppColors.textPrimary : AppColors.dh)
                       .width(38).height(34).textAlign(TextAlign.Center)
-                      .backgroundColor(this.primeP === p ? AppColors.dh : '#F0F5FF')
+                      .backgroundColor(this.primeP === p ? AppColors.dh : AppColors.bgSurface)
                       .borderRadius(8).border({ width: 1, color: AppColors.dh })
                       .onClick((): void => { this.primeP = p; this.baseG = CipherUtils.findPrimitiveRoot(p); this.resetAnimation() })
                   })
@@ -111,19 +111,19 @@ struct DhPage {
               Column({ space: 4 }) {
                 Text('Alice 私钥').fontSize(12).fontColor(AppColors.textHint)
                 TextInput({ text: `${this.privateA}` }).width(80).height(40).fontColor(AppColors.textPrimary)
-                  .backgroundColor('#F0F1F5').borderRadius(8).type(InputType.Number)
+                  .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8).type(InputType.Number)
                   .onChange((v: string) => { this.privateA = parseInt(v) || 1; this.resetAnimation() })
               }
               Column({ space: 4 }) {
                 Text('Bob 私钥').fontSize(12).fontColor(AppColors.textHint)
                 TextInput({ text: `${this.privateB}` }).width(80).height(40).fontColor(AppColors.textPrimary)
-                  .backgroundColor('#F0F1F5').borderRadius(8).type(InputType.Number)
+                  .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8).type(InputType.Number)
                   .onChange((v: string) => { this.privateB = parseInt(v) || 1; this.resetAnimation() })
               }
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 10 }) {
             Row() {
@@ -135,7 +135,7 @@ struct DhPage {
               DhStepCard({ step: 1, title: '公开参数', stepContent: `p = ${this.primeP}, g = ${this.baseG}`, accentColor: AppColors.dh, currentStep: this.currentStep })
             }
             if (this.currentStep >= 2) {
-              DhStepCard({ step: 2, title: 'Alice 计算公钥', stepContent: `A = g^a mod p = ${this.baseG}^${this.privateA} mod ${this.primeP} = ${this.publicA}`, accentColor: '#E74C3C', currentStep: this.currentStep })
+              DhStepCard({ step: 2, title: 'Alice 计算公钥', stepContent: `A = g^a mod p = ${this.baseG}^${this.privateA} mod ${this.primeP} = ${this.publicA}`, accentColor: AppColors.accentDanger, currentStep: this.currentStep })
             }
             if (this.currentStep >= 3) {
               DhStepCard({ step: 3, title: 'Bob 计算公钥', stepContent: `B = g^b mod p = ${this.baseG}^${this.privateB} mod ${this.primeP} = ${this.publicB}`, accentColor: '#3498DB', currentStep: this.currentStep })
@@ -147,21 +147,21 @@ struct DhPage {
               Column({ space: 8 }) {
                 Row({ space: 12 }) {
                   Column({ space: 4 }) {
-                    Text('Alice 计算共享密钥').fontSize(13).fontWeight(FontWeight.Bold).fontColor('#E74C3C')
+                    Text('Alice 计算共享密钥').fontSize(13).fontWeight(FontWeight.Bold).fontColor(AppColors.accentDanger)
                     Text(`B^a mod p = ${this.publicB}^${this.privateA} mod ${this.primeP} = ${this.sharedA}`)
                       .fontSize(14).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
-                  }.padding(12).backgroundColor('#FFF5F5').borderRadius(10).layoutWeight(1)
+                  }.padding(12).backgroundColor(AppColors.bgSurface).borderRadius(10).layoutWeight(1)
                   Column({ space: 4 }) {
                     Text('Bob 计算共享密钥').fontSize(13).fontWeight(FontWeight.Bold).fontColor('#3498DB')
                     Text(`A^b mod p = ${this.publicA}^${this.privateB} mod ${this.primeP} = ${this.sharedB}`)
                       .fontSize(14).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
-                  }.padding(12).backgroundColor('#F0F5FF').borderRadius(10).layoutWeight(1)
+                  }.padding(12).backgroundColor(AppColors.bgSurface).borderRadius(10).layoutWeight(1)
                 }
-              }.width('100%').padding(14).backgroundColor('#F8F9FA').borderRadius(12).animation({ duration: 400 })
+              }.width('100%').padding(14).backgroundColor(AppColors.bgSurfaceRaised).borderRadius(12).animation({ duration: 400 })
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
@@ -171,18 +171,18 @@ struct DhPage {
               if (this.sharedA === this.sharedB) {
                 Text(`双方共享密钥：${this.sharedA}`).fontSize(18).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
               }
-            }.width('100%').padding(20).backgroundColor('#E8FFF5').borderRadius(12).animation({ duration: 400 })
+            }.width('100%').padding(20).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
           }
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)
 
       Row({ space: 12 }) {
         Button('重置').type(ButtonType.Capsule).height(44)
-          .backgroundColor('#F0F1F5').fontColor(AppColors.textSecondary).layoutWeight(1)
+          .backgroundColor(AppColors.bgSurfaceRaised).fontColor(AppColors.textSecondary).layoutWeight(1)
           .onClick((): void => this.resetAnimation())
         Button(this.getStepButtonText()).type(ButtonType.Capsule).height(44)
           .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.success : AppColors.dh)
-          .fontColor('#FFFFFF').layoutWeight(2).enabled(this.currentStep < this.getMaxSteps())
+          .fontColor(AppColors.bgBase).layoutWeight(2).enabled(this.currentStep < this.getMaxSteps())
           .onClick((): void => this.nextStep())
       }.width('100%').padding({ left: 16, right: 16, top: 8, bottom: 16 }).backgroundColor(AppColors.bgPage)
     }.width('100%').height('100%').backgroundColor(AppColors.bgPage)

@@ -63,15 +63,15 @@ struct FreqAnalysisPage {
             }
             TextArea({ text: this.inputText, placeholder: '输入需要分析的密文文本...' })
               .width('100%').height(100).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.inputText = v; this.hasAnalyzed = false })
             Button('开始分析').type(ButtonType.Capsule).height(44).width('100%')
-              .backgroundColor(AppColors.primary).fontColor('#FFFFFF').fontSize(15)
+              .backgroundColor(AppColors.primary).fontColor(AppColors.bgBase).fontSize(15)
               .enabled(this.inputText.length > 0)
               .onClick((): void => this.analyze())
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.hasAnalyzed) {
             Column({ space: 12 }) {
@@ -97,7 +97,7 @@ struct FreqAnalysisPage {
                     Row() {
                       Row().width(this.getBarWidth(this.freqValues[idx]))
                         .height(16).backgroundColor(AppColors.primary).borderRadius(4)
-                    }.layoutWeight(1).height(16).backgroundColor('#F0F1F5').borderRadius(4)
+                    }.layoutWeight(1).height(16).backgroundColor(AppColors.bgSurfaceRaised).borderRadius(4)
                     Text(`${this.freqValues[idx]}`).width(30).fontSize(12).fontColor(AppColors.textSecondary).textAlign(TextAlign.End)
                     Text(`${this.totalLetters > 0 ? ((this.freqValues[idx] / this.totalLetters) * 100).toFixed(1) : '0.0'}%`)
                       .width(45).fontSize(12).fontColor(AppColors.textHint).textAlign(TextAlign.End)
@@ -107,7 +107,7 @@ struct FreqAnalysisPage {
               }
             }
             .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-            .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
           }
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)

@@ -64,7 +64,7 @@ struct ChallengePage {
           Row({ space: 12 }) {
             Text(`得分：${this.score}`).fontSize(16).fontWeight(FontWeight.Bold).fontColor(AppColors.accent)
             Text(`进度：${this.completedLevels.length}/${this.challenges.length}`).fontSize(14).fontColor(AppColors.textSecondary)
-          }.width('100%').padding(12).backgroundColor('#FFF5F7').borderRadius(10)
+          }.width('100%').padding(12).backgroundColor(AppColors.bgSurface).borderRadius(10)
 
           Column({ space: 12 }) {
             Row() {
@@ -87,12 +87,12 @@ struct ChallengePage {
 
             TextInput({ text: this.userAnswer, placeholder: '输入你的答案' })
               .width('100%').height(44).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.userAnswer = v; this.hasChecked = false })
 
             Row({ space: 12 }) {
               Button('提交答案').type(ButtonType.Capsule).height(44)
-                .backgroundColor(AppColors.accent).fontColor('#FFFFFF').layoutWeight(1)
+                .backgroundColor(AppColors.accent).fontColor(AppColors.bgBase).layoutWeight(1)
                 .enabled(this.userAnswer.length > 0)
                 .onClick((): void => this.checkAnswer())
               if (this.currentLevel < this.challenges.length - 1) {
@@ -107,7 +107,7 @@ struct ChallengePage {
                 Row({ space: 8 }) {
                   Text('\u2713').fontSize(20).fontColor(AppColors.success)
                   Text('回答正确！').fontSize(16).fontWeight(FontWeight.Bold).fontColor(AppColors.success)
-                }.padding(16).backgroundColor('#E8FFF5').borderRadius(12).width('100%').animation({ duration: 300 })
+                }.padding(16).backgroundColor(AppColors.bgSurface).borderRadius(12).width('100%').animation({ duration: 300 })
               } else {
                 Column({ space: 8 }) {
                   Row({ space: 8 }) {
@@ -116,12 +116,12 @@ struct ChallengePage {
                   }
                   Text(`正确答案：${this.challenges[this.currentLevel].answer}`)
                     .fontSize(14).fontColor(AppColors.textSecondary)
-                }.padding(16).backgroundColor('#FFF5F5').borderRadius(12).width('100%').animation({ duration: 300 })
+                }.padding(16).backgroundColor(AppColors.bgSurface).borderRadius(12).width('100%').animation({ duration: 300 })
               }
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Row() {
@@ -135,13 +135,13 @@ struct ChallengePage {
                   .fontSize(14).fontWeight(FontWeight.Bold)
                   .fontColor(this.completedLevels.indexOf(idx) >= 0 ? AppColors.success : AppColors.textHint)
                   .width(28).height(28).textAlign(TextAlign.Center)
-                  .backgroundColor(this.completedLevels.indexOf(idx) >= 0 ? '#E8FFF5' : '#F0F1F5')
+                  .backgroundColor(this.completedLevels.indexOf(idx) >= 0 ? AppColors.bgSurface : AppColors.bgSurfaceRaised)
                   .borderRadius(14)
                 Text(`${challenge.cipherType}：${challenge.question}`)
                   .fontSize(13).fontColor(AppColors.textPrimary).layoutWeight(1).maxLines(1)
                   .textOverflow({ overflow: TextOverflow.Ellipsis })
               }.width('100%').padding(8).borderRadius(8)
-              .backgroundColor(this.currentLevel === idx ? '#FFF5F7' : '#F8F9FA')
+              .backgroundColor(this.currentLevel === idx ? AppColors.bgSurface : AppColors.bgSurfaceRaised)
               .onClick((): void => {
                 this.currentLevel = idx
                 this.userAnswer = ''
@@ -152,7 +152,7 @@ struct ChallengePage {
             })
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)
     }.width('100%').height('100%').backgroundColor(AppColors.bgPage)

@@ -33,15 +33,15 @@ struct CaesarBrutePage {
             }
             TextArea({ text: this.inputText, placeholder: '输入凯撒加密的密文...' })
               .width('100%').height(80).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.inputText = v; this.hasBruted = false })
             Button('暴力破解').type(ButtonType.Capsule).height(44).width('100%')
-              .backgroundColor(AppColors.caesar).fontColor('#FFFFFF').fontSize(15)
+              .backgroundColor(AppColors.caesar).fontColor(AppColors.bgBase).fontSize(15)
               .enabled(this.inputText.length > 0)
               .onClick((): void => this.bruteForce())
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.hasBruted) {
             Column({ space: 12 }) {
@@ -53,7 +53,7 @@ struct CaesarBrutePage {
               ForEach(this.results, (result: string, idx: number) => {
                 Row({ space: 10 }) {
                   Text(`${idx}`).width(28).fontSize(13).fontWeight(FontWeight.Bold)
-                    .fontColor(this.highlightedShift === idx ? '#FFFFFF' : AppColors.caesar)
+                    .fontColor(this.highlightedShift === idx ? AppColors.textPrimary : AppColors.caesar)
                     .textAlign(TextAlign.Center)
                   Text(result).fontSize(13).fontColor(AppColors.textPrimary)
                     .layoutWeight(1).maxLines(2).textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -62,19 +62,19 @@ struct CaesarBrutePage {
                       .onClick((): void => { this.highlightedShift = idx })
                   }
                 }.width('100%').padding(10).borderRadius(8)
-                .backgroundColor(this.highlightedShift === idx ? AppColors.caesar : '#F8F9FA')
+                .backgroundColor(this.highlightedShift === idx ? AppColors.caesar : AppColors.bgSurfaceRaised)
                 .animation({ duration: 200 })
               })
             }
             .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-            .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
             if (this.highlightedShift >= 0) {
               Column({ space: 8 }) {
                 Text(`\u2713 选定位移量：${this.highlightedShift}`).fontSize(16).fontWeight(FontWeight.Bold).fontColor(AppColors.success)
                 Text(`明文：${this.results[this.highlightedShift]}`).fontSize(15).fontColor(AppColors.textPrimary)
                   .copyOption(CopyOptions.LocalDevice)
-              }.width('100%').padding(20).backgroundColor('#E8FFF5').borderRadius(12).animation({ duration: 400 })
+              }.width('100%').padding(20).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
             }
           }
         }.padding(16)

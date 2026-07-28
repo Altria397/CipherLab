@@ -56,15 +56,15 @@ struct KasiskiPage {
             }
             TextArea({ text: this.inputText, placeholder: '输入维吉尼亚加密的密文（建议50字符以上）...' })
               .width('100%').height(100).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.inputText = v; this.hasAnalyzed = false })
             Button('Kasiski 分析').type(ButtonType.Capsule).height(44).width('100%')
-              .backgroundColor(AppColors.vigenere).fontColor('#FFFFFF').fontSize(15)
+              .backgroundColor(AppColors.vigenere).fontColor(AppColors.bgBase).fontSize(15)
               .enabled(this.inputText.length > 0)
               .onClick((): void => this.analyze())
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.hasAnalyzed) {
             Column({ space: 12 }) {
@@ -83,9 +83,9 @@ struct KasiskiPage {
                 Row({ space: 8 }) {
                   ForEach(this.likelyLengths, (len: number) => {
                     Text(`${len}`).fontSize(14).fontWeight(this.selectedLength === len ? FontWeight.Bold : FontWeight.Normal)
-                      .fontColor(this.selectedLength === len ? '#FFFFFF' : AppColors.vigenere)
+                      .fontColor(this.selectedLength === len ? AppColors.textPrimary : AppColors.vigenere)
                       .width(40).height(34).textAlign(TextAlign.Center)
-                      .backgroundColor(this.selectedLength === len ? AppColors.vigenere : '#F3EEFF')
+                      .backgroundColor(this.selectedLength === len ? AppColors.vigenere : AppColors.bgSurface)
                       .borderRadius(8).border({ width: 1, color: AppColors.vigenere })
                       .onClick((): void => this.analyzeColumns(len))
                   })
@@ -93,7 +93,7 @@ struct KasiskiPage {
               }
             }
             .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-            .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
             if (this.selectedLength > 0 && this.columnICs.length > 0) {
               Column({ space: 12 }) {
@@ -111,7 +111,7 @@ struct KasiskiPage {
                       Row().width(this.getICBarWidth(icStr))
                         .height(16).backgroundColor(parseFloat(icStr) > 0.06 ? AppColors.success : AppColors.vigenere)
                         .borderRadius(4)
-                    }.layoutWeight(1).height(16).backgroundColor('#F0F1F5').borderRadius(4)
+                    }.layoutWeight(1).height(16).backgroundColor(AppColors.bgSurfaceRaised).borderRadius(4)
                     Text(icStr).width(50).fontSize(12).fontColor(AppColors.textSecondary).textAlign(TextAlign.End)
                     if (parseFloat(icStr) > 0.06 && parseFloat(icStr) < 0.08) {
                       Text('\u2713').fontSize(14).fontColor(AppColors.success)
@@ -120,7 +120,7 @@ struct KasiskiPage {
                 })
               }
               .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-              .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+              .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
             }
           }
         }.padding(16)

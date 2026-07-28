@@ -48,17 +48,17 @@ struct HashPage {
           }
           TextInput({ text: this.input1, placeholder: '输入文本' })
             .width('100%').height(44).fontColor(AppColors.textPrimary)
-            .backgroundColor('#F0F1F5').borderRadius(10)
+            .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
             .onChange((v: string) => { this.input1 = v; this.hasComputed = false })
           Button('计算哈希').type(ButtonType.Capsule).height(44).width('100%')
-            .backgroundColor(AppColors.hash).fontColor('#FFFFFF').fontSize(15)
+            .backgroundColor(AppColors.hash).fontColor(AppColors.bgBase).fontSize(15)
             .onClick((): void => {
               this.hashResult1 = CipherUtils.simpleHash(this.input1, 'sha-like')
               this.hasComputed = true
             })
         }
         .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-        .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+        .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
         if (this.hasComputed) {
           Column({ space: 8 }) {
@@ -66,7 +66,7 @@ struct HashPage {
             Text(this.hashResult1).fontSize(14).fontColor(AppColors.hash).fontWeight(FontWeight.Medium)
               .fontFamily('monospace').copyOption(CopyOptions.LocalDevice)
               .wordBreak(WordBreak.BREAK_ALL)
-          }.width('100%').padding(16).backgroundColor('#FFF5F5').borderRadius(12).animation({ duration: 400 })
+          }.width('100%').padding(16).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
         }
 
         Column({ space: 12 }) {
@@ -76,10 +76,10 @@ struct HashPage {
           }
           TextInput({ text: this.input2, placeholder: '输入另一个文本对比' })
             .width('100%').height(44).fontColor(AppColors.textPrimary)
-            .backgroundColor('#F0F1F5').borderRadius(10)
+            .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
             .onChange((v: string) => { this.input2 = v })
           Button('计算并对比').type(ButtonType.Capsule).height(44).width('100%')
-            .backgroundColor(AppColors.hash).fontColor('#FFFFFF').fontSize(15)
+            .backgroundColor(AppColors.hash).fontColor(AppColors.bgBase).fontSize(15)
             .onClick((): void => {
               this.hashResult2 = CipherUtils.simpleHash(this.input2, 'sha-like')
             })
@@ -89,12 +89,12 @@ struct HashPage {
                 Text('文本1').fontSize(12).fontColor(AppColors.textHint)
                 Text(this.hashResult1).fontSize(12).fontColor(AppColors.hash).fontFamily('monospace')
                   .wordBreak(WordBreak.BREAK_ALL)
-              }.layoutWeight(1).padding(10).backgroundColor('#FFF5F5').borderRadius(8)
+              }.layoutWeight(1).padding(10).backgroundColor(AppColors.bgSurface).borderRadius(8)
               Column({ space: 4 }) {
                 Text('文本2').fontSize(12).fontColor(AppColors.textHint)
                 Text(this.hashResult2).fontSize(12).fontColor(AppColors.hash).fontFamily('monospace')
                   .wordBreak(WordBreak.BREAK_ALL)
-              }.layoutWeight(1).padding(10).backgroundColor('#FFF5F5').borderRadius(8)
+              }.layoutWeight(1).padding(10).backgroundColor(AppColors.bgSurface).borderRadius(8)
             }
             if (this.input1 === this.input2) {
               Text('相同输入 \u2192 相同哈希 \u2713').fontSize(14).fontWeight(FontWeight.Bold).fontColor(AppColors.success)
@@ -104,7 +104,7 @@ struct HashPage {
           }
         }
         .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-        .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+        .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       }.padding(16)
     }.scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)
   }
@@ -127,19 +127,19 @@ struct HashPage {
             Column({ space: 4 }) {
               Text('输入 A').fontSize(12).fontColor(AppColors.textHint)
               TextInput({ text: this.avalancheInput1 }).width('100%').height(40).fontColor(AppColors.textPrimary)
-                .backgroundColor('#F0F1F5').borderRadius(8)
+                .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8)
                 .onChange((v: string) => { this.avalancheInput1 = v; this.showAvalanche = false })
             }.layoutWeight(1)
             Column({ space: 4 }) {
               Text('输入 B').fontSize(12).fontColor(AppColors.textHint)
               TextInput({ text: this.avalancheInput2 }).width('100%').height(40).fontColor(AppColors.textPrimary)
-                .backgroundColor('#F0F1F5').borderRadius(8)
+                .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8)
                 .onChange((v: string) => { this.avalancheInput2 = v; this.showAvalanche = false })
             }.layoutWeight(1)
           }
 
           Button('对比哈希').type(ButtonType.Capsule).height(44).width('100%')
-            .backgroundColor(AppColors.hash).fontColor('#FFFFFF').fontSize(15)
+            .backgroundColor(AppColors.hash).fontColor(AppColors.bgBase).fontSize(15)
             .onClick((): void => {
               this.avalancheHash1 = CipherUtils.simpleHash(this.avalancheInput1, 'sha-like')
               this.avalancheHash2 = CipherUtils.simpleHash(this.avalancheInput2, 'sha-like')
@@ -153,21 +153,21 @@ struct HashPage {
                   Text(`"${this.avalancheInput1}"`).fontSize(13).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
                   Text(this.avalancheHash1).fontSize(12).fontColor(AppColors.hash).fontFamily('monospace')
                     .wordBreak(WordBreak.BREAK_ALL)
-                }.layoutWeight(1).padding(10).backgroundColor('#FFF5F5').borderRadius(8)
+                }.layoutWeight(1).padding(10).backgroundColor(AppColors.bgSurface).borderRadius(8)
                 Column({ space: 4 }) {
                   Text(`"${this.avalancheInput2}"`).fontSize(13).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
                   Text(this.avalancheHash2).fontSize(12).fontColor(AppColors.hash).fontFamily('monospace')
                     .wordBreak(WordBreak.BREAK_ALL)
-                }.layoutWeight(1).padding(10).backgroundColor('#FFF5F5').borderRadius(8)
+                }.layoutWeight(1).padding(10).backgroundColor(AppColors.bgSurface).borderRadius(8)
               }
 
               Text(`仅改变了输入的微小差异，哈希值有 ${this.countHexDiff(this.avalancheHash1, this.avalancheHash2)}/${Math.max(this.avalancheHash1.length, this.avalancheHash2.length)} 个字符不同（${Math.max(this.avalancheHash1.length, this.avalancheHash2.length) > 0 ? Math.round(this.countHexDiff(this.avalancheHash1, this.avalancheHash2) / Math.max(this.avalancheHash1.length, this.avalancheHash2.length) * 100) : 0}% 差异）`)
                 .fontSize(13).fontColor(AppColors.textSecondary).textAlign(TextAlign.Center).lineHeight(20)
-            }.width('100%').padding(14).backgroundColor('#F8F9FA').borderRadius(12).animation({ duration: 400 })
+            }.width('100%').padding(14).backgroundColor(AppColors.bgSurfaceRaised).borderRadius(12).animation({ duration: 400 })
           }
         }
         .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-        .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+        .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       }.padding(16)
     }.scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)
   }

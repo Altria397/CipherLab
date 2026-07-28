@@ -87,9 +87,9 @@ struct SharePage {
             ForEach(this.algoNames, (name: string, idx: number) => {
               Text(this.algoLabels[idx]).fontSize(12)
                 .fontWeight(this.algorithm === name ? FontWeight.Bold : FontWeight.Normal)
-                .fontColor(this.algorithm === name ? '#FFFFFF' : AppColors.primary)
+                .fontColor(this.algorithm === name ? AppColors.textPrimary : AppColors.primary)
                 .padding({ left: 8, right: 8, top: 6, bottom: 6 })
-                .backgroundColor(this.algorithm === name ? AppColors.primary : '#EEF0FF')
+                .backgroundColor(this.algorithm === name ? AppColors.primary : AppColors.bgSurface)
                 .borderRadius(6)
                 .onClick((): void => { this.algorithm = name })
             })
@@ -97,23 +97,23 @@ struct SharePage {
 
           TextInput({ text: this.inputText, placeholder: '输入明文' })
             .width('100%').height(44).fontColor(AppColors.textPrimary)
-            .backgroundColor('#F0F1F5').borderRadius(10)
+            .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
             .onChange((v: string) => { this.inputText = v })
 
           if (this.algorithm !== 'base64') {
             TextInput({ text: this.keyParam, placeholder: '输入密钥' })
               .width('100%').height(44).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.keyParam = v })
           }
 
           Button('加密并生成分享码').type(ButtonType.Capsule).height(44).width('100%')
-            .backgroundColor(AppColors.primary).fontColor('#FFFFFF').fontSize(15)
+            .backgroundColor(AppColors.primary).fontColor(AppColors.bgBase).fontSize(15)
             .enabled(this.inputText.length > 0)
             .onClick((): void => this.encrypt())
         }
         .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-        .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+        .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
         if (this.shareCode.length > 0) {
           Column({ space: 8 }) {
@@ -121,7 +121,7 @@ struct SharePage {
             Text(this.shareCode).fontSize(13).fontColor(AppColors.primary).fontFamily('monospace')
               .copyOption(CopyOptions.LocalDevice).wordBreak(WordBreak.BREAK_ALL)
             Text('长按或点击可复制分享码，发送给朋友即可导入').fontSize(11).fontColor(AppColors.textHint)
-          }.width('100%').padding(16).backgroundColor('#EEF0FF').borderRadius(12).animation({ duration: 400 })
+          }.width('100%').padding(16).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
         }
       }.padding(16)
     }.scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)
@@ -139,16 +139,16 @@ struct SharePage {
 
           TextArea({ text: this.importCode, placeholder: '粘贴 CIPHERLAB:... 分享码' })
             .width('100%').height(80).fontColor(AppColors.textPrimary)
-            .backgroundColor('#F0F1F5').borderRadius(10)
+            .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
             .onChange((v: string) => { this.importCode = v; this.hasImported = false })
 
           Button('导入').type(ButtonType.Capsule).height(44).width('100%')
-            .backgroundColor(AppColors.primary).fontColor('#FFFFFF').fontSize(15)
+            .backgroundColor(AppColors.primary).fontColor(AppColors.bgBase).fontSize(15)
             .enabled(this.importCode.length > 0)
             .onClick((): void => this.importMessage())
         }
         .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-        .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+        .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
         if (this.hasImported) {
           Column({ space: 8 }) {
@@ -156,7 +156,7 @@ struct SharePage {
             Text(`算法：${this.importedAlgo}`).fontSize(14).fontColor(AppColors.textPrimary)
             Text(`加密结果：${this.importedResult}`).fontSize(14).fontColor(AppColors.primary)
               .copyOption(CopyOptions.LocalDevice)
-          }.width('100%').padding(20).backgroundColor('#E8FFF5').borderRadius(12).animation({ duration: 400 })
+          }.width('100%').padding(20).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
         } else if (this.importCode.length > 0 && !this.hasImported && this.importCode.startsWith('CIPHERLAB:')) {
           Text('分享码格式无效，请检查后重试').fontSize(13).fontColor(AppColors.danger)
         }

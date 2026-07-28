@@ -15,25 +15,25 @@ struct RotorDisplay {
     Column({ space: 6 }) {
       Text(this.rotorName)
         .fontSize(12)
-        .fontColor(this.highlight ? this.accentColor : '#636E72')
+        .fontColor(this.highlight ? this.accentColor : AppColors.textSecondary)
         .fontWeight(this.highlight ? FontWeight.Bold : FontWeight.Normal)
       Stack() {
         Column() {
           Text(ALPHABET.charAt(this.rotorPosition))
             .fontSize(24)
             .fontWeight(FontWeight.Bold)
-            .fontColor(this.highlight ? '#FFFFFF' : this.accentColor)
+            .fontColor(this.highlight ? AppColors.textPrimary : this.accentColor)
         }
         .width(52)
         .height(52)
         .justifyContent(FlexAlign.Center)
-        .backgroundColor(this.highlight ? this.accentColor : '#F5F6FA')
+        .backgroundColor(this.highlight ? this.accentColor : AppColors.bgSurfaceRaised)
         .borderRadius(12)
         .border({ width: 2, color: this.accentColor })
       }
       Text(`位置: ${this.rotorPosition}`)
         .fontSize(11)
-        .fontColor('#999')
+        .fontColor(AppColors.textTertiary)
     }
   }
 }
@@ -278,25 +278,25 @@ struct EnigmaPage {
 
   private getComponentColor(component: string): string {
     switch (component) {
-      case 'input': return '#636E72'
+      case 'input': return AppColors.textSecondary
       case 'rotor3': return '#0984E3'
       case 'rotor2': return '#6C5CE7'
       case 'rotor1': return '#E17055'
-      case 'reflector': return '#00B894'
+      case 'reflector': return AppColors.accentSuccess
       case 'output': return '#D63031'
-      default: return '#636E72'
+      default: return AppColors.textSecondary
     }
   }
 
   private getComponentBgColor(component: string): string {
     switch (component) {
-      case 'input': return '#F5F6FA'
+      case 'input': return AppColors.bgSurfaceRaised
       case 'rotor3': return '#E3F2FD'
       case 'rotor2': return '#EDE7F6'
       case 'rotor1': return '#FBE9E7'
-      case 'reflector': return '#E8FFF5'
+      case 'reflector': return AppColors.bgSurface
       case 'output': return '#FFEBEE'
-      default: return '#F5F6FA'
+      default: return AppColors.bgSurfaceRaised
     }
   }
 
@@ -322,7 +322,7 @@ struct EnigmaPage {
               .fontColor('#8B5A2B')
             Text('Enigma 是二战时期德军使用的电机转子加密机。信号从键盘输入，依次经过3个转子（III→II→I）到达反射器，再反向经过3个转子（I→II→III）输出。每按一个键，最右转子转动一格，形成不断变化的替换表。Enigma是对称加密：用相同转子设置再次输入密文即可解密。')
               .fontSize(13)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .lineHeight(20)
           }
           .width('100%')
@@ -334,13 +334,13 @@ struct EnigmaPage {
             Text('输入设置')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
             TextInput({ text: this.plaintext, placeholder: '输入明文（大写英文字母）' })
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.plaintext = val.toUpperCase()
@@ -349,15 +349,15 @@ struct EnigmaPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Text('转子状态')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             Row({ space: 12 }) {
@@ -373,20 +373,20 @@ struct EnigmaPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Text('加密过程')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             Text('明文')
               .fontSize(12)
-              .fontColor('#999')
+              .fontColor(AppColors.textTertiary)
               .alignSelf(ItemAlign.Start)
             Scroll() {
               Row({ space: 4 }) {
@@ -395,12 +395,12 @@ struct EnigmaPage {
                     Text(ch)
                       .fontSize(18)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#8B5A2B' : '#2D3436')
+                      .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#8B5A2B' : AppColors.textPrimary)
                   }
                   .width(36)
                   .height(36)
                   .justifyContent(FlexAlign.Center)
-                  .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#FFF0DB' : '#F5F6FA')
+                  .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#FFF0DB' : AppColors.bgSurfaceRaised)
                   .borderRadius(8)
                   .border({
                     width: this.currentStep >= 1 && this.currentStep - 1 === idx ? 2 : 0,
@@ -414,7 +414,7 @@ struct EnigmaPage {
 
             Text('密文')
               .fontSize(12)
-              .fontColor('#999')
+              .fontColor(AppColors.textTertiary)
               .alignSelf(ItemAlign.Start)
             Scroll() {
               Row({ space: 4 }) {
@@ -425,7 +425,7 @@ struct EnigmaPage {
                       .fontSize(18)
                       .fontWeight(FontWeight.Bold)
                       .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== ''
-                        ? '#FFFFFF' : '#CCC')
+                        ? AppColors.textPrimary : '#CCC')
                   }
                   .width(36)
                   .height(36)
@@ -441,9 +441,9 @@ struct EnigmaPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.currentLetterSteps.length > 0) {
             Column({ space: 10 }) {
@@ -451,11 +451,11 @@ struct EnigmaPage {
                 Text(`信号路径：字母 '${this.plaintext.charAt(this.currentStep - 1)}'`)
                   .fontSize(14)
                   .fontWeight(FontWeight.Bold)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Blank()
                 Text(`${this.currentSubStep + 1}/${this.currentLetterSteps.length}`)
                   .fontSize(12)
-                  .fontColor('#999')
+                  .fontColor(AppColors.textTertiary)
               }
               .width('100%')
 
@@ -464,7 +464,7 @@ struct EnigmaPage {
                   Column() {
                     Text(label)
                       .fontSize(9)
-                      .fontColor(this.currentSubStep >= idx ? '#FFFFFF' : '#B2BEC3')
+                      .fontColor(this.currentSubStep >= idx ? AppColors.textPrimary : '#B2BEC3')
                       .fontWeight(FontWeight.Bold)
                   }
                   .width(30)
@@ -485,8 +485,8 @@ struct EnigmaPage {
                     Text(`${sIdx + 1}`)
                       .fontSize(11)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor('#FFFFFF')
-                      .width(22)
+                       .fontColor(AppColors.textPrimary)
+                       .width(22)
                       .height(22)
                       .textAlign(TextAlign.Center)
                       .backgroundColor(this.getComponentColor(step.component))
@@ -500,11 +500,11 @@ struct EnigmaPage {
                       Text(step.inputChar)
                         .fontSize(16)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor('#2D3436')
+                        .fontColor(AppColors.textPrimary)
                         .width(28)
                         .height(28)
                         .textAlign(TextAlign.Center)
-                        .backgroundColor('#F5F6FA')
+                        .backgroundColor(AppColors.bgSurfaceRaised)
                         .borderRadius(6)
                       Text('→')
                         .fontSize(14)
@@ -512,7 +512,7 @@ struct EnigmaPage {
                       Text(step.outputChar)
                         .fontSize(16)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor('#FFFFFF')
+                        .fontColor(AppColors.textPrimary)
                         .width(28)
                         .height(28)
                         .textAlign(TextAlign.Center)
@@ -523,7 +523,7 @@ struct EnigmaPage {
                   .width('100%')
                   .padding({ top: 6, bottom: 6, left: 8, right: 8 })
                   .backgroundColor(sIdx === this.currentSubStep
-                    ? this.getComponentBgColor(step.component) : '#FAFBFF')
+                    ? this.getComponentBgColor(step.component) : AppColors.bgSurface)
                   .borderRadius(8)
                   .border({
                     width: sIdx === this.currentSubStep ? 1 : 0,
@@ -534,9 +534,9 @@ struct EnigmaPage {
             }
             .width('100%')
             .padding(16)
-            .backgroundColor('#FFFFFF')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
-            .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
           }
 
           if (this.currentStep === 0) {
@@ -544,7 +544,7 @@ struct EnigmaPage {
               Text('Enigma 加密机结构示意')
                 .fontSize(14)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
                 .alignSelf(ItemAlign.Start)
               Text('键盘 → 转子III → 转子II → 转子I → 反射器')
                 .fontSize(13)
@@ -556,14 +556,14 @@ struct EnigmaPage {
                 .fontWeight(FontWeight.Medium)
               Text('点击"下一个字母"开始逐字母加密')
                 .fontSize(12)
-                .fontColor('#999')
+                .fontColor(AppColors.textTertiary)
                 .margin({ top: 4 })
             }
             .width('100%')
             .padding(16)
-            .backgroundColor('#FFFFFF')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
-            .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
           }
 
           if (this.showResult) {
@@ -571,20 +571,20 @@ struct EnigmaPage {
               Text('\u2713 加密完成')
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#00B894')
+                .fontColor(AppColors.accentSuccess)
               Text(`密文：${this.resultChars.join('')}`)
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
                 .copyOption(CopyOptions.LocalDevice)
               Text('Enigma 的特性：同一字母在不同位置会加密为不同结果，且一个字母永远不会加密为自身。用相同转子设置输入密文即可还原明文。')
                 .fontSize(12)
-                .fontColor('#636E72')
+                .fontColor(AppColors.textSecondary)
                 .lineHeight(18)
             }
             .width('100%')
             .padding(20)
-            .backgroundColor('#E8FFF5')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
           }
         }
@@ -598,26 +598,26 @@ struct EnigmaPage {
         Button('重置')
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor('#F5F6FA')
-          .fontColor('#636E72')
+          .backgroundColor(AppColors.bgSurfaceRaised)
+          .fontColor(AppColors.textSecondary)
           .layoutWeight(1)
           .onClick(() => this.resetAnimation())
         Button(this.getStepButtonText())
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor(this.currentStep >= this.getMaxSteps() ? '#00B894' : '#8B5A2B')
-          .fontColor('#FFFFFF')
+          .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.accentSuccess : '#8B5A2B')
+          .fontColor(AppColors.bgBase)
           .layoutWeight(2)
           .enabled(this.currentStep < this.getMaxSteps() && this.plaintext.length > 0)
           .onClick(() => this.nextStep())
       }
       .width('100%')
       .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-      .backgroundColor('#F5F6FA')
+      .backgroundColor(AppColors.bgSurfaceRaised)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgSurfaceRaised)
   }
 
 }

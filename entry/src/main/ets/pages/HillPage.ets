@@ -99,21 +99,21 @@ struct HillPage {
               Row({ space: 8 }) {
                 Column() { Text('a').fontSize(11).fontColor(AppColors.textHint) }
                 TextInput({ text: `${this.k00}` }).width(60).height(40).fontColor(AppColors.textPrimary)
-                  .backgroundColor('#F0F1F5').borderRadius(8).type(InputType.Number)
+                  .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8).type(InputType.Number)
                   .onChange((v: string) => { this.k00 = parseInt(v) || 0; this.resetAnimation() })
                 Column() { Text('b').fontSize(11).fontColor(AppColors.textHint) }
                 TextInput({ text: `${this.k01}` }).width(60).height(40).fontColor(AppColors.textPrimary)
-                  .backgroundColor('#F0F1F5').borderRadius(8).type(InputType.Number)
+                  .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8).type(InputType.Number)
                   .onChange((v: string) => { this.k01 = parseInt(v) || 0; this.resetAnimation() })
               }
               Row({ space: 8 }) {
                 Column() { Text('c').fontSize(11).fontColor(AppColors.textHint) }
                 TextInput({ text: `${this.k10}` }).width(60).height(40).fontColor(AppColors.textPrimary)
-                  .backgroundColor('#F0F1F5').borderRadius(8).type(InputType.Number)
+                  .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8).type(InputType.Number)
                   .onChange((v: string) => { this.k10 = parseInt(v) || 0; this.resetAnimation() })
                 Column() { Text('d').fontSize(11).fontColor(AppColors.textHint) }
                 TextInput({ text: `${this.k11}` }).width(60).height(40).fontColor(AppColors.textPrimary)
-                  .backgroundColor('#F0F1F5').borderRadius(8).type(InputType.Number)
+                  .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8).type(InputType.Number)
                   .onChange((v: string) => { this.k11 = parseInt(v) || 0; this.resetAnimation() })
               }
 
@@ -125,7 +125,7 @@ struct HillPage {
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Row() {
@@ -134,11 +134,11 @@ struct HillPage {
             }
             TextInput({ text: this.plaintext, placeholder: '输入明文（英文字母）' })
               .width('100%').height(44).fontColor(AppColors.textPrimary)
-              .backgroundColor('#F0F1F5').borderRadius(10)
+              .backgroundColor(AppColors.bgSurfaceRaised).borderRadius(10)
               .onChange((v: string) => { this.plaintext = v; this.resetAnimation() })
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Row() {
@@ -155,9 +155,9 @@ struct HillPage {
                     Text(ch).fontSize(18).fontWeight(FontWeight.Bold)
                       .fontColor(this.completedPairs.indexOf(Math.floor(idx / 2)) >= 0 ? AppColors.hill : AppColors.textPrimary)
                   }.width(36).height(36).justifyContent(FlexAlign.Center)
-                  .backgroundColor(this.completedPairs.indexOf(Math.floor(idx / 2)) >= 0 ? '#E8FFF5' : '#F0F1F5')
+                  .backgroundColor(this.completedPairs.indexOf(Math.floor(idx / 2)) >= 0 ? AppColors.bgSurface : AppColors.bgSurfaceRaised)
                   .borderRadius(8)
-                  .border({ width: idx % 2 === 0 && idx < this.getProcessedText().length - 1 ? 1 : 0, color: '#E5E7EB' })
+                  .border({ width: idx % 2 === 0 && idx < this.getProcessedText().length - 1 ? 1 : 0, color: AppColors.borderHairline })
                 })
               }
             }.scrollable(ScrollDirection.Horizontal).scrollBar(BarState.Off)
@@ -177,13 +177,13 @@ struct HillPage {
                         .fontSize(14).fontWeight(FontWeight.Bold).fontColor(AppColors.success)
                     }
                   }
-                  .width('100%').padding(8).backgroundColor('#F8F9FA').borderRadius(8)
+                  .width('100%').padding(8).backgroundColor(AppColors.bgSurfaceRaised).borderRadius(8)
                 })
               }
             }
           }
           .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
@@ -192,7 +192,7 @@ struct HillPage {
               Text(`结果：${this.resultChars.join('')}`)
                 .fontSize(18).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
                 .copyOption(CopyOptions.LocalDevice)
-            }.width('100%').padding(20).backgroundColor('#E8FFF5').borderRadius(12).animation({ duration: 400 })
+            }.width('100%').padding(20).backgroundColor(AppColors.bgSurface).borderRadius(12).animation({ duration: 400 })
           }
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)

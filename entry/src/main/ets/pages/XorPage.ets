@@ -91,7 +91,7 @@ struct XorPage {
               .fontColor('#4FACFE')
             Text('XOR（异或）加密将明文的每个字节与密钥的对应字节进行异或运算。相同位为0，不同位为1。XOR加密的特性：对密文再次XOR同一密钥即可解密，因此加密和解密操作完全相同。')
               .fontSize(13)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .lineHeight(20)
           }
           .width('100%')
@@ -103,13 +103,13 @@ struct XorPage {
             Text('输入设置')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
             TextInput({ text: this.plaintext, placeholder: this.isEncrypting ? '输入明文' : '输入HEX密文（如4869）' })
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.plaintext = val
@@ -119,7 +119,7 @@ struct XorPage {
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.secretKey = val
@@ -128,15 +128,15 @@ struct XorPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 16 }) {
             Text('逐字节 XOR 演示')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             ForEach(this.plaintext.split(''), (ch: string, idx: number) => {
@@ -149,24 +149,24 @@ struct XorPage {
                       .fontColor('#4FACFE')
                     Text(`(ASCII: ${ch.charCodeAt(0)})`)
                       .fontSize(11)
-                      .fontColor('#999')
+                      .fontColor(AppColors.textTertiary)
                       .margin({ left: 8 })
                   }
 
                   Row({ space: 2 }) {
                     Text('明文:')
                       .fontSize(11)
-                      .fontColor('#999')
+                      .fontColor(AppColors.textTertiary)
                       .width(40)
                     ForEach(this.getBinary(ch).split(''), (bit: string) => {
                       Text(bit)
                         .fontSize(14)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor('#2D3436')
+                        .fontColor(AppColors.textPrimary)
                         .width(24)
                         .height(24)
                         .textAlign(TextAlign.Center)
-                        .backgroundColor('#F5F6FA')
+                        .backgroundColor(AppColors.bgSurfaceRaised)
                         .borderRadius(4)
                     })
                   }
@@ -174,7 +174,7 @@ struct XorPage {
                   Row({ space: 2 }) {
                     Text('密钥:')
                       .fontSize(11)
-                      .fontColor('#999')
+                      .fontColor(AppColors.textTertiary)
                       .width(40)
                     ForEach(this.getBinary(this.secretKey.charAt(idx % this.secretKey.length)).split(''), (bit: string) => {
                       Text(bit)
@@ -192,13 +192,13 @@ struct XorPage {
                   Row({ space: 2 }) {
                     Text('XOR:')
                       .fontSize(11)
-                      .fontColor('#999')
+                      .fontColor(AppColors.textTertiary)
                       .width(40)
                     ForEach(this.getXorResult(idx).split(''), (bit: string, bIdx: number) => {
                       Text(bit)
                         .fontSize(14)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor('#FFFFFF')
+                        .fontColor(AppColors.textPrimary)
                         .width(24)
                         .height(24)
                         .textAlign(TextAlign.Center)
@@ -211,11 +211,11 @@ struct XorPage {
                   Text(`结果: 0x${this.resultHex[idx]}`)
                     .fontSize(13)
                     .fontWeight(FontWeight.Bold)
-                    .fontColor('#00B894')
+                    .fontColor(AppColors.accentSuccess)
                 }
                 .width('100%')
                 .padding(12)
-                .backgroundColor('#FAFBFF')
+                .backgroundColor(AppColors.bgSurface)
                 .borderRadius(10)
                 .border({
                   width: this.currentStep - 1 === idx ? 1.5 : 0,
@@ -228,7 +228,7 @@ struct XorPage {
             if (this.currentStep === 0) {
               Text('点击"下一步"开始逐字节异或运算')
                 .fontSize(13)
-                .fontColor('#999')
+                .fontColor(AppColors.textTertiary)
                 .width('100%')
                 .textAlign(TextAlign.Center)
                 .padding(20)
@@ -236,25 +236,25 @@ struct XorPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
               Text(`\u2713 XOR ${this.isEncrypting ? '加密' : '解密'}完成`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#00B894')
+                .fontColor(AppColors.accentSuccess)
               Text(`密文 (HEX): ${this.resultHex.join(' ')}`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
                 .copyOption(CopyOptions.LocalDevice)
             }
             .width('100%')
             .padding(20)
-            .backgroundColor('#E8FFF5')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
           }
         }
@@ -268,25 +268,25 @@ struct XorPage {
         Button('重置')
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor('#F5F6FA')
-          .fontColor('#636E72')
+          .backgroundColor(AppColors.bgSurfaceRaised)
+          .fontColor(AppColors.textSecondary)
           .layoutWeight(1)
           .onClick(() => this.resetAnimation())
         Button(this.getStepButtonText())
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor(this.currentStep >= this.getMaxSteps() ? '#00B894' : '#4FACFE')
-          .fontColor('#FFFFFF')
+          .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.accentSuccess : '#4FACFE')
+          .fontColor(AppColors.bgBase)
           .layoutWeight(2)
           .enabled(this.currentStep < this.getMaxSteps() && this.secretKey.length > 0)
           .onClick(() => this.nextStep())
       }
       .width('100%')
       .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-      .backgroundColor('#F5F6FA')
+      .backgroundColor(AppColors.bgSurfaceRaised)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgSurfaceRaised)
   }
 }

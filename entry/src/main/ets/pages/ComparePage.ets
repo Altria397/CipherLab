@@ -50,7 +50,7 @@ struct ComparePage {
               Row({ space: 8 }) {
                 Column().width(4).height(20).borderRadius(2).backgroundColor(algo.color)
                 Text(algo.name).fontSize(15).fontWeight(FontWeight.Bold).fontColor(AppColors.textPrimary)
-                Text(algo.type).fontSize(11).fontColor('#FFFFFF')
+                Text(algo.type).fontSize(11).fontColor(AppColors.textPrimary)
                   .padding({ left: 6, right: 6, top: 2, bottom: 2 })
                   .backgroundColor(algo.color).borderRadius(4)
               }
@@ -79,7 +79,7 @@ struct ComparePage {
               }
             }
             .width('100%').padding(14).backgroundColor(AppColors.bgCard).borderRadius(12)
-            .border({ width: 1, color: '#F0F1F5' })
+            .border({ width: 1, color: AppColors.borderHairline })
           })
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)

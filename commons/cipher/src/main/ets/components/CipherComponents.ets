@@ -41,7 +41,7 @@ export struct AlgoIcon {
       Text(this.getSymbol())
         .fontSize(this.iconSize * 0.45)
         .fontWeight(FontWeight.Bold)
-        .fontColor('#FFFFFF')
+        .fontColor(AppColors.bgBase)
     }
     .width(this.iconSize)
     .height(this.iconSize)
@@ -57,7 +57,7 @@ export struct AlgoIcon {
 
   private getColor(): string {
     const def = ALGO_ICONS[this.algorithm]
-    return def ? def.color : AppColors.textHint
+    return def ? def.color : AppColors.textTertiary
   }
 }
 
@@ -71,7 +71,7 @@ export struct CipherTypeIcon {
       Text(this.getSymbol())
         .fontSize(this.iconSize * 0.45)
         .fontWeight(FontWeight.Bold)
-        .fontColor('#FFFFFF')
+        .fontColor(AppColors.bgBase)
     }
     .width(this.iconSize)
     .height(this.iconSize)
@@ -87,7 +87,7 @@ export struct CipherTypeIcon {
 
   private getColor(): string {
     const def = TYPE_ICONS[this.cipherType]
-    return def ? def.color : AppColors.textHint
+    return def ? def.color : AppColors.textTertiary
   }
 }
 
@@ -129,26 +129,30 @@ export struct PageNavBar {
         .fontColor(this.accentColor)
         .onClick(() => this.onBack())
         .padding(12)
-      Text(this.title)
-        .fontSize(18)
+      Text(this.title.toUpperCase())
+        .fontSize(17)
         .fontWeight(FontWeight.Bold)
         .fontColor(AppColors.textPrimary)
         .layoutWeight(1)
         .textAlign(TextAlign.Center)
+        .letterSpacing(1.5)
       if (this.rightText.length > 0) {
         Text(this.rightText)
-          .fontSize(14)
+          .fontSize(12)
           .fontColor(this.accentColor)
           .fontWeight(FontWeight.Medium)
-          .padding(12)
+          .padding({ left: 10, right: 10, top: 4, bottom: 4 })
+          .backgroundColor(AppColors.bgSurfaceRaised)
+          .borderRadius(999)
           .onClick(() => this.onRightClick())
       } else {
         Blank().width(48)
       }
     }
     .width('100%')
-    .padding({ top: 8, bottom: 4 })
-    .backgroundColor(AppColors.bgCard)
+    .padding({ top: 8, bottom: 8 })
+    .backgroundColor(AppColors.bgSurface)
+    .border({ width: { bottom: 1 }, color: AppColors.borderHairline })
   }
 }
 
@@ -167,22 +171,22 @@ export struct StepButtonBar {
       Button(this.resetText)
         .type(ButtonType.Capsule)
         .height(44)
-        .backgroundColor(AppColors.bgInput)
+        .backgroundColor(AppColors.bgSurfaceRaised)
         .fontColor(AppColors.textSecondary)
         .layoutWeight(1)
         .onClick(() => this.onReset())
       Button(this.stepText)
         .type(ButtonType.Capsule)
         .height(44)
-        .backgroundColor(this.isCompleted ? AppColors.success : this.accentColor)
-        .fontColor('#FFFFFF')
+        .backgroundColor(this.isCompleted ? AppColors.accentSuccess : this.accentColor)
+        .fontColor(AppColors.bgBase)
         .layoutWeight(2)
         .enabled(this.isEnabled)
         .onClick(() => this.onStep())
     }
     .width('100%')
     .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-    .backgroundColor(AppColors.bgPage)
+    .backgroundColor(AppColors.bgBase)
   }
 }
 
@@ -193,27 +197,44 @@ export struct PrincipleCard {
 
   build() {
     Column({ space: 8 }) {
-      Row() {
-        Column()
-          .width(3)
-          .height(14)
-          .borderRadius(1.5)
-          .backgroundColor(this.accentColor)
-          .margin({ right: 8 })
-        Text('原理说明')
-          .fontSize(14)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(this.accentColor)
-      }
-      Text(this.content)
+      Text('PRINCIPLE')
         .fontSize(13)
+        .fontColor(AppColors.textTertiary)
+        .letterSpacing(1.5)
+      Text(this.content)
+        .fontSize(15)
         .fontColor(AppColors.textSecondary)
-        .lineHeight(20)
+        .lineHeight(22)
     }
     .width('100%')
     .padding(16)
-    .backgroundColor(this.accentColor + '10')
+    .backgroundColor(AppColors.bgSurface)
     .borderRadius(AppSizes.radiusMedium)
+    .border({ width: { left: 4 }, color: this.accentColor })
   }
 }
 
+@Component
+export struct FlipCipherText {
+  @Prop displayChar: string = ''
+  @Prop isRevealed: boolean = false
+  @Prop accentColor: string = AppColors.accentEncrypted
+
+  build() {
+    Column() {
+      Text(this.displayChar.length > 0 ? this.displayChar : '?')
+        .fontSize(24)
+        .fontWeight(FontWeight.Bold)
+        .fontColor(this.isRevealed ? this.accentColor : AppColors.accentDecrypted)
+        .fontFamily('monospace')
+    }
+    .width(36)
+    .height(44)
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor(AppColors.bgSurfaceRaised)
+    .borderRadius(6)
+    .border({ width: 1, color: AppColors.borderHairline })
+    .rotate({ angle: this.isRevealed ? 0 : 0 })
+    .animation({ duration: 180, curve: Curve.EaseInOut })
+  }
+}

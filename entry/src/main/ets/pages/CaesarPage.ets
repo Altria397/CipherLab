@@ -79,7 +79,7 @@ struct CaesarPage {
 
   getCharBg(idx: number): string {
     if (this.currentStep >= 1 && this.currentStep - 1 === idx) return AppColors.caesar + '15'
-    if (this.currentStep >= 1 && idx < this.currentStep - 1) return '#E8FFF5'
+    if (this.currentStep >= 1 && idx < this.currentStep - 1) return AppColors.bgSurface
     return AppColors.bgInput
   }
 
@@ -152,7 +152,7 @@ struct CaesarPage {
           .padding(16)
           .backgroundColor(AppColors.bgCard)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Row() {
@@ -203,7 +203,7 @@ struct CaesarPage {
           .padding(16)
           .backgroundColor(AppColors.bgCard)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Row() {
@@ -264,7 +264,7 @@ struct CaesarPage {
                   Text(this.resultChars.length > idx ? this.resultChars[idx] : '?')
                     .fontSize(20)
                     .fontWeight(FontWeight.Bold)
-                    .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? '#FFFFFF' : AppColors.textHint)
+                    .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? AppColors.textPrimary : AppColors.textHint)
                 }
                 .width(40)
                 .height(40)
@@ -280,7 +280,7 @@ struct CaesarPage {
           .padding(16)
           .backgroundColor(AppColors.bgCard)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
@@ -296,7 +296,7 @@ struct CaesarPage {
             }
             .width('100%')
             .padding(20)
-            .backgroundColor('#E8FFF5')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
             .animation({ duration: 400 })
           }

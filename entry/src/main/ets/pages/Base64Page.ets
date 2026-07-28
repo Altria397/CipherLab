@@ -119,10 +119,10 @@ struct Base64Page {
             Text('原理说明')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#00B894')
+              .fontColor(AppColors.accentSuccess)
             Text('Base64将二进制数据编码为可打印ASCII字符。将输入的每3个字节（24位）重新分组为4个6位块，每个6位块对应Base64字符表中的一个字符（共64个）。不足3字节时用"="填充。解码为逆向过程。')
               .fontSize(13)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .lineHeight(20)
           }
           .width('100%')
@@ -134,13 +134,13 @@ struct Base64Page {
             Text('输入设置')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
             TextInput({ text: this.plaintext, placeholder: this.isEncrypting ? '输入文本' : '输入Base64字符串' })
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.plaintext = val
@@ -149,9 +149,9 @@ struct Base64Page {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.isEncrypting) {
             this.buildEncodeSteps()
@@ -164,16 +164,16 @@ struct Base64Page {
               Text(`\u2713 ${this.isEncrypting ? '编码' : '解码'}完成`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#00B894')
+                .fontColor(AppColors.accentSuccess)
               Text(`结果：${this.isEncrypting ? this.base64Chars.join('') : CipherUtils.base64Decode(this.plaintext)}`)
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
                 .copyOption(CopyOptions.LocalDevice)
             }
             .width('100%')
             .padding(20)
-            .backgroundColor('#E8FFF5')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
           }
         }
@@ -187,26 +187,26 @@ struct Base64Page {
         Button('重置')
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor('#F5F6FA')
-          .fontColor('#636E72')
+          .backgroundColor(AppColors.bgSurfaceRaised)
+          .fontColor(AppColors.textSecondary)
           .layoutWeight(1)
           .onClick(() => this.resetAnimation())
         Button(this.getStepButtonText())
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor(this.currentStep >= this.getMaxSteps() ? '#00B894' : '#43E97B')
-          .fontColor('#FFFFFF')
+          .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.accentSuccess : '#43E97B')
+          .fontColor(AppColors.bgBase)
           .layoutWeight(2)
           .enabled(this.currentStep < this.getMaxSteps() && this.plaintext.length > 0)
           .onClick(() => this.nextStep())
       }
       .width('100%')
       .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-      .backgroundColor('#F5F6FA')
+      .backgroundColor(AppColors.bgSurfaceRaised)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgSurfaceRaised)
   }
 
   @Builder
@@ -217,17 +217,17 @@ struct Base64Page {
           Row() {
             Text(`${idx + 1}`)
               .fontSize(12)
-              .fontColor(this.currentStep > idx ? '#FFFFFF' : this.currentStep === idx ? '#00B894' : '#B2BEC3')
+              .fontColor(this.currentStep > idx ? AppColors.textPrimary : this.currentStep === idx ? AppColors.accentSuccess : '#B2BEC3')
               .fontWeight(FontWeight.Bold)
               .width(24)
               .height(24)
               .textAlign(TextAlign.Center)
-              .backgroundColor(this.currentStep > idx ? '#00B894' : '#00000000')
+              .backgroundColor(this.currentStep > idx ? AppColors.accentSuccess : '#00000000')
               .borderRadius(12)
-              .border({ width: 1.5, color: this.currentStep >= idx ? '#00B894' : '#DFE6E9' })
+              .border({ width: 1.5, color: this.currentStep >= idx ? AppColors.accentSuccess : '#DFE6E9' })
             Text(title)
               .fontSize(13)
-              .fontColor(this.currentStep >= idx ? '#2D3436' : '#B2BEC3')
+              .fontColor(this.currentStep >= idx ? AppColors.textPrimary : '#B2BEC3')
               .fontWeight(this.currentStep === idx ? FontWeight.Bold : FontWeight.Normal)
               .margin({ left: 10 })
           }
@@ -237,9 +237,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
     }
 
     if (this.currentStep >= 1) {
@@ -247,7 +247,7 @@ struct Base64Page {
         Text('步骤 1：ASCII 值')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Scroll() {
           Row({ space: 8 }) {
@@ -256,10 +256,10 @@ struct Base64Page {
                 Text(`'${ch}'`)
                   .fontSize(16)
                   .fontWeight(FontWeight.Bold)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Text(`${ch.charCodeAt(0)}`)
                   .fontSize(12)
-                  .fontColor('#00B894')
+                  .fontColor(AppColors.accentSuccess)
                   .fontWeight(FontWeight.Medium)
               }
               .padding(10)
@@ -273,9 +273,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
 
@@ -284,7 +284,7 @@ struct Base64Page {
         Text('步骤 2：8位二进制')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Scroll() {
           Row({ space: 6 }) {
@@ -292,23 +292,23 @@ struct Base64Page {
               Column({ space: 2 }) {
                 Text(`'${ch}'`)
                   .fontSize(11)
-                  .fontColor('#999')
+                  .fontColor(AppColors.textTertiary)
                 Row({ space: 1 }) {
                   ForEach(CipherUtils.toBinary(ch.charCodeAt(0), 8).split(''), (bit: string) => {
                     Text(bit)
                       .fontSize(12)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor(bit === '1' ? '#00B894' : '#636E72')
+                      .fontColor(bit === '1' ? AppColors.accentSuccess : AppColors.textSecondary)
                       .width(16)
                       .height(20)
                       .textAlign(TextAlign.Center)
-                      .backgroundColor(bit === '1' ? '#E8FFF5' : '#F5F6FA')
+                      .backgroundColor(bit === '1' ? AppColors.bgSurface : AppColors.bgSurfaceRaised)
                       .borderRadius(3)
                   })
                 }
               }
               .padding(6)
-              .backgroundColor('#FAFBFF')
+              .backgroundColor(AppColors.bgSurface)
               .borderRadius(8)
             })
           }
@@ -318,9 +318,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
 
@@ -329,7 +329,7 @@ struct Base64Page {
         Text('步骤 3：重组为 6位 分组')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Scroll() {
           Row({ space: 6 }) {
@@ -341,7 +341,7 @@ struct Base64Page {
                       Text(bit)
                         .fontSize(12)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor('#FFFFFF')
+                        .fontColor(AppColors.textPrimary)
                         .width(16)
                         .height(20)
                         .textAlign(TextAlign.Center)
@@ -351,7 +351,7 @@ struct Base64Page {
                   }
                   Text(`${this.base64Indices[gIdx]}`)
                     .fontSize(11)
-                    .fontColor('#636E72')
+                    .fontColor(AppColors.textSecondary)
                 } else {
                   Text('PAD')
                     .fontSize(12)
@@ -369,9 +369,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
 
@@ -380,7 +380,7 @@ struct Base64Page {
         Text('步骤 4：映射到 Base64 字符')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Row({ space: 6 }) {
           ForEach(this.base64Chars, (ch: string) => {
@@ -388,12 +388,12 @@ struct Base64Page {
               Text(ch)
                 .fontSize(22)
                 .fontWeight(FontWeight.Bold)
-                .fontColor(ch === '=' ? '#B2BEC3' : '#FFFFFF')
+                .fontColor(ch === '=' ? '#B2BEC3' : AppColors.textPrimary)
             }
             .width(44)
             .height(44)
             .justifyContent(FlexAlign.Center)
-            .backgroundColor(ch === '=' ? '#F0F0F0' : '#00B894')
+            .backgroundColor(ch === '=' ? '#F0F0F0' : AppColors.accentSuccess)
             .borderRadius(10)
             .animation({ duration: 300 })
           })
@@ -401,9 +401,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
   }
@@ -416,17 +416,17 @@ struct Base64Page {
           Row() {
             Text(`${idx + 1}`)
               .fontSize(12)
-              .fontColor(this.currentStep > idx ? '#FFFFFF' : this.currentStep === idx ? '#00B894' : '#B2BEC3')
+              .fontColor(this.currentStep > idx ? AppColors.textPrimary : this.currentStep === idx ? AppColors.accentSuccess : '#B2BEC3')
               .fontWeight(FontWeight.Bold)
               .width(24)
               .height(24)
               .textAlign(TextAlign.Center)
-              .backgroundColor(this.currentStep > idx ? '#00B894' : '#00000000')
+              .backgroundColor(this.currentStep > idx ? AppColors.accentSuccess : '#00000000')
               .borderRadius(12)
-              .border({ width: 1.5, color: this.currentStep >= idx ? '#00B894' : '#DFE6E9' })
+              .border({ width: 1.5, color: this.currentStep >= idx ? AppColors.accentSuccess : '#DFE6E9' })
             Text(title)
               .fontSize(13)
-              .fontColor(this.currentStep >= idx ? '#2D3436' : '#B2BEC3')
+              .fontColor(this.currentStep >= idx ? AppColors.textPrimary : '#B2BEC3')
               .fontWeight(this.currentStep === idx ? FontWeight.Bold : FontWeight.Normal)
               .margin({ left: 10 })
           }
@@ -436,9 +436,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
     }
 
     if (this.currentStep >= 1) {
@@ -446,7 +446,7 @@ struct Base64Page {
         Text('步骤 1：移除填充字符')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Row({ space: 6 }) {
           ForEach(this.plaintext.split(''), (ch: string) => {
@@ -454,7 +454,7 @@ struct Base64Page {
               Text(ch)
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor(ch === '=' ? '#B2BEC3' : '#2D3436')
+                .fontColor(ch === '=' ? '#B2BEC3' : AppColors.textPrimary)
             }
             .width(36)
             .height(36)
@@ -466,14 +466,14 @@ struct Base64Page {
         if (this.plaintext.includes('=')) {
           Text(`移除 ${this.plaintext.split('').filter(c => c === '=').length} 个填充字符"="`)
             .fontSize(12)
-            .fontColor('#636E72')
+            .fontColor(AppColors.textSecondary)
         }
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
 
@@ -482,7 +482,7 @@ struct Base64Page {
         Text('步骤 2：Base64字符 → 6位索引')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Row({ space: 6 }) {
           ForEach(this.plaintext.replace(/=/g, '').split(''), (ch: string) => {
@@ -490,10 +490,10 @@ struct Base64Page {
               Text(ch)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
               Text(`${this.b64Table.indexOf(ch)}`)
                 .fontSize(12)
-                .fontColor('#00B894')
+                .fontColor(AppColors.accentSuccess)
                 .fontWeight(FontWeight.Medium)
             }
             .padding(8)
@@ -504,9 +504,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
 
@@ -515,7 +515,7 @@ struct Base64Page {
         Text('步骤 3：6位索引 → 二进制拼接')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Scroll() {
           Row({ space: 6 }) {
@@ -523,13 +523,13 @@ struct Base64Page {
               Column({ space: 2 }) {
                 Text(ch)
                   .fontSize(11)
-                  .fontColor('#999')
+                  .fontColor(AppColors.textTertiary)
                 Row({ space: 1 }) {
                   ForEach(CipherUtils.toBinary(this.b64Table.indexOf(ch), 6).split(''), (bit: string) => {
                     Text(bit)
                       .fontSize(12)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor('#FFFFFF')
+                      .fontColor(AppColors.textPrimary)
                       .width(14)
                       .height(18)
                       .textAlign(TextAlign.Center)
@@ -539,7 +539,7 @@ struct Base64Page {
                 }
               }
               .padding(6)
-              .backgroundColor('#FAFBFF')
+              .backgroundColor(AppColors.bgSurface)
               .borderRadius(8)
             })
           }
@@ -549,9 +549,9 @@ struct Base64Page {
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
 
@@ -560,19 +560,19 @@ struct Base64Page {
         Text('步骤 4：重组为 8位 → ASCII字符')
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
           .alignSelf(ItemAlign.Start)
         Text(`解码结果：${CipherUtils.base64Decode(this.plaintext)}`)
           .fontSize(16)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#00B894')
+          .fontColor(AppColors.accentSuccess)
           .copyOption(CopyOptions.LocalDevice)
       }
       .width('100%')
       .padding(16)
-      .backgroundColor('#FFFFFF')
+      .backgroundColor(AppColors.bgSurface)
       .borderRadius(12)
-      .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+      .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
       .animation({ duration: 400 })
     }
   }

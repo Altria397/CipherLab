@@ -226,7 +226,7 @@ struct CustomCipherPage {
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgSurfaceRaised)
   }
 
   @Builder
@@ -258,17 +258,17 @@ struct CustomCipherPage {
                   Text(cipher.name)
                     .fontSize(16)
                     .fontWeight(FontWeight.Bold)
-                    .fontColor('#2D3436')
+                    .fontColor(AppColors.textPrimary)
                   Row({ space: 8 }) {
                     Text(this.getTypeDisplayName(cipher.type))
                       .fontSize(11)
-                      .fontColor('#FFFFFF')
+                      .fontColor(AppColors.textPrimary)
                       .padding({ left: 8, right: 8, top: 2, bottom: 2 })
                       .backgroundColor('#667EEA')
                       .borderRadius(4)
                     Text(this.getParamDesc(cipher))
                       .fontSize(12)
-                      .fontColor('#636E72')
+                      .fontColor(AppColors.textSecondary)
                   }
                   .margin({ top: 4 })
                 }
@@ -301,20 +301,20 @@ struct CustomCipherPage {
                     Text(this.isTestEncrypt ? '加密' : '解密')
                       .fontSize(13)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor(this.isTestEncrypt ? '#667EEA' : '#00B894')
+                      .fontColor(this.isTestEncrypt ? '#667EEA' : AppColors.accentSuccess)
                     Row() {
                       Text('加密')
                         .fontSize(12)
-                        .fontColor(this.isTestEncrypt ? '#FFFFFF' : '#636E72')
+                        .fontColor(this.isTestEncrypt ? AppColors.textPrimary : AppColors.textSecondary)
                         .padding({ left: 12, right: 12, top: 6, bottom: 6 })
-                        .backgroundColor(this.isTestEncrypt ? '#667EEA' : '#F5F6FA')
+                        .backgroundColor(this.isTestEncrypt ? '#667EEA' : AppColors.bgSurfaceRaised)
                         .borderRadius(6)
                         .onClick(() => { this.isTestEncrypt = true; this.testOutput = '' })
                       Text('解密')
                         .fontSize(12)
-                        .fontColor(!this.isTestEncrypt ? '#FFFFFF' : '#636E72')
+                        .fontColor(!this.isTestEncrypt ? AppColors.textPrimary : AppColors.textSecondary)
                         .padding({ left: 12, right: 12, top: 6, bottom: 6 })
-                        .backgroundColor(!this.isTestEncrypt ? '#00B894' : '#F5F6FA')
+                        .backgroundColor(!this.isTestEncrypt ? AppColors.accentSuccess : AppColors.bgSurfaceRaised)
                         .borderRadius(6)
                         .onClick(() => { this.isTestEncrypt = false; this.testOutput = '' })
                     }
@@ -324,7 +324,7 @@ struct CustomCipherPage {
                     .width('100%')
                     .height(40)
                     .fontColor(AppColors.textPrimary)
-                    .backgroundColor('#F5F6FA')
+                    .backgroundColor(AppColors.bgSurfaceRaised)
                     .borderRadius(8)
                     .onChange((val: string) => {
                       this.testInput = val
@@ -333,23 +333,23 @@ struct CustomCipherPage {
                     .type(ButtonType.Capsule)
                     .height(36)
                     .fontSize(13)
-                    .backgroundColor(this.isTestEncrypt ? '#667EEA' : '#00B894')
+                    .backgroundColor(this.isTestEncrypt ? '#667EEA' : AppColors.accentSuccess)
                     .width('100%')
                     .onClick(() => this.doTestEncrypt(idx))
                   if (this.testOutput.length > 0) {
                     Column({ space: 4 }) {
                       Text(`${this.isTestEncrypt ? '加密' : '解密'}结果：`)
                         .fontSize(12)
-                        .fontColor('#999')
+                        .fontColor(AppColors.textTertiary)
                       Text(this.testOutput)
                         .fontSize(15)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor('#00B894')
+                        .fontColor(AppColors.accentSuccess)
                         .copyOption(CopyOptions.LocalDevice)
                     }
                     .width('100%')
                     .padding(10)
-                    .backgroundColor('#E8FFF5')
+                    .backgroundColor(AppColors.bgSurface)
                     .borderRadius(8)
                   }
                 }
@@ -359,7 +359,7 @@ struct CustomCipherPage {
                 .type(ButtonType.Capsule)
                 .height(32)
                 .fontSize(12)
-                .backgroundColor('#F5F6FA')
+                .backgroundColor(AppColors.bgSurfaceRaised)
                 .fontColor('#667EEA')
                 .width('100%')
                 .onClick(() => {
@@ -375,9 +375,9 @@ struct CustomCipherPage {
             }
             .width('100%')
             .padding(16)
-            .backgroundColor('#FFFFFF')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(14)
-            .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
           })
 
           if (this.ciphers.length < MAX_CIPHERS) {
@@ -387,7 +387,7 @@ struct CustomCipherPage {
               .height(48)
               .fontSize(16)
               .backgroundColor('#667EEA')
-              .fontColor('#FFFFFF')
+              .fontColor(AppColors.bgBase)
               .onClick(() => this.openEditor(-1))
           } else {
             Text(`已达到最大数量 (${MAX_CIPHERS}个)`)
@@ -418,7 +418,7 @@ struct CustomCipherPage {
               Text(this.editIndex >= 0 ? '编辑加密方法' : '新建加密方法')
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
               Blank()
               Text('\u2716')
                 .fontSize(20)
@@ -433,7 +433,7 @@ struct CustomCipherPage {
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.editName = val
@@ -441,17 +441,17 @@ struct CustomCipherPage {
 
             Text('加密类型')
               .fontSize(13)
-              .fontColor('#999')
+              .fontColor(AppColors.textTertiary)
               .alignSelf(ItemAlign.Start)
             Row({ space: 8 }) {
               ForEach(this.typeKeys, (key: string, ki: number) => {
                 Column() {
                   Text(this.typeNames[ki])
                     .fontSize(12)
-                    .fontColor(this.editType === key ? '#FFFFFF' : '#636E72')
+                    .fontColor(this.editType === key ? AppColors.textPrimary : AppColors.textSecondary)
                 }
                 .padding({ left: 12, right: 12, top: 8, bottom: 8 })
-                .backgroundColor(this.editType === key ? '#667EEA' : '#F5F6FA')
+                .backgroundColor(this.editType === key ? '#667EEA' : AppColors.bgSurfaceRaised)
                 .borderRadius(8)
                 .onClick(() => {
                   this.editType = key
@@ -464,7 +464,7 @@ struct CustomCipherPage {
               Row() {
                 Text('位移量：')
                   .fontSize(14)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Text(`${this.editShift}`)
                   .fontSize(16)
                   .fontWeight(FontWeight.Bold)
@@ -486,7 +486,7 @@ struct CustomCipherPage {
                 .width('100%')
                 .height(44)
                 .fontColor(AppColors.textPrimary)
-                .backgroundColor('#F5F6FA')
+                .backgroundColor(AppColors.bgSurfaceRaised)
                 .borderRadius(10)
                 .onChange((val: string) => {
                   this.editKeyword = val.toUpperCase()
@@ -498,12 +498,12 @@ struct CustomCipherPage {
                 Column() {
                   Text('参数 a')
                     .fontSize(12)
-                    .fontColor('#999')
+                    .fontColor(AppColors.textTertiary)
                   TextInput({ text: `${this.editAffineA}` })
                     .width('100%')
                     .height(40)
                     .fontColor(AppColors.textPrimary)
-                    .backgroundColor('#F5F6FA')
+                    .backgroundColor(AppColors.bgSurfaceRaised)
                     .borderRadius(8)
                     .type(InputType.Number)
                     .onChange((val: string) => {
@@ -514,12 +514,12 @@ struct CustomCipherPage {
                 Column() {
                   Text('参数 b')
                     .fontSize(12)
-                    .fontColor('#999')
+                    .fontColor(AppColors.textTertiary)
                   TextInput({ text: `${this.editAffineB}` })
                     .width('100%')
                     .height(40)
                     .fontColor(AppColors.textPrimary)
-                    .backgroundColor('#F5F6FA')
+                    .backgroundColor(AppColors.bgSurfaceRaised)
                     .borderRadius(8)
                     .type(InputType.Number)
                     .onChange((val: string) => {
@@ -536,7 +536,7 @@ struct CustomCipherPage {
               } else {
                 Text('参数 a 与26互质 ✓')
                   .fontSize(11)
-                  .fontColor('#00B894')
+                  .fontColor(AppColors.accentSuccess)
               }
             }
 
@@ -544,7 +544,7 @@ struct CustomCipherPage {
               Row() {
                 Text('栏数：')
                   .fontSize(14)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Text(`${this.editRailCount}`)
                   .fontSize(16)
                   .fontWeight(FontWeight.Bold)
@@ -565,8 +565,8 @@ struct CustomCipherPage {
               Button('取消')
                 .type(ButtonType.Capsule)
                 .height(44)
-                .backgroundColor('#F5F6FA')
-                .fontColor('#636E72')
+                .backgroundColor(AppColors.bgSurfaceRaised)
+                .fontColor(AppColors.textSecondary)
                 .layoutWeight(1)
                 .onClick(() => {
                   this.showEditor = false
@@ -575,7 +575,7 @@ struct CustomCipherPage {
                 .type(ButtonType.Capsule)
                 .height(44)
                 .backgroundColor('#667EEA')
-                .fontColor('#FFFFFF')
+                .fontColor(AppColors.bgBase)
                 .layoutWeight(1)
                 .enabled(this.editName.trim().length > 0 && !(this.editType === 'affine' && !CipherUtils.isValidAffineA(this.editAffineA)))
                 .onClick(() => this.saveEditing())
@@ -584,7 +584,7 @@ struct CustomCipherPage {
           }
           .width('100%')
           .padding(24)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius({ topLeft: 24, topRight: 24 })
         }
         .width('100%')
@@ -603,19 +603,19 @@ struct CustomCipherPage {
             Text('确认删除')
               .fontSize(18)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
             Text(this.deleteIndex >= 0 && this.deleteIndex < this.ciphers.length
               ? `确定要删除 "${this.ciphers[this.deleteIndex].name}" 吗？`
               : '')
               .fontSize(14)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .textAlign(TextAlign.Center)
             Row({ space: 12 }) {
               Button('取消')
                 .type(ButtonType.Capsule)
                 .height(44)
-                .backgroundColor('#F5F6FA')
-                .fontColor('#636E72')
+                .backgroundColor(AppColors.bgSurfaceRaised)
+                .fontColor(AppColors.textSecondary)
                 .layoutWeight(1)
                 .onClick(() => {
                   this.showDeleteConfirm = false
@@ -624,7 +624,7 @@ struct CustomCipherPage {
                 .type(ButtonType.Capsule)
                 .height(44)
                 .backgroundColor('#E17055')
-                .fontColor('#FFFFFF')
+                .fontColor(AppColors.bgBase)
                 .layoutWeight(1)
                 .onClick(() => this.deleteCipher(this.deleteIndex))
             }
@@ -632,7 +632,7 @@ struct CustomCipherPage {
           }
           .width('100%')
           .padding(24)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius({ topLeft: 24, topRight: 24 })
         }
         .width('100%')
@@ -654,7 +654,7 @@ struct CustomCipherPage {
           .fontColor('#667EEA')
         Text('将多个加密方法串联组合，文本依次经过每个加密方法处理。解密时按相反顺序依次解密。')
           .fontSize(13)
-          .fontColor('#636E72')
+          .fontColor(AppColors.textSecondary)
           .lineHeight(20)
       }
       .width('100%')
@@ -693,7 +693,7 @@ struct CustomCipherPage {
       Text('选择加密方法（按顺序）')
         .fontSize(14)
         .fontWeight(FontWeight.Bold)
-        .fontColor('#2D3436')
+        .fontColor(AppColors.textPrimary)
         .alignSelf(ItemAlign.Start)
 
       ForEach(this.ciphers, (cipher: CipherItem, idx: number) => {
@@ -708,10 +708,10 @@ struct CustomCipherPage {
             Text(cipher.name)
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
             Text(this.getParamDesc(cipher))
               .fontSize(12)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .margin({ top: 2 })
           }
           .alignItems(HorizontalAlign.Start)
@@ -726,7 +726,7 @@ struct CustomCipherPage {
         }
         .width('100%')
         .padding(12)
-        .backgroundColor(this.selectedChainIndices.indexOf(idx) >= 0 ? '#F0F3FF' : '#FFFFFF')
+        .backgroundColor(this.selectedChainIndices.indexOf(idx) >= 0 ? '#F0F3FF' : AppColors.bgSurface)
         .borderRadius(10)
         .border({
           width: this.selectedChainIndices.indexOf(idx) >= 0 ? 1.5 : 0,
@@ -748,7 +748,7 @@ struct CustomCipherPage {
         Row() {
           Text('执行顺序：')
             .fontSize(13)
-            .fontColor('#636E72')
+            .fontColor(AppColors.textSecondary)
           ForEach(this.selectedChainIndices, (cIdx: number, order: number) => {
             Text(this.ciphers[cIdx].name + (order < this.selectedChainIndices.length - 1 ? ' → ' : ''))
               .fontSize(13)
@@ -758,7 +758,7 @@ struct CustomCipherPage {
         }
         .width('100%')
         .padding(10)
-        .backgroundColor('#F5F6FA')
+        .backgroundColor(AppColors.bgSurfaceRaised)
         .borderRadius(8)
       }
 
@@ -766,20 +766,20 @@ struct CustomCipherPage {
         Text(this.isChainEncrypt ? '加密模式' : '解密模式')
           .fontSize(13)
           .fontWeight(FontWeight.Bold)
-          .fontColor(this.isChainEncrypt ? '#667EEA' : '#00B894')
+          .fontColor(this.isChainEncrypt ? '#667EEA' : AppColors.accentSuccess)
         Row() {
           Text('加密')
             .fontSize(12)
-            .fontColor(this.isChainEncrypt ? '#FFFFFF' : '#636E72')
+            .fontColor(this.isChainEncrypt ? AppColors.textPrimary : AppColors.textSecondary)
             .padding({ left: 12, right: 12, top: 6, bottom: 6 })
-            .backgroundColor(this.isChainEncrypt ? '#667EEA' : '#F5F6FA')
+            .backgroundColor(this.isChainEncrypt ? '#667EEA' : AppColors.bgSurfaceRaised)
             .borderRadius(6)
             .onClick(() => { this.isChainEncrypt = true; this.chainOutput = '' })
           Text('解密')
             .fontSize(12)
-            .fontColor(!this.isChainEncrypt ? '#FFFFFF' : '#636E72')
+            .fontColor(!this.isChainEncrypt ? AppColors.textPrimary : AppColors.textSecondary)
             .padding({ left: 12, right: 12, top: 6, bottom: 6 })
-            .backgroundColor(!this.isChainEncrypt ? '#00B894' : '#F5F6FA')
+            .backgroundColor(!this.isChainEncrypt ? AppColors.accentSuccess : AppColors.bgSurfaceRaised)
             .borderRadius(6)
             .onClick(() => { this.isChainEncrypt = false; this.chainOutput = '' })
         }
@@ -790,7 +790,7 @@ struct CustomCipherPage {
         .width('100%')
         .height(44)
         .fontColor(AppColors.textPrimary)
-        .backgroundColor('#F5F6FA')
+        .backgroundColor(AppColors.bgSurfaceRaised)
         .borderRadius(10)
         .onChange((val: string) => {
           this.chainInput = val
@@ -801,8 +801,8 @@ struct CustomCipherPage {
         .type(ButtonType.Capsule)
         .height(44)
         .fontSize(16)
-        .backgroundColor(this.isChainEncrypt ? '#667EEA' : '#00B894')
-        .fontColor('#FFFFFF')
+        .backgroundColor(this.isChainEncrypt ? '#667EEA' : AppColors.accentSuccess)
+        .fontColor(AppColors.bgBase)
         .width('100%')
         .enabled(this.selectedChainIndices.length > 0 && this.chainInput.length > 0)
         .onClick(() => {
@@ -827,16 +827,16 @@ struct CustomCipherPage {
         Column({ space: 4 }) {
           Text(`${this.isChainEncrypt ? '加密' : '解密'}结果：`)
             .fontSize(12)
-            .fontColor('#999')
+            .fontColor(AppColors.textTertiary)
           Text(this.chainOutput)
             .fontSize(16)
             .fontWeight(FontWeight.Bold)
-            .fontColor('#00B894')
+            .fontColor(AppColors.accentSuccess)
             .copyOption(CopyOptions.LocalDevice)
         }
         .width('100%')
         .padding(14)
-        .backgroundColor('#E8FFF5')
+        .backgroundColor(AppColors.bgSurface)
         .borderRadius(10)
       }
     }

@@ -108,7 +108,7 @@ struct VigenerePage {
               .fontColor('#F5576C')
             Text('维吉尼亚密码使用一个关键词，对每个字母使用不同的位移量进行加密。关键词循环使用，每个字母对应的位移量由关键词中相应字母决定。解密时反向位移即可。')
               .fontSize(13)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .lineHeight(20)
           }
           .width('100%')
@@ -120,14 +120,14 @@ struct VigenerePage {
             Text('输入设置')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             TextInput({ text: this.plaintext, placeholder: '输入文本' })
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.plaintext = val.toUpperCase()
@@ -138,7 +138,7 @@ struct VigenerePage {
               .width('100%')
               .height(44)
               .fontColor(AppColors.textPrimary)
-              .backgroundColor('#F5F6FA')
+              .backgroundColor(AppColors.bgSurfaceRaised)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.secretKey = val.toUpperCase()
@@ -147,20 +147,20 @@ struct VigenerePage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
             Text(this.isEncrypting ? '加密过程演示' : '解密过程演示')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             Text(this.isEncrypting ? '明文' : '密文')
               .fontSize(12)
-              .fontColor('#999')
+              .fontColor(AppColors.textTertiary)
               .alignSelf(ItemAlign.Start)
             Scroll() {
               Row({ space: 4 }) {
@@ -169,12 +169,12 @@ struct VigenerePage {
                     Text(ch)
                       .fontSize(18)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#F5576C' : '#2D3436')
+                      .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#F5576C' : AppColors.textPrimary)
                   }
                   .width(36)
                   .height(36)
                   .justifyContent(FlexAlign.Center)
-                  .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#FFF0F3' : '#F5F6FA')
+                  .backgroundColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#FFF0F3' : AppColors.bgSurfaceRaised)
                   .borderRadius(8)
                   .border({
                     width: this.currentStep >= 1 && this.currentStep - 1 === idx ? 2 : 0,
@@ -194,7 +194,7 @@ struct VigenerePage {
             if (this.currentStep >= 0) {
               Text('密钥（展开）')
                 .fontSize(12)
-                .fontColor('#999')
+                .fontColor(AppColors.textTertiary)
                 .alignSelf(ItemAlign.Start)
               Scroll() {
                 Row({ space: 4 }) {
@@ -203,7 +203,7 @@ struct VigenerePage {
                       Text(k)
                         .fontSize(18)
                         .fontWeight(FontWeight.Bold)
-                        .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? '#FFFFFF' : '#764BA2')
+                        .fontColor(this.currentStep >= 1 && this.currentStep - 1 === idx ? AppColors.textPrimary : '#764BA2')
                     }
                     .width(36)
                     .height(36)
@@ -222,7 +222,7 @@ struct VigenerePage {
               Column({ space: 4 }) {
                 Text('当前步骤')
                   .fontSize(12)
-                  .fontColor('#999')
+                  .fontColor(AppColors.textTertiary)
                   .alignSelf(ItemAlign.Start)
                 if (this.currentStep - 1 < this.plaintext.length) {
                   Text(this.buildCurrentStepDescription())
@@ -240,7 +240,7 @@ struct VigenerePage {
 
             Text(this.isEncrypting ? '密文' : '明文')
               .fontSize(12)
-              .fontColor('#999')
+              .fontColor(AppColors.textTertiary)
               .alignSelf(ItemAlign.Start)
             Scroll() {
               Row({ space: 4 }) {
@@ -249,7 +249,7 @@ struct VigenerePage {
                     Text(this.resultChars.length > idx && this.resultChars[idx] !== '' ? this.resultChars[idx] : '?')
                       .fontSize(18)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? '#FFFFFF' : '#CCC')
+                      .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? AppColors.textPrimary : '#CCC')
                   }
                   .width(36)
                   .height(36)
@@ -265,25 +265,25 @@ struct VigenerePage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
               Text(`\u2713 ${this.isEncrypting ? '加密' : '解密'}完成`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#00B894')
+                .fontColor(AppColors.accentSuccess)
               Text(`结果：${this.resultChars.join('')}`)
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
                 .copyOption(CopyOptions.LocalDevice)
             }
             .width('100%')
             .padding(20)
-            .backgroundColor('#E8FFF5')
+            .backgroundColor(AppColors.bgSurface)
             .borderRadius(12)
           }
         }
@@ -297,25 +297,25 @@ struct VigenerePage {
         Button('重置')
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor('#F5F6FA')
-          .fontColor('#636E72')
+          .backgroundColor(AppColors.bgSurfaceRaised)
+          .fontColor(AppColors.textSecondary)
           .layoutWeight(1)
           .onClick(() => this.resetAnimation())
         Button(this.getStepButtonText())
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor(this.currentStep >= this.getMaxSteps() ? '#00B894' : '#F5576C')
-          .fontColor('#FFFFFF')
+          .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.accentSuccess : '#F5576C')
+          .fontColor(AppColors.bgBase)
           .layoutWeight(2)
           .enabled(this.currentStep < this.getMaxSteps() && this.secretKey.length > 0)
           .onClick(() => this.nextStep())
       }
       .width('100%')
       .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-      .backgroundColor('#F5F6FA')
+      .backgroundColor(AppColors.bgSurfaceRaised)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgSurfaceRaised)
   }
 }

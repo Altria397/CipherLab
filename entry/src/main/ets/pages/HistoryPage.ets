@@ -86,7 +86,7 @@ struct HistoryPage {
               }.padding(10).backgroundColor(story.color + '10').borderRadius(8).width('100%')
             }
             .width('100%').padding(16).backgroundColor(AppColors.bgCard).borderRadius(12)
-            .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
+            .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
           })
         }.padding(16)
       }.layoutWeight(1).scrollBar(BarState.Off).edgeEffect(EdgeEffect.Spring)

@@ -16,36 +16,36 @@ struct RsaStepCard {
         Text(`${this.step + 1}`)
           .fontSize(12)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#FFFFFF')
+          .fontColor(AppColors.textPrimary)
           .width(24)
           .height(24)
           .textAlign(TextAlign.Center)
-          .backgroundColor(this.currentStep > this.step ? '#00B894' : '#FA709A')
+          .backgroundColor(this.currentStep > this.step ? AppColors.accentSuccess : AppColors.rsa)
           .borderRadius(12)
         Text(this.title)
           .fontSize(14)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
+          .fontColor(AppColors.textPrimary)
       }
       if (this.formula.length > 0) {
         Text(this.formula)
           .fontSize(16)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#FA709A')
+          .fontColor(AppColors.rsa)
           .margin({ top: 4 })
       }
       if (this.stepContent.length > 0) {
         Text(this.stepContent)
           .fontSize(13)
-          .fontColor('#636E72')
+          .fontColor(AppColors.textSecondary)
           .margin({ top: 2 })
       }
     }
     .width('100%')
     .padding(14)
-    .backgroundColor(this.highlight ? '#FFF5F7' : '#FAFBFF')
+    .backgroundColor(AppColors.bgSurface)
     .borderRadius(12)
-    .border({ width: this.highlight ? 1.5 : 0, color: '#FA709A' })
+    .border({ width: this.highlight ? 1.5 : 0, color: AppColors.rsa })
     .animation({ duration: 400 })
   }
 }
@@ -159,33 +159,33 @@ struct RsaPage {
             Text('原理说明')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#FA709A')
+              .fontColor(AppColors.rsa)
             Text('RSA是一种非对称加密算法。它利用大质数乘积难以分解的数学特性，生成一对密钥：公钥用于加密，私钥用于解密。这里使用小数字演示其原理。')
               .fontSize(13)
-              .fontColor('#636E72')
+              .fontColor(AppColors.textSecondary)
               .lineHeight(20)
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFF5F7')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
 
           Column({ space: 12 }) {
             Text('参数设置')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             Column({ space: 6 }) {
               Row() {
                 Text('质数 p：')
                   .fontSize(14)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Text(`${this.p}`)
                   .fontSize(18)
                   .fontWeight(FontWeight.Bold)
-                  .fontColor('#FA709A')
+                  .fontColor(AppColors.rsa)
               }
               .width('100%')
 
@@ -195,13 +195,13 @@ struct RsaPage {
                     Text(`${prime}`)
                       .fontSize(14)
                       .fontWeight(this.p === prime ? FontWeight.Bold : FontWeight.Normal)
-                      .fontColor(this.p === prime ? '#FFFFFF' : '#FA709A')
+                      .fontColor(this.p === prime ? AppColors.textPrimary : AppColors.rsa)
                       .width(38)
                       .height(34)
                       .textAlign(TextAlign.Center)
-                      .backgroundColor(this.p === prime ? '#FA709A' : '#FFF5F7')
+                      .backgroundColor(this.p === prime ? AppColors.rsa : AppColors.bgSurface)
                       .borderRadius(8)
-                      .border({ width: 1, color: '#FA709A' })
+                      .border({ width: 1, color: AppColors.rsa })
                       .onClick(() => {
                         this.p = prime
                         if (this.message >= this.p * this.q) {
@@ -221,7 +221,7 @@ struct RsaPage {
               Row() {
                 Text('质数 q：')
                   .fontSize(14)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Text(`${this.q}`)
                   .fontSize(18)
                   .fontWeight(FontWeight.Bold)
@@ -235,11 +235,11 @@ struct RsaPage {
                     Text(`${prime}`)
                       .fontSize(14)
                       .fontWeight(this.q === prime ? FontWeight.Bold : FontWeight.Normal)
-                      .fontColor(this.q === prime ? '#FFFFFF' : '#764BA2')
+                      .fontColor(this.q === prime ? AppColors.textPrimary : '#764BA2')
                       .width(38)
                       .height(34)
                       .textAlign(TextAlign.Center)
-                      .backgroundColor(this.q === prime ? '#764BA2' : '#F3EEFF')
+                      .backgroundColor(this.q === prime ? '#764BA2' : AppColors.bgSurface)
                       .borderRadius(8)
                       .border({ width: 1, color: '#764BA2' })
                       .onClick(() => {
@@ -267,22 +267,22 @@ struct RsaPage {
               Row() {
                 Text('消息 m：')
                   .fontSize(14)
-                  .fontColor('#2D3436')
+                  .fontColor(AppColors.textPrimary)
                 Text(`${this.message}`)
                   .fontSize(18)
                   .fontWeight(FontWeight.Bold)
-                  .fontColor('#FA709A')
+                  .fontColor(AppColors.rsa)
                   .width(40)
                   .textAlign(TextAlign.Center)
                 Text(`(< n = ${this.p * this.q})`)
                   .fontSize(12)
-                  .fontColor('#999')
+                  .fontColor(AppColors.textTertiary)
               }
               .width('100%')
 
               Slider({ value: this.message, min: 2, max: Math.max(this.p * this.q - 1, 3), step: 1 })
                 .width('100%')
-                .selectedColor('#FA709A')
+                .selectedColor(AppColors.rsa)
                 .onChange((value: number) => {
                   this.message = Math.round(value)
                   this.resetAnimation()
@@ -292,15 +292,15 @@ struct RsaPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           Column({ space: 10 }) {
             Text('RSA 算法步骤')
               .fontSize(14)
               .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
+              .fontColor(AppColors.textPrimary)
               .alignSelf(ItemAlign.Start)
 
             if (this.currentStep >= 0) {
@@ -325,14 +325,14 @@ struct RsaPage {
                     Text('公钥')
                       .fontSize(13)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor('#FA709A')
+                      .fontColor(AppColors.rsa)
                     Text(`(e=${this.e}, n=${this.n})`)
                       .fontSize(15)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor('#2D3436')
+                      .fontColor(AppColors.textPrimary)
                   }
                   .padding(12)
-                  .backgroundColor('#FFF5F7')
+                  .backgroundColor(AppColors.bgSurface)
                   .borderRadius(10)
                   .layoutWeight(1)
 
@@ -344,10 +344,10 @@ struct RsaPage {
                     Text(`(d=${this.d}, n=${this.n})`)
                       .fontSize(15)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor('#2D3436')
+                      .fontColor(AppColors.textPrimary)
                   }
                   .padding(12)
-                  .backgroundColor('#F3EEFF')
+                  .backgroundColor(AppColors.bgSurface)
                   .borderRadius(10)
                   .layoutWeight(1)
                 }
@@ -355,7 +355,7 @@ struct RsaPage {
               }
               .width('100%')
               .padding(14)
-              .backgroundColor('#FAFBFF')
+              .backgroundColor(AppColors.bgSurface)
               .borderRadius(12)
               .animation({ duration: 400 })
             }
@@ -369,26 +369,26 @@ struct RsaPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgSurface)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: AppColors.borderHairline, offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
               Text(this.decrypted === this.message ? '\u2713 解密成功！' : '\u26A0 参数有误')
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor(this.decrypted === this.message ? '#00B894' : '#E17055')
+                .fontColor(this.decrypted === this.message ? AppColors.accentSuccess : '#E17055')
               Text(this.decrypted === this.message
                 ? `原始消息 ${this.message} → 加密为 ${this.encrypted} → 解密还原为 ${this.decrypted}`
                 : '请确保 p, q 为质数且 m < n')
                 .fontSize(14)
-                .fontColor('#636E72')
+                .fontColor(AppColors.textSecondary)
                 .textAlign(TextAlign.Center)
             }
             .width('100%')
             .padding(20)
-            .backgroundColor(this.decrypted === this.message ? '#E8FFF5' : '#FFF5F0')
+            .backgroundColor(this.decrypted === this.message ? AppColors.bgSurface : '#FFF5F0')
             .borderRadius(12)
           }
         }
@@ -402,25 +402,25 @@ struct RsaPage {
         Button('重置')
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor('#F5F6FA')
-          .fontColor('#636E72')
+          .backgroundColor(AppColors.bgSurfaceRaised)
+          .fontColor(AppColors.textSecondary)
           .layoutWeight(1)
           .onClick(() => this.resetAnimation())
         Button(this.getStepButtonText())
           .type(ButtonType.Capsule)
           .height(44)
-          .backgroundColor(this.currentStep >= this.getMaxSteps() ? '#00B894' : '#FA709A')
-          .fontColor('#FFFFFF')
+          .backgroundColor(this.currentStep >= this.getMaxSteps() ? AppColors.accentSuccess : AppColors.rsa)
+          .fontColor(AppColors.bgBase)
           .layoutWeight(2)
           .enabled(this.currentStep < this.getMaxSteps())
           .onClick(() => this.nextStep())
       }
       .width('100%')
       .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-      .backgroundColor('#F5F6FA')
+      .backgroundColor(AppColors.bgSurfaceRaised)
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgSurfaceRaised)
   }
 }
