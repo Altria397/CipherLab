@@ -343,57 +343,70 @@ struct Index {
   @Builder
   customContent() {
     Column() {
-      Column() {
+      Row() {
+        Blank().width(48)
         Text('自定义加密')
-          .fontSize(26)
+          .fontSize(18)
           .fontWeight(FontWeight.Bold)
-          .fontColor('#FFFFFF')
-          .letterSpacing(1)
-        Text('创建和管理你的加密方法')
-          .fontSize(14)
-          .fontColor('#FFFFFFCC')
-          .margin({ top: 4 })
-        Text('支持加密链组合 · 数据仅本地存储')
-          .fontSize(12)
-          .fontColor('#FFFFFF88')
-          .margin({ top: 8 })
+          .fontColor(AppColors.textPrimary)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
+        Blank().width(48)
       }
       .width('100%')
-      .padding({ top: 48, bottom: 28, left: 24, right: 24 })
-      .linearGradient({
-        angle: 135,
-        colors: [['#9B59B6', 0], ['#8E44AD', 1]]
-      })
-      .borderRadius({ bottomLeft: 24, bottomRight: 24 })
+      .padding({ top: 12, bottom: 8 })
+      .backgroundColor(AppColors.bgCard)
 
-      Column({ space: 12 }) {
-        Button('管理自定义加密方法')
-          .type(ButtonType.Capsule)
-          .width('80%')
-          .height(48)
-          .fontSize(15)
-          .fontWeight(FontWeight.Medium)
-          .backgroundColor(AppColors.primary)
-          .margin({ top: 30 })
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/CustomCipherPage' })
+      Scroll() {
+        Column() {
+          Column() {
+            Text('创建和管理你的加密方法')
+              .fontSize(15)
+              .fontColor('#FFFFFFCC')
+            Text('支持加密链组合 · 数据仅本地存储')
+              .fontSize(12)
+              .fontColor('#FFFFFF88')
+              .margin({ top: 8 })
+          }
+          .width('100%')
+          .padding({ top: 20, bottom: 20, left: 24, right: 24 })
+          .linearGradient({
+            angle: 135,
+            colors: [['#9B59B6', 0], ['#8E44AD', 1]]
           })
+          .borderRadius({ bottomLeft: 24, bottomRight: 24 })
 
-        Button('加密消息分享')
-          .type(ButtonType.Capsule)
-          .width('80%')
-          .height(48)
-          .fontSize(15)
-          .fontWeight(FontWeight.Medium)
-          .backgroundColor('#9B59B6')
-          .margin({ top: 8 })
-          .onClick(() => {
-            router.pushUrl({ url: 'pages/SharePage' })
-          })
+          Column({ space: 12 }) {
+            Button('管理自定义加密方法')
+              .type(ButtonType.Capsule)
+              .width('80%')
+              .height(48)
+              .fontSize(15)
+              .fontWeight(FontWeight.Medium)
+              .backgroundColor(AppColors.primary)
+              .margin({ top: 30 })
+              .onClick(() => {
+                router.pushUrl({ url: 'pages/CustomCipherPage' })
+              })
+
+            Button('加密消息分享')
+              .type(ButtonType.Capsule)
+              .width('80%')
+              .height(48)
+              .fontSize(15)
+              .fontWeight(FontWeight.Medium)
+              .backgroundColor('#9B59B6')
+              .margin({ top: 8 })
+              .onClick(() => {
+                router.pushUrl({ url: 'pages/SharePage' })
+              })
+          }
+          .padding({ top: 20 })
+        }
       }
       .layoutWeight(1)
-      .justifyContent(FlexAlign.Start)
-      .padding({ top: 20 })
+      .scrollBar(BarState.Off)
+      .edgeEffect(EdgeEffect.Spring)
     }
     .width('100%')
     .height('100%')

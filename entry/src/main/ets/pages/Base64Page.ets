@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils, AppColors } from 'cipher'
+import { CipherUtils, AppColors, PageNavBar } from 'cipher'
 
 @Entry
 @Component
@@ -101,29 +101,17 @@ struct Base64Page {
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#43E97B')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('Base64 编码')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Text(this.isEncrypting ? '编码' : '解码')
-          .fontSize(14)
-          .fontColor('#43E97B')
-          .padding(12)
-          .onClick(() => {
-            this.isEncrypting = !this.isEncrypting
-            this.resetAnimation()
-          })
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({
+        title: 'Base64 编码',
+        accentColor: AppColors.base64,
+        onBack: (): void => router.back(),
+        rightText: this.isEncrypting ? '编码' : '解码',
+        onRightClick: (): void => {
+          this.isEncrypting = !this.isEncrypting
+          this.resetAnimation()
+        }
+      })
+
 
       Scroll() {
         Column({ space: 16 }) {

@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils, AppColors } from 'cipher'
+import { CipherUtils, AppColors, PageNavBar } from 'cipher'
 
 @Component
 struct RsaStepCard {
@@ -151,22 +151,7 @@ struct RsaPage {
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#FA709A')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('RSA 加密原理')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Blank().width(48)
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({ title: 'RSA 加密原理', accentColor: AppColors.rsa, onBack: (): void => router.back() })
 
       Scroll() {
         Column({ space: 16 }) {

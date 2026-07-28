@@ -199,25 +199,13 @@ struct CustomCipherPage {
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#667EEA')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('自定义加密方法')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Text(`${this.ciphers.length}/${MAX_CIPHERS}`)
-          .fontSize(13)
-          .fontColor('#999')
-          .padding(12)
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({
+        title: '自定义加密方法',
+        accentColor: AppColors.vigenere,
+        onBack: (): void => router.back(),
+        rightText: `${this.ciphers.length}/${MAX_CIPHERS}`
+      })
+
 
       Tabs({ barPosition: BarPosition.Start }) {
         TabContent() {

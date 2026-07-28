@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils, AppColors } from 'cipher'
+import { CipherUtils, AppColors, PageNavBar } from 'cipher'
 
 @Entry
 @Component
@@ -70,29 +70,17 @@ struct XorPage {
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#4FACFE')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('XOR 加密')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Text(this.isEncrypting ? '加密' : '解密')
-          .fontSize(14)
-          .fontColor('#4FACFE')
-          .padding(12)
-          .onClick(() => {
-            this.isEncrypting = !this.isEncrypting
-            this.resetAnimation()
-          })
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({
+        title: 'XOR 加密',
+        accentColor: AppColors.xor,
+        onBack: (): void => router.back(),
+        rightText: this.isEncrypting ? '加密' : '解密',
+        onRightClick: (): void => {
+          this.isEncrypting = !this.isEncrypting
+          this.resetAnimation()
+        }
+      })
+
 
       Scroll() {
         Column({ space: 16 }) {

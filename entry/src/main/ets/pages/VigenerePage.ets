@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils, AppColors } from 'cipher'
+import { CipherUtils, AppColors, PageNavBar } from 'cipher'
 
 @Entry
 @Component
@@ -87,29 +87,17 @@ struct VigenerePage {
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#F5576C')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('维吉尼亚密码')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Text(this.isEncrypting ? '加密' : '解密')
-          .fontSize(14)
-          .fontColor('#F5576C')
-          .padding(12)
-          .onClick(() => {
-            this.isEncrypting = !this.isEncrypting
-            this.resetAnimation()
-          })
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({
+        title: '维吉尼亚密码',
+        accentColor: AppColors.vigenere,
+        onBack: (): void => router.back(),
+        rightText: this.isEncrypting ? '加密' : '解密',
+        onRightClick: (): void => {
+          this.isEncrypting = !this.isEncrypting
+          this.resetAnimation()
+        }
+      })
+
 
       Scroll() {
         Column({ space: 16 }) {

@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { AppColors } from 'cipher'
+import { AppColors, PageNavBar } from 'cipher'
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -302,29 +302,16 @@ struct EnigmaPage {
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#8B5A2B')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('Enigma 密码机')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Text(this.isEncrypting ? '加密' : '解密')
-          .fontSize(14)
-          .fontColor('#8B5A2B')
-          .padding(12)
-          .onClick(() => {
-            this.isEncrypting = !this.isEncrypting
-            this.resetAnimation()
-          })
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({
+        title: 'Enigma 密码机',
+        accentColor: AppColors.enigma,
+        onBack: (): void => router.back(),
+        rightText: this.isEncrypting ? '加密' : '解密',
+        onRightClick: (): void => {
+          this.isEncrypting = !this.isEncrypting
+          this.resetAnimation()
+        }
+      })
 
       Scroll() {
         Column({ space: 16 }) {
