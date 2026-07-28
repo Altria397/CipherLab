@@ -1,5 +1,54 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils } from 'cipher'
+import { CipherUtils, AppColors } from 'cipher'
+
+@Component
+struct RsaStepCard {
+  @Prop step: number = 0
+  @Prop title: string = ''
+  @Prop stepContent: string = ''
+  @Prop formula: string = ''
+  @Prop highlight: boolean = false
+  @Prop currentStep: number = -1
+
+  build() {
+    Column({ space: 6 }) {
+      Row({ space: 8 }) {
+        Text(`${this.step + 1}`)
+          .fontSize(12)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#FFFFFF')
+          .width(24)
+          .height(24)
+          .textAlign(TextAlign.Center)
+          .backgroundColor(this.currentStep > this.step ? '#00B894' : '#FA709A')
+          .borderRadius(12)
+        Text(this.title)
+          .fontSize(14)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#2D3436')
+      }
+      if (this.formula.length > 0) {
+        Text(this.formula)
+          .fontSize(16)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#FA709A')
+          .margin({ top: 4 })
+      }
+      if (this.stepContent.length > 0) {
+        Text(this.stepContent)
+          .fontSize(13)
+          .fontColor('#636E72')
+          .margin({ top: 2 })
+      }
+    }
+    .width('100%')
+    .padding(14)
+    .backgroundColor(this.highlight ? '#FFF5F7' : '#FAFBFF')
+    .borderRadius(12)
+    .border({ width: this.highlight ? 1.5 : 0, color: '#FA709A' })
+    .animation({ duration: 400 })
+  }
+}
 
 @Entry
 @Component
@@ -99,45 +148,6 @@ struct RsaPage {
     }
   }
 
-  @Builder
-  stepCard(step: number, title: string, content: string, formula: string, highlight: boolean) {
-    Column({ space: 6 }) {
-      Row({ space: 8 }) {
-        Text(`${step + 1}`)
-          .fontSize(12)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#FFFFFF')
-          .width(24)
-          .height(24)
-          .textAlign(TextAlign.Center)
-          .backgroundColor(this.currentStep > step ? '#00B894' : '#FA709A')
-          .borderRadius(12)
-        Text(title)
-          .fontSize(14)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-      }
-      if (formula.length > 0) {
-        Text(formula)
-          .fontSize(16)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#FA709A')
-          .margin({ top: 4 })
-      }
-      if (content.length > 0) {
-        Text(content)
-          .fontSize(13)
-          .fontColor('#636E72')
-          .margin({ top: 2 })
-      }
-    }
-    .width('100%')
-    .padding(14)
-    .backgroundColor(highlight ? '#FFF5F7' : '#FAFBFF')
-    .borderRadius(12)
-    .border({ width: highlight ? 1.5 : 0, color: '#FA709A' })
-    .animation({ duration: 400 })
-  }
 
   build() {
     Column() {
@@ -309,25 +319,25 @@ struct RsaPage {
               .alignSelf(ItemAlign.Start)
 
             if (this.currentStep >= 0) {
-              this.stepCard(0, '选择质数', `p = ${this.p}, q = ${this.q}`, '', this.currentStep === 0)
+              RsaStepCard({ step: 0, title: '选择质数', stepContent: `p = ${this.p}, q = ${this.q}`, formula: '', highlight: this.currentStep === 0, currentStep: this.currentStep })
             }
             if (this.currentStep >= 1) {
-              this.stepCard(1, '计算 n', `n = p × q = ${this.p} × ${this.q}`, `n = ${this.n}`, this.currentStep === 1)
+              RsaStepCard({ step: 1, title: '计算 n', stepContent: `n = p × q = ${this.p} × ${this.q}`, formula: `n = ${this.n}`, highlight: this.currentStep === 1, currentStep: this.currentStep })
             }
             if (this.currentStep >= 2) {
-              this.stepCard(2, '计算欧拉函数', `φ(n) = (p-1)(q-1) = ${this.p - 1} × ${this.q - 1}`, `φ(n) = ${this.phi}`, this.currentStep === 2)
+              RsaStepCard({ step: 2, title: '计算欧拉函数', stepContent: `φ(n) = (p-1)(q-1) = ${this.p - 1} × ${this.q - 1}`, formula: `φ(n) = ${this.phi}`, highlight: this.currentStep === 2, currentStep: this.currentStep })
             }
             if (this.currentStep >= 3) {
-              this.stepCard(3, '选择公钥指数 e', `e 与 φ(n)=${this.phi} 互质`, `e = ${this.e}`, this.currentStep === 3)
+              RsaStepCard({ step: 3, title: '选择公钥指数 e', stepContent: `e 与 φ(n)=${this.phi} 互质`, formula: `e = ${this.e}`, highlight: this.currentStep === 3, currentStep: this.currentStep })
             }
             if (this.currentStep >= 4) {
-              this.stepCard(4, '计算私钥指数 d', `d × e ≡ 1 (mod φ(n))`, `d = ${this.d}`, this.currentStep === 4)
+              RsaStepCard({ step: 4, title: '计算私钥指数 d', stepContent: `d × e ≡ 1 (mod φ(n))`, formula: `d = ${this.d}`, highlight: this.currentStep === 4, currentStep: this.currentStep })
             }
             if (this.currentStep >= 5) {
               Column({ space: 8 }) {
                 Row({ space: 12 }) {
                   Column({ space: 4 }) {
-                    Text('🔑 公钥')
+                    Text('公钥')
                       .fontSize(13)
                       .fontWeight(FontWeight.Bold)
                       .fontColor('#FA709A')
@@ -342,7 +352,7 @@ struct RsaPage {
                   .layoutWeight(1)
 
                   Column({ space: 4 }) {
-                    Text('🔐 私钥')
+                    Text('私钥')
                       .fontSize(13)
                       .fontWeight(FontWeight.Bold)
                       .fontColor('#764BA2')
@@ -365,11 +375,12 @@ struct RsaPage {
               .animation({ duration: 400 })
             }
             if (this.currentStep >= 6) {
-              this.stepCard(6, '加密', `c = m^e mod n = ${this.message}^${this.e} mod ${this.n}`, `密文 c = ${this.encrypted}`, this.currentStep === 6)
+              RsaStepCard({ step: 6, title: '加密', stepContent: `c = m^e mod n = ${this.message}^${this.e} mod ${this.n}`, formula: `密文 c = ${this.encrypted}`, highlight: this.currentStep === 6, currentStep: this.currentStep })
             }
             if (this.currentStep >= 7) {
-              this.stepCard(7, '解密', `m = c^d mod n = ${this.encrypted}^${this.d} mod ${this.n}`, `明文 m = ${this.decrypted}`, this.currentStep === 7)
+              RsaStepCard({ step: 7, title: '解密', stepContent: `m = c^d mod n = ${this.encrypted}^${this.d} mod ${this.n}`, formula: `明文 m = ${this.decrypted}`, highlight: this.currentStep === 7, currentStep: this.currentStep })
             }
+
           }
           .width('100%')
           .padding(16)
@@ -379,7 +390,7 @@ struct RsaPage {
 
           if (this.showResult) {
             Column({ space: 8 }) {
-              Text(this.decrypted === this.message ? '✅ 解密成功！' : '⚠️ 参数有误')
+              Text(this.decrypted === this.message ? '\u2713 解密成功！' : '\u26A0 参数有误')
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
                 .fontColor(this.decrypted === this.message ? '#00B894' : '#E17055')

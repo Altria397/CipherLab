@@ -1,6 +1,6 @@
 import { router } from '@kit.ArkUI'
 import { preferences } from '@kit.ArkData'
-import { CipherUtils, CustomCipherParam } from 'cipher'
+import { CipherUtils, CustomCipherParam, AppColors, CipherTypeIcon, PageNavBar } from 'cipher'
 
 const MAX_CIPHERS = 10
 const PREFS_NAME = 'cipher_lab_prefs'
@@ -179,11 +179,11 @@ struct CustomCipherPage {
 
   getTypeIcon(type: string): string {
     switch (type) {
-      case 'shift': return '🔄'
-      case 'keyword': return '🔑'
-      case 'affine': return '📐'
-      case 'railFence': return '🚧'
-      default: return '🔒'
+      case 'shift': return 'S'
+      case 'keyword': return 'K'
+      case 'affine': return 'A'
+      case 'railFence': return 'F'
+      default: return '?'
     }
   }
 
@@ -248,7 +248,7 @@ struct CustomCipherPage {
         Column({ space: 14 }) {
           if (this.ciphers.length === 0) {
             Column({ space: 16 }) {
-              Text('🔒')
+              Text('\u2713')
                 .fontSize(60)
               Text('还没有自定义加密方法')
                 .fontSize(16)
@@ -265,8 +265,7 @@ struct CustomCipherPage {
           ForEach(this.ciphers, (cipher: CipherItem, idx: number) => {
             Column({ space: 10 }) {
               Row() {
-                Text(this.getTypeIcon(cipher.type))
-                  .fontSize(28)
+                CipherTypeIcon({ cipherType: cipher.type, iconSize: 36 })
                 Column() {
                   Text(cipher.name)
                     .fontSize(16)
@@ -290,12 +289,14 @@ struct CustomCipherPage {
                 .layoutWeight(1)
 
                 Row({ space: 4 }) {
-                  Text('✏️')
-                    .fontSize(18)
+                  Text('\u270E')
+                    .fontSize(16)
+                    .fontColor(AppColors.textSecondary)
                     .padding(6)
                     .onClick(() => this.openEditor(idx))
-                  Text('🗑️')
-                    .fontSize(18)
+                  Text('\u2716')
+                    .fontSize(14)
+                    .fontColor(AppColors.danger)
                     .padding(6)
                     .onClick(() => {
                       this.deleteIndex = idx
@@ -334,6 +335,7 @@ struct CustomCipherPage {
                   TextInput({ text: this.testInput, placeholder: '输入文本' })
                     .width('100%')
                     .height(40)
+                    .fontColor(AppColors.textPrimary)
                     .backgroundColor('#F5F6FA')
                     .borderRadius(8)
                     .onChange((val: string) => {
@@ -430,7 +432,7 @@ struct CustomCipherPage {
                 .fontWeight(FontWeight.Bold)
                 .fontColor('#2D3436')
               Blank()
-              Text('✕')
+              Text('\u2716')
                 .fontSize(20)
                 .fontColor('#B2BEC3')
                 .onClick(() => {
@@ -442,6 +444,7 @@ struct CustomCipherPage {
             TextInput({ text: this.editName, placeholder: '加密方法名称' })
               .width('100%')
               .height(44)
+              .fontColor(AppColors.textPrimary)
               .backgroundColor('#F5F6FA')
               .borderRadius(10)
               .onChange((val: string) => {
@@ -494,6 +497,7 @@ struct CustomCipherPage {
               TextInput({ text: this.editKeyword, placeholder: '输入关键字（英文）' })
                 .width('100%')
                 .height(44)
+                .fontColor(AppColors.textPrimary)
                 .backgroundColor('#F5F6FA')
                 .borderRadius(10)
                 .onChange((val: string) => {
@@ -510,6 +514,7 @@ struct CustomCipherPage {
                   TextInput({ text: `${this.editAffineA}` })
                     .width('100%')
                     .height(40)
+                    .fontColor(AppColors.textPrimary)
                     .backgroundColor('#F5F6FA')
                     .borderRadius(8)
                     .type(InputType.Number)
@@ -525,6 +530,7 @@ struct CustomCipherPage {
                   TextInput({ text: `${this.editAffineB}` })
                     .width('100%')
                     .height(40)
+                    .fontColor(AppColors.textPrimary)
                     .backgroundColor('#F5F6FA')
                     .borderRadius(8)
                     .type(InputType.Number)
@@ -670,7 +676,7 @@ struct CustomCipherPage {
 
       if (this.ciphers.length === 0) {
         Column({ space: 12 }) {
-          Text('🔒')
+          Text('\u2713')
             .fontSize(48)
           Text('请先创建加密方法')
             .fontSize(14)
@@ -795,6 +801,7 @@ struct CustomCipherPage {
       TextInput({ text: this.chainInput, placeholder: '输入文本' })
         .width('100%')
         .height(44)
+        .fontColor(AppColors.textPrimary)
         .backgroundColor('#F5F6FA')
         .borderRadius(10)
         .onChange((val: string) => {

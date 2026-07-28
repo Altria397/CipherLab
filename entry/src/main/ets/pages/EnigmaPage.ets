@@ -1,6 +1,42 @@
 import { router } from '@kit.ArkUI'
+import { AppColors } from 'cipher'
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+
+@Component
+struct RotorDisplay {
+  @Prop rotorName: string = ''
+  @Prop rotorPosition: number = 0
+  @Prop accentColor: string = '#000000'
+  @Prop highlight: boolean = false
+
+  build() {
+    Column({ space: 6 }) {
+      Text(this.rotorName)
+        .fontSize(12)
+        .fontColor(this.highlight ? this.accentColor : '#636E72')
+        .fontWeight(this.highlight ? FontWeight.Bold : FontWeight.Normal)
+      Stack() {
+        Column() {
+          Text(ALPHABET.charAt(this.rotorPosition))
+            .fontSize(24)
+            .fontWeight(FontWeight.Bold)
+            .fontColor(this.highlight ? '#FFFFFF' : this.accentColor)
+        }
+        .width(52)
+        .height(52)
+        .justifyContent(FlexAlign.Center)
+        .backgroundColor(this.highlight ? this.accentColor : '#F5F6FA')
+        .borderRadius(12)
+        .border({ width: 2, color: this.accentColor })
+      }
+      Text(`位置: ${this.rotorPosition}`)
+        .fontSize(11)
+        .fontColor('#999')
+    }
+  }
+}
 
 const ROTOR_I:   string = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'
 const ROTOR_II:  string = 'AJDKSIRUXBLHWTMCQGZNPYFVOE'
@@ -316,6 +352,7 @@ struct EnigmaPage {
             TextInput({ text: this.plaintext, placeholder: '输入明文（大写英文字母）' })
               .width('100%')
               .height(44)
+              .fontColor(AppColors.textPrimary)
               .backgroundColor('#F5F6FA')
               .borderRadius(10)
               .onChange((val: string) => {
@@ -337,12 +374,12 @@ struct EnigmaPage {
               .alignSelf(ItemAlign.Start)
 
             Row({ space: 12 }) {
-              this.rotorDisplay('转子 I', this.rotorPositions[0], '#E17055',
-                this.signalHighlight === 'rotor1')
-              this.rotorDisplay('转子 II', this.rotorPositions[1], '#6C5CE7',
-                this.signalHighlight === 'rotor2')
-              this.rotorDisplay('转子 III', this.rotorPositions[2], '#0984E3',
-                this.signalHighlight === 'rotor3')
+              RotorDisplay({ rotorName: '转子 I', rotorPosition: this.rotorPositions[0], accentColor: '#E17055',
+                highlight: this.signalHighlight === 'rotor1' })
+              RotorDisplay({ rotorName: '转子 II', rotorPosition: this.rotorPositions[1], accentColor: '#6C5CE7',
+                highlight: this.signalHighlight === 'rotor2' })
+              RotorDisplay({ rotorName: '转子 III', rotorPosition: this.rotorPositions[2], accentColor: '#0984E3',
+                highlight: this.signalHighlight === 'rotor3' })
             }
             .width('100%')
             .justifyContent(FlexAlign.SpaceEvenly)
@@ -544,7 +581,7 @@ struct EnigmaPage {
 
           if (this.showResult) {
             Column({ space: 8 }) {
-              Text('✅ 加密完成')
+              Text('\u2713 加密完成')
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
                 .fontColor('#00B894')
@@ -596,30 +633,4 @@ struct EnigmaPage {
     .backgroundColor('#F5F6FA')
   }
 
-  @Builder
-  rotorDisplay(name: string, position: number, color: string, highlight: boolean) {
-    Column({ space: 6 }) {
-      Text(name)
-        .fontSize(12)
-        .fontColor(highlight ? color : '#636E72')
-        .fontWeight(highlight ? FontWeight.Bold : FontWeight.Normal)
-      Stack() {
-        Column() {
-          Text(ALPHABET.charAt(position))
-            .fontSize(24)
-            .fontWeight(FontWeight.Bold)
-            .fontColor(highlight ? '#FFFFFF' : color)
-        }
-        .width(52)
-        .height(52)
-        .justifyContent(FlexAlign.Center)
-        .backgroundColor(highlight ? color : '#F5F6FA')
-        .borderRadius(12)
-        .border({ width: 2, color: color })
-      }
-      Text(`位置: ${position}`)
-        .fontSize(11)
-        .fontColor('#999')
-    }
-  }
 }

@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils } from 'cipher'
+import { CipherUtils, AppColors, PageNavBar, PrincipleCard, StepButtonBar } from 'cipher'
 
 @Entry
 @Component
@@ -20,7 +20,7 @@ struct CaesarPage {
   private getStepButtonText(): string {
     if (this.currentStep < 0) return '开始演示'
     if (this.currentStep >= this.getMaxSteps()) return '已完成'
-    return '下一步 →'
+    return '下一步 \u2192'
   }
 
   getLetterCount(): number {
@@ -72,71 +72,56 @@ struct CaesarPage {
   }
 
   getCharColor(idx: number): string {
-    if (this.currentStep >= 1 && this.currentStep - 1 === idx) return '#667EEA'
-    if (this.currentStep >= 1 && idx < this.currentStep - 1) return '#00B894'
-    return '#2D3436'
+    if (this.currentStep >= 1 && this.currentStep - 1 === idx) return AppColors.caesar
+    if (this.currentStep >= 1 && idx < this.currentStep - 1) return AppColors.success
+    return AppColors.textPrimary
   }
 
   getCharBg(idx: number): string {
-    if (this.currentStep >= 1 && this.currentStep - 1 === idx) return '#667EEA15'
+    if (this.currentStep >= 1 && this.currentStep - 1 === idx) return AppColors.caesar + '15'
     if (this.currentStep >= 1 && idx < this.currentStep - 1) return '#E8FFF5'
-    return '#F5F6FA'
+    return AppColors.bgInput
   }
 
   build() {
     Column() {
-      Row() {
-        Text('←')
-          .fontSize(24)
-          .fontColor('#667EEA')
-          .onClick(() => router.back())
-          .padding(12)
-        Text('凯撒密码')
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#2D3436')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-        Text(this.isEncrypting ? '加密' : '解密')
-          .fontSize(14)
-          .fontColor('#667EEA')
-          .padding(12)
-          .onClick(() => {
-            this.isEncrypting = !this.isEncrypting
-            this.resetAnimation()
-          })
-      }
-      .width('100%')
-      .padding({ top: 12 })
+      PageNavBar({
+        title: '凯撒密码',
+        accentColor: AppColors.caesar,
+        onBack: (): void => router.back(),
+        rightText: this.isEncrypting ? '加密' : '解密',
+        onRightClick: () => {
+          this.isEncrypting = !this.isEncrypting
+          this.resetAnimation()
+        }
+      })
 
       Scroll() {
-        Column({ space: 16 }) {
-          Column({ space: 8 }) {
-            Text('原理说明')
-              .fontSize(14)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('#667EEA')
-            Text('凯撒密码通过将字母表中的每个字母移动固定位数来加密。例如位移3时，A→D, B→E, C→F。解密时反向位移即可还原。')
-              .fontSize(13)
-              .fontColor('#636E72')
-              .lineHeight(20)
-          }
-          .width('100%')
-          .padding(16)
-          .backgroundColor('#F0F3FF')
-          .borderRadius(12)
+        Column({ space: 14 }) {
+          PrincipleCard({
+            accentColor: AppColors.caesar,
+            content: '凯撒密码通过将字母表中的每个字母移动固定位数来加密。例如位移3时，A\u2192D, B\u2192E, C\u2192F。解密时反向位移即可还原。'
+          })
 
           Column({ space: 12 }) {
-            Text('输入设置')
-              .fontSize(14)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
-              .alignSelf(ItemAlign.Start)
+            Row() {
+              Column()
+                .width(3)
+                .height(14)
+                .borderRadius(1.5)
+                .backgroundColor(AppColors.caesar)
+                .margin({ right: 8 })
+              Text('输入设置')
+                .fontSize(15)
+                .fontWeight(FontWeight.Bold)
+                .fontColor(AppColors.textPrimary)
+            }
 
             TextInput({ text: this.plaintext, placeholder: '输入文本（英文字母）' })
               .width('100%')
               .height(44)
-              .backgroundColor('#F5F6FA')
+              .fontColor(AppColors.textPrimary)
+              .backgroundColor(AppColors.bgInput)
               .borderRadius(10)
               .onChange((val: string) => {
                 this.plaintext = val.toUpperCase()
@@ -146,16 +131,16 @@ struct CaesarPage {
             Row() {
               Text('位移量：')
                 .fontSize(14)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textSecondary)
               Text(`${this.shift}`)
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#667EEA')
+                .fontColor(AppColors.caesar)
                 .width(40)
                 .textAlign(TextAlign.Center)
               Slider({ value: this.shift, min: 1, max: 25, step: 1 })
                 .layoutWeight(1)
-                .selectedColor('#667EEA')
+                .selectedColor(AppColors.caesar)
                 .onChange((value: number) => {
                   this.shift = Math.round(value)
                   this.resetAnimation()
@@ -165,16 +150,23 @@ struct CaesarPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgCard)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
-            Text('字母表映射')
-              .fontSize(14)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
-              .alignSelf(ItemAlign.Start)
+            Row() {
+              Column()
+                .width(3)
+                .height(14)
+                .borderRadius(1.5)
+                .backgroundColor(AppColors.caesar)
+                .margin({ right: 8 })
+              Text('字母表映射')
+                .fontSize(15)
+                .fontWeight(FontWeight.Bold)
+                .fontColor(AppColors.textPrimary)
+            }
 
             Scroll() {
               Row({ space: 2 }) {
@@ -182,24 +174,24 @@ struct CaesarPage {
                   Column({ space: 2 }) {
                     Text(ch)
                       .fontSize(11)
-                      .fontColor('#636E72')
+                      .fontColor(AppColors.textSecondary)
                       .fontWeight(FontWeight.Medium)
-                    Text('↓')
+                    Text('\u2193')
                       .fontSize(8)
-                      .fontColor('#B2BEC3')
+                      .fontColor(AppColors.textHint)
                     Text(this.alphabet[(idx + this.shift) % 26])
                       .fontSize(11)
                       .fontWeight(FontWeight.Bold)
-                      .fontColor('#667EEA')
+                      .fontColor(AppColors.caesar)
                   }
                   .width(28)
                   .height(52)
                   .justifyContent(FlexAlign.Center)
-                  .backgroundColor(this.isCurrentMapHighlighted(idx) ? '#667EEA20' : '#F5F6FA')
+                  .backgroundColor(this.isCurrentMapHighlighted(idx) ? AppColors.caesar + '20' : AppColors.bgInput)
                   .borderRadius(6)
                   .border({
                     width: this.isCurrentMapHighlighted(idx) ? 1.5 : 0,
-                    color: '#667EEA'
+                    color: AppColors.caesar
                   })
                 })
               }
@@ -209,20 +201,27 @@ struct CaesarPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgCard)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
 
           Column({ space: 12 }) {
-            Text(this.isEncrypting ? '加密过程演示' : '解密过程演示')
-              .fontSize(14)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('#2D3436')
-              .alignSelf(ItemAlign.Start)
+            Row() {
+              Column()
+                .width(3)
+                .height(14)
+                .borderRadius(1.5)
+                .backgroundColor(AppColors.caesar)
+                .margin({ right: 8 })
+              Text(this.isEncrypting ? '加密过程演示' : '解密过程演示')
+                .fontSize(15)
+                .fontWeight(FontWeight.Bold)
+                .fontColor(AppColors.textPrimary)
+            }
 
             Text('原文字符')
               .fontSize(12)
-              .fontColor('#999')
+              .fontColor(AppColors.textHint)
               .alignSelf(ItemAlign.Start)
             Row({ space: 6 }) {
               ForEach(this.plaintext.split(''), (ch: string, idx: number) => {
@@ -237,19 +236,19 @@ struct CaesarPage {
                 .justifyContent(FlexAlign.Center)
                 .backgroundColor(this.getCharBg(idx))
                 .borderRadius(8)
-                .border({ width: this.currentStep >= 1 && this.currentStep - 1 === idx ? 2 : 0, color: '#667EEA' })
+                .border({ width: this.currentStep >= 1 && this.currentStep - 1 === idx ? 2 : 0, color: AppColors.caesar })
                 .scale({
-                  x: this.currentStep >= 1 && this.currentStep - 1 === idx ? 1.15 : 1,
-                  y: this.currentStep >= 1 && this.currentStep - 1 === idx ? 1.15 : 1
+                  x: this.currentStep >= 1 && this.currentStep - 1 === idx ? 1.12 : 1,
+                  y: this.currentStep >= 1 && this.currentStep - 1 === idx ? 1.12 : 1
                 })
                 .animation({ duration: 300, curve: Curve.EaseOut })
               })
             }
 
             if (this.currentStep >= 1) {
-              Text(`${this.isEncrypting ? '↓ 位移' : '↓ 反向位移'} ${this.shift}`)
+              Text(`${this.isEncrypting ? '\u2193 位移' : '\u2193 反向位移'} ${this.shift}`)
                 .fontSize(14)
-                .fontColor('#667EEA')
+                .fontColor(AppColors.caesar)
                 .fontWeight(FontWeight.Bold)
                 .margin({ top: 4, bottom: 4 })
                 .animation({ duration: 300 })
@@ -257,7 +256,7 @@ struct CaesarPage {
 
             Text(this.isEncrypting ? '密文字符' : '明文字符')
               .fontSize(12)
-              .fontColor('#999')
+              .fontColor(AppColors.textHint)
               .alignSelf(ItemAlign.Start)
             Row({ space: 6 }) {
               ForEach(this.plaintext.split(''), (_ch: string, idx: number) => {
@@ -265,12 +264,12 @@ struct CaesarPage {
                   Text(this.resultChars.length > idx ? this.resultChars[idx] : '?')
                     .fontSize(20)
                     .fontWeight(FontWeight.Bold)
-                    .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? '#FFFFFF' : '#CCCCCC')
+                    .fontColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? '#FFFFFF' : AppColors.textHint)
                 }
                 .width(40)
                 .height(40)
                 .justifyContent(FlexAlign.Center)
-                .backgroundColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? '#667EEA' : '#F0F0F0')
+                .backgroundColor(this.resultChars.length > idx && this.resultChars[idx] !== '' ? AppColors.caesar : '#F0F0F0')
                 .borderRadius(8)
                 .opacity(this.resultChars.length > idx && this.resultChars[idx] !== '' ? 1 : 0.4)
                 .animation({ duration: 400, curve: Curve.EaseOut })
@@ -279,20 +278,20 @@ struct CaesarPage {
           }
           .width('100%')
           .padding(16)
-          .backgroundColor('#FFFFFF')
+          .backgroundColor(AppColors.bgCard)
           .borderRadius(12)
-          .shadow({ radius: 4, color: '#0000000A', offsetX: 0, offsetY: 2 })
+          .shadow({ radius: 4, color: '#1A1D2E08', offsetX: 0, offsetY: 2 })
 
           if (this.showResult) {
             Column({ space: 8 }) {
-              Text(`✅ ${this.isEncrypting ? '加密' : '解密'}完成`)
+              Text(`\u2713 ${this.isEncrypting ? '加密' : '解密'}完成`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#00B894')
+                .fontColor(AppColors.success)
               Text(`结果：${this.resultChars.join('')}`)
                 .fontSize(18)
                 .fontWeight(FontWeight.Bold)
-                .fontColor('#2D3436')
+                .fontColor(AppColors.textPrimary)
                 .copyOption(CopyOptions.LocalDevice)
             }
             .width('100%')
@@ -308,30 +307,17 @@ struct CaesarPage {
       .scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.Spring)
 
-      Row({ space: 12 }) {
-        Button('重置')
-          .type(ButtonType.Capsule)
-          .height(44)
-          .backgroundColor('#F5F6FA')
-          .fontColor('#636E72')
-          .layoutWeight(1)
-          .onClick(() => this.resetAnimation())
-
-        Button(this.getStepButtonText())
-          .type(ButtonType.Capsule)
-          .height(44)
-          .backgroundColor(this.currentStep >= this.getMaxSteps() ? '#00B894' : '#667EEA')
-          .fontColor('#FFFFFF')
-          .layoutWeight(2)
-          .enabled(this.currentStep < this.getMaxSteps())
-          .onClick(() => this.nextStep())
-      }
-      .width('100%')
-      .padding({ left: 16, right: 16, top: 8, bottom: 16 })
-      .backgroundColor('#F5F6FA')
+      StepButtonBar({
+        stepText: this.getStepButtonText(),
+        accentColor: AppColors.caesar,
+        isCompleted: this.currentStep >= this.getMaxSteps(),
+        isEnabled: this.currentStep < this.getMaxSteps(),
+        onReset: (): void => this.resetAnimation(),
+        onStep: (): void => this.nextStep()
+      })
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F5F6FA')
+    .backgroundColor(AppColors.bgPage)
   }
 }

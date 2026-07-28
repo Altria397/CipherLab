@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils } from 'cipher'
+import { CipherUtils, AppColors } from 'cipher'
 
 @Entry
 @Component
@@ -120,6 +120,7 @@ struct XorPage {
             TextInput({ text: this.plaintext, placeholder: this.isEncrypting ? '输入明文' : '输入HEX密文（如4869）' })
               .width('100%')
               .height(44)
+              .fontColor(AppColors.textPrimary)
               .backgroundColor('#F5F6FA')
               .borderRadius(10)
               .onChange((val: string) => {
@@ -129,6 +130,7 @@ struct XorPage {
             TextInput({ text: this.secretKey, placeholder: '输入密钥' })
               .width('100%')
               .height(44)
+              .fontColor(AppColors.textPrimary)
               .backgroundColor('#F5F6FA')
               .borderRadius(10)
               .onChange((val: string) => {
@@ -252,7 +254,7 @@ struct XorPage {
 
           if (this.showResult) {
             Column({ space: 8 }) {
-              Text(`✅ XOR ${this.isEncrypting ? '加密' : '解密'}完成`)
+              Text(`\u2713 XOR ${this.isEncrypting ? '加密' : '解密'}完成`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
                 .fontColor('#00B894')

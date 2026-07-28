@@ -7,6 +7,17 @@
     "pages/XorPage",
     "pages/Base64Page",
     "pages/RsaPage",
-    "pages/CustomCipherPage"
+    "pages/HillPage",
+    "pages/OtpPage",
+    "pages/DhPage",
+    "pages/HashPage",
+    "pages/CustomCipherPage",
+    "pages/FreqAnalysisPage",
+    "pages/CaesarBrutePage",
+    "pages/KasiskiPage",
+    "pages/ChallengePage",
+    "pages/ComparePage",
+    "pages/HistoryPage",
+    "pages/SharePage"
   ]
 }

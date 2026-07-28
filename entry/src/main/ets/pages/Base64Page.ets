@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI'
-import { CipherUtils } from 'cipher'
+import { CipherUtils, AppColors } from 'cipher'
 
 @Entry
 @Component
@@ -151,6 +151,7 @@ struct Base64Page {
             TextInput({ text: this.plaintext, placeholder: this.isEncrypting ? '输入文本' : '输入Base64字符串' })
               .width('100%')
               .height(44)
+              .fontColor(AppColors.textPrimary)
               .backgroundColor('#F5F6FA')
               .borderRadius(10)
               .onChange((val: string) => {
@@ -172,7 +173,7 @@ struct Base64Page {
 
           if (this.showResult) {
             Column({ space: 8 }) {
-              Text(`✅ ${this.isEncrypting ? '编码' : '解码'}完成`)
+              Text(`\u2713 ${this.isEncrypting ? '编码' : '解码'}完成`)
                 .fontSize(16)
                 .fontWeight(FontWeight.Bold)
                 .fontColor('#00B894')

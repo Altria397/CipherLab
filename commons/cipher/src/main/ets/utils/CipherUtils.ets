@@ -383,6 +383,297 @@ export class CipherUtils {
     }
     return result
   }
+
+  static hillEncrypt(text: string, keyMatrix: number[][]): string {
+    const n = keyMatrix.length
+    const upper = text.toUpperCase().replace(/[^A-Z]/g, '')
+    let padded = upper
+    while (padded.length % n !== 0) {
+      padded += 'X'
+    }
+    let result = ''
+    for (let i = 0; i < padded.length; i += n) {
+      const vec: number[] = []
+      for (let j = 0; j < n; j++) {
+        vec.push(padded.charCodeAt(i + j) - 65)
+      }
+      const out = CipherUtils.matrixVecMul(keyMatrix, vec)
+      for (let j = 0; j < n; j++) {
+        result += String.fromCharCode(((out[j] % 26) + 26) % 26 + 65)
+      }
+    }
+    return result
+  }
+
+  static hillDecrypt(text: string, keyMatrix: number[][]): string {
+    const invMatrix = CipherUtils.matrixModInverse(keyMatrix, 26)
+    if (invMatrix === null) return text
+    return CipherUtils.hillEncrypt(text, invMatrix)
+  }
+
+  static isValidHillKey(keyMatrix: number[][]): boolean {
+    const det = CipherUtils.matrixDet(keyMatrix)
+    const detMod = ((det % 26) + 26) % 26
+    return CipherUtils.gcd(detMod, 26) === 1
+  }
+
+  static matrixVecMul(mat: number[][], vec: number[]): number[] {
+    const n = mat.length
+    const result: number[] = []
+    for (let i = 0; i < n; i++) {
+      let sum = 0
+      for (let j = 0; j < n; j++) {
+        sum += mat[i][j] * vec[j]
+      }
+      result.push(sum)
+    }
+    return result
+  }
+
+  static matrixDet(mat: number[][]): number {
+    const n = mat.length
+    if (n === 1) return mat[0][0]
+    if (n === 2) return mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0]
+    let det = 0
+    for (let j = 0; j < n; j++) {
+      const minor = CipherUtils.matrixMinor(mat, 0, j)
+      det += ((j % 2 === 0 ? 1 : -1) * mat[0][j] * CipherUtils.matrixDet(minor))
+    }
+    return det
+  }
+
+  static matrixMinor(mat: number[][], row: number, col: number): number[][] {
+    const result: number[][] = []
+    for (let i = 0; i < mat.length; i++) {
+      if (i === row) continue
+      const r: number[] = []
+      for (let j = 0; j < mat[0].length; j++) {
+        if (j === col) continue
+        r.push(mat[i][j])
+      }
+      result.push(r)
+    }
+    return result
+  }
+
+  static matrixModInverse(mat: number[][], mod: number): number[][] | null {
+    const n = mat.length
+    const det = CipherUtils.matrixDet(mat)
+    const detMod = ((det % mod) + mod) % mod
+    const detInv = CipherUtils.modInverse(detMod, mod)
+    if (detInv < 0) return null
+
+    if (n === 2) {
+      const inv: number[][] = [
+        [mat[1][1], -mat[0][1]],
+        [-mat[1][0], mat[0][0]]
+      ]
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+          inv[i][j] = (((inv[i][j] * detInv) % mod) + mod) % mod
+        }
+      }
+      return inv
+    }
+
+    const cofactors: number[][] = []
+    for (let i = 0; i < n; i++) {
+      const row: number[] = []
+      for (let j = 0; j < n; j++) {
+        const minor = CipherUtils.matrixMinor(mat, i, j)
+        const sign = ((i + j) % 2 === 0) ? 1 : -1
+        row.push((((sign * CipherUtils.matrixDet(minor) * detInv) % mod) + mod) % mod)
+      }
+      cofactors.push(row)
+    }
+
+    const inv: number[][] = []
+    for (let i = 0; i < n; i++) {
+      const row: number[] = []
+      for (let j = 0; j < n; j++) {
+        row.push(cofactors[j][i])
+      }
+      inv.push(row)
+    }
+    return inv
+  }
+
+  static otpEncrypt(text: string, key: string): string {
+    if (key.length < text.length) return ''
+    let result = ''
+    for (let i = 0; i < text.length; i++) {
+      result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i))
+    }
+    return result
+  }
+
+  static otpDecrypt(cipherText: string, key: string): string {
+    return CipherUtils.otpEncrypt(cipherText, key)
+  }
+
+  static simpleHash(text: string, algorithm: string): string {
+    let hash: number
+    if (algorithm === 'md5-like') {
+      hash = CipherUtils.fletcher32(text)
+    } else {
+      hash = CipherUtils.fletcher32(text)
+    }
+    let hex = ''
+    const bytes: number[] = [
+      (hash >> 24) & 0xFF,
+      (hash >> 16) & 0xFF,
+      (hash >> 8) & 0xFF,
+      hash & 0xFF,
+      ((hash * 31) >> 24) & 0xFF,
+      ((hash * 31) >> 16) & 0xFF,
+      ((hash * 31) >> 8) & 0xFF,
+      (hash * 31) & 0xFF,
+      ((hash * 37) >> 24) & 0xFF,
+      ((hash * 37) >> 16) & 0xFF,
+      ((hash * 37) >> 8) & 0xFF,
+      (hash * 37) & 0xFF,
+      ((hash * 41) >> 24) & 0xFF,
+      ((hash * 41) >> 16) & 0xFF,
+      ((hash * 41) >> 8) & 0xFF,
+      (hash * 41) & 0xFF,
+    ]
+    for (let i = 0; i < bytes.length; i++) {
+      hex += bytes[i].toString(16).padStart(2, '0')
+    }
+    return hex
+  }
+
+  static fletcher32(data: string): number {
+    let sum1 = 0xFFFF
+    let sum2 = 0xFFFF
+    const len = data.length
+    let i = 0
+    while (i < len) {
+      let tLen = Math.min(360, len - i)
+      for (let j = 0; j < tLen; j++) {
+        sum1 += data.charCodeAt(i + j)
+        sum2 += sum1
+      }
+      sum1 = (sum1 & 0xFFFF) + (sum1 >> 16)
+      sum2 = (sum2 & 0xFFFF) + (sum2 >> 16)
+      i += tLen
+    }
+    sum1 = (sum1 & 0xFFFF) + (sum1 >> 16)
+    sum2 = (sum2 & 0xFFFF) + (sum2 >> 16)
+    return (sum2 << 16) | sum1
+  }
+
+  static diffieHellmanGeneratePrivate(p: number): number {
+    return Math.floor(Math.random() * (p - 2)) + 2
+  }
+
+  static diffieHellmanComputePublic(base: number, privateExp: number, p: number): number {
+    return CipherUtils.modPow(base, privateExp, p)
+  }
+
+  static diffieHellmanComputeShared(publicOther: number, privateExp: number, p: number): number {
+    return CipherUtils.modPow(publicOther, privateExp, p)
+  }
+
+  static isPrime(n: number): boolean {
+    if (n < 2) return false
+    if (n < 4) return true
+    if (n % 2 === 0 || n % 3 === 0) return false
+    for (let i = 5; i * i <= n; i += 6) {
+      if (n % i === 0 || n % (i + 2) === 0) return false
+    }
+    return true
+  }
+
+  static findPrimitiveRoot(p: number): number {
+    if (p === 2) return 1
+    const phi = p - 1
+    const factors: number[] = []
+    let n = phi
+    for (let i = 2; i * i <= n; i++) {
+      if (n % i === 0) {
+        factors.push(i)
+        while (n % i === 0) n = Math.floor(n / i)
+      }
+    }
+    if (n > 1) factors.push(n)
+    for (let g = 2; g < p; g++) {
+      let isRoot = true
+      for (let i = 0; i < factors.length; i++) {
+        if (CipherUtils.modPow(g, Math.floor(phi / factors[i]), p) === 1) {
+          isRoot = false
+          break
+        }
+      }
+      if (isRoot) return g
+    }
+    return 2
+  }
+
+  static frequencyAnalysis(text: string): Map<string, number> {
+    const freq = new Map<string, number>()
+    const upper = text.toUpperCase().replace(/[^A-Z]/g, '')
+    for (let i = 0; i < upper.length; i++) {
+      const ch = upper.charAt(i)
+      freq.set(ch, (freq.get(ch) || 0) + 1)
+    }
+    return freq
+  }
+
+  static caesarBruteForce(ciphertext: string): string[] {
+    const results: string[] = []
+    for (let shift = 0; shift < 26; shift++) {
+      results.push(CipherUtils.caesarDecrypt(ciphertext, shift))
+    }
+    return results
+  }
+
+  static kasiskiExamination(text: string): number[] {
+    const upper = text.toUpperCase().replace(/[^A-Z]/g, '')
+    const distances: number[] = []
+    for (let len = 3; len <= 5; len++) {
+      for (let i = 0; i <= upper.length - len; i++) {
+        const seq = upper.substring(i, i + len)
+        const nextPos = upper.indexOf(seq, i + len)
+        if (nextPos > 0) {
+          distances.push(nextPos - i)
+        }
+      }
+    }
+    if (distances.length === 0) return []
+    const factorCounts = new Map<number, number>()
+    for (let i = 0; i < distances.length; i++) {
+      for (let f = 2; f <= distances[i]; f++) {
+        if (distances[i] % f === 0) {
+          factorCounts.set(f, (factorCounts.get(f) || 0) + 1)
+        }
+      }
+    }
+    const sorted: number[] = []
+    factorCounts.forEach((count: number, factor: number) => {
+      sorted.push(factor)
+    })
+    sorted.sort((a: number, b: number): number => {
+      return (factorCounts.get(b) || 0) - (factorCounts.get(a) || 0)
+    })
+    return sorted.slice(0, 10)
+  }
+
+  static indexOfCoincidence(text: string): number {
+    const upper = text.toUpperCase().replace(/[^A-Z]/g, '')
+    const n = upper.length
+    if (n <= 1) return 0
+    const freq = new Map<string, number>()
+    for (let i = 0; i < n; i++) {
+      const ch = upper.charAt(i)
+      freq.set(ch, (freq.get(ch) || 0) + 1)
+    }
+    let sum = 0
+    freq.forEach((count: number) => {
+      sum += count * (count - 1)
+    })
+    return sum / (n * (n - 1))
+  }
 }
 
 export class CustomCipherParam {
@@ -392,4 +683,20 @@ export class CustomCipherParam {
   affineA: number = 5
   affineB: number = 8
   railCount: number = 3
+}
+
+export class ShareUtils {
+  static encodeShareMessage(algorithm: string, params: string, result: string): string {
+    const payload = `${algorithm}|${params}|${result}`
+    return `CIPHERLAB:${CipherUtils.base64Encode(payload)}`
+  }
+
+  static decodeShareMessage(shared: string): string[] | null {
+    if (!shared.startsWith('CIPHERLAB:')) return null
+    const encoded = shared.substring(10)
+    const decoded = CipherUtils.base64Decode(encoded)
+    const parts = decoded.split('|')
+    if (parts.length < 3) return null
+    return parts
+  }
 }
